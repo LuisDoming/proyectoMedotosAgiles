@@ -65,6 +65,7 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Macrociclo");
+        setResizable(false);
 
         jpPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jpPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -278,11 +279,10 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
             int opcion = JOptionPane.showOptionDialog(this, "¿Quieres crear este macrociclo?", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                     opciones, opciones[0]);
             if (opcion == 0) {
-                macrocicloFrm macrociclo = new macrocicloFrm();
-                this.dispose();
+                
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Error. Macrociclo no válido.");
+            JOptionPane.showMessageDialog(this, "Error. Macrociclo no válido, se necesita calcular semanas primero.");
         }
 
     }//GEN-LAST:event_jbtnCrearMacrocicloActionPerformed
