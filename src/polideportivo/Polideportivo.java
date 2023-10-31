@@ -5,7 +5,8 @@
  */
 package polideportivo;
 
-import frms.NewJFrame;
+import presentacion.crearMacrocicloFrm;
+import presentacion.inicioFrm;
 
 /**
  *
@@ -17,7 +18,7 @@ public class Polideportivo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        NewJFrame frm = new NewJFrame();
+        inicioFrm inicioApp = new inicioFrm();
     }
     
 }

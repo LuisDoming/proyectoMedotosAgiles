@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package frms;
+package presentacion;
 
 /**
  *
@@ -15,7 +15,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
      * Creates new form macrocicloFrm
      */
     public macrocicloFrm() {
-        NewJFrame inicio = new NewJFrame();
+        crearMacrocicloFrm inicio = new crearMacrocicloFrm();
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
