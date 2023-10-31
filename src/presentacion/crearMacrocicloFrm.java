@@ -265,10 +265,16 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnCrearMacrocicloActionPerformed
 
     private void jbtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelarActionPerformed
-        int opcion = JOptionPane.showConfirmDialog(this, "¿Quieres cancelar la creación del macrociclo?");
+        String[] opciones = {"Aceptar", "Cancelar"};
+
+        int opcion = JOptionPane.showOptionDialog(this, "¿Quieres cancelar la creación del macrociclo?", "Opciones", JOptionPane.DEFAULT_OPTION,  JOptionPane.PLAIN_MESSAGE, null, 
+                opciones, opciones[0]);
+
         if (opcion == 0) {
-            this.dispose();
-            inicioFrm inicio = new inicioFrm();
+    
+        } else if (opcion == 1) {
+            // Código para la opción "Consultar"
+            // Por ejemplo, abrir una ventana para consultar algo.
         }
     }//GEN-LAST:event_jbtnCancelarActionPerformed
 
