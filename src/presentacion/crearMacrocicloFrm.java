@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class crearMacrocicloFrm extends javax.swing.JFrame {
 
+    boolean macrocicloVaiido = false;
     int totalSemanas;
 
     /**
@@ -56,6 +57,7 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jbtnCrearMacrociclo = new javax.swing.JButton();
         jbtnCancelar = new javax.swing.JButton();
+        jlbSalir = new javax.swing.JLabel();
 
         jtxtTotalSemanas1.setEditable(false);
 
@@ -112,51 +114,62 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
             }
         });
 
+        jlbSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/salir.png"))); // NOI18N
+        jlbSalir.setToolTipText("");
+        jlbSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbSalirMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpPanel1Layout = new javax.swing.GroupLayout(jpPanel1);
         jpPanel1.setLayout(jpPanel1Layout);
         jpPanel1Layout.setHorizontalGroup(
             jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPanel1Layout.createSequentialGroup()
+                .addGap(62, 62, 62)
                 .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpPanel1Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jpPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(39, 39, 39)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jpPanel1Layout.createSequentialGroup()
-                                .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jdcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)
-                                    .addGroup(jpPanel1Layout.createSequentialGroup()
-                                        .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel10)
-                                            .addComponent(jLabel4))
-                                        .addGap(34, 34, 34)
-                                        .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jtxtTotalSemanas, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jtxtTotalDias, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jbtnCalcular))
-                                .addGap(50, 50, 50)
-                                .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jdcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jpPanel1Layout.createSequentialGroup()
-                                        .addComponent(jbtnCrearMacrociclo)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jbtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addComponent(jLabel6)
+                        .addGap(39, 39, 39)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel1)))
+                        .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jdcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addGroup(jpPanel1Layout.createSequentialGroup()
+                                .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel4))
+                                .addGap(34, 34, 34)
+                                .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtxtTotalSemanas, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtxtTotalDias, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jbtnCalcular))
+                        .addGap(50, 50, 50)
+                        .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jdcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jpPanel1Layout.createSequentialGroup()
+                                .addComponent(jbtnCrearMacrociclo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(15, Short.MAX_VALUE))
+            .addGroup(jpPanel1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jlbSalir)
+                .addGap(35, 35, 35))
         );
         jpPanel1Layout.setVerticalGroup(
             jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jlbSalir))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -203,12 +216,12 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
     private void jbtnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCalcularActionPerformed
         this.jtxtTotalSemanas.setText("0");
         this.jtxtTotalDias.setText("0");
-        
+
         LocalDate fechaActual, fechaInicio = null, fechaFin = null;
         Date fechaElegidaInicio = jdcFechaInicio.getDate();
         Date fechaElegidaFin = jdcFechaFin.getDate();
         fechaActual = LocalDate.now();
-        
+
         if (fechaElegidaInicio == null) {
             JOptionPane.showMessageDialog(this, "Error. Ingrese fecha de inicio.");
         } else {
@@ -238,45 +251,70 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
         if (fechaInicio != null && fechaFin != null) {
             long diasEntreFechas = ChronoUnit.DAYS.between(fechaInicio, fechaFin);
             this.jtxtTotalDias.setText(Long.toString(diasEntreFechas));
-            
+
             if (fechaInicio.equals(fechaFin)) {
                 JOptionPane.showMessageDialog(this, "Error. La fecha de finalización es igual a la de inicio.");
             }
             if (diasEntreFechas <= 0) {
                 JOptionPane.showMessageDialog(this, "Error. Números totales del macroclico menores o iguales a 0.");
-            } 
-            if (diasEntreFechas%7 != 0) {
+            }
+            if (diasEntreFechas % 7 != 0) {
                 JOptionPane.showMessageDialog(this, "Error. Tienen que ser semanas completas.");
-            } 
-            else {
-                
+            } else {
+                macrocicloVaiido = true;
                 long semanasEntreFechas = ChronoUnit.WEEKS.between(fechaInicio, fechaFin);
-                System.out.println("Semanas : "+ semanasEntreFechas);
-                
+                System.out.println("Semanas : " + semanasEntreFechas);
+
                 this.jtxtTotalSemanas.setText(Long.toString(semanasEntreFechas));
                 totalSemanas = (int) semanasEntreFechas;
-                
+
             }
         }
     }//GEN-LAST:event_jbtnCalcularActionPerformed
 
     private void jbtnCrearMacrocicloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCrearMacrocicloActionPerformed
-        // TODO add your handling code here:
+        String[] opciones = {"Aceptar", "Cancelar"};
+        if (macrocicloVaiido) {
+            int opcion = JOptionPane.showOptionDialog(this, "¿Quieres crear este macrociclo?", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                    opciones, opciones[0]);
+            if (opcion == 0) {
+                macrocicloFrm macrociclo = new macrocicloFrm();
+                this.dispose();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error. Macrociclo no válido.");
+        }
+
     }//GEN-LAST:event_jbtnCrearMacrocicloActionPerformed
 
     private void jbtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelarActionPerformed
         String[] opciones = {"Aceptar", "Cancelar"};
 
-        int opcion = JOptionPane.showOptionDialog(this, "¿Quieres cancelar la creación del macrociclo?", "Opciones", JOptionPane.DEFAULT_OPTION,  JOptionPane.PLAIN_MESSAGE, null, 
+        int opcion = JOptionPane.showOptionDialog(this, "¿Quieres cancelar la creación del macrociclo?", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 opciones, opciones[0]);
 
         if (opcion == 0) {
-    
+
         } else if (opcion == 1) {
             // Código para la opción "Consultar"
             // Por ejemplo, abrir una ventana para consultar algo.
         }
     }//GEN-LAST:event_jbtnCancelarActionPerformed
+
+    private void jlbSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbSalirMouseClicked
+        String[] opciones = {"Aceptar", "Cancelar"};
+
+        int opcion = JOptionPane.showOptionDialog(this, "¿Quieres regresal al menu principal?", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                opciones, opciones[0]);
+
+        if (opcion == 0) {
+            inicioFrm inicio = new inicioFrm();
+            this.dispose();
+        } else if (opcion == 1) {
+            // Código para la opción "Consultar"
+            // Por ejemplo, abrir una ventana para consultar algo.
+        }
+    }//GEN-LAST:event_jlbSalirMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -293,6 +331,7 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
     private javax.swing.JButton jbtnCrearMacrociclo;
     private com.toedter.calendar.JDateChooser jdcFechaFin;
     private com.toedter.calendar.JDateChooser jdcFechaInicio;
+    private javax.swing.JLabel jlbSalir;
     private javax.swing.JPanel jpPanel1;
     private javax.swing.JTextField jtxtTotalDias;
     private javax.swing.JTextField jtxtTotalSemanas;
