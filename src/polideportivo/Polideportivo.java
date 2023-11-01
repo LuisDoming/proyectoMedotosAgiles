@@ -9,7 +9,7 @@ import presentacion.crearMacrocicloFrm;
 import presentacion.inicioFrm;
 
 /**
- *
+ * 
  * @author ldoar
  */
 public class Polideportivo {

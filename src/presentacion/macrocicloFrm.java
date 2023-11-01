@@ -6,7 +6,7 @@
 package presentacion;
 
 /**
- *
+ * Panta
  * @author ldoar
  */
 public class macrocicloFrm extends javax.swing.JFrame {

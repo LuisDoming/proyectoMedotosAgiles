@@ -14,16 +14,18 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Pantalla para la creacion de macrociclos
  * @author ldoar
  */
 public class crearMacrocicloFrm extends javax.swing.JFrame {
 
+    //boolean que almacena si el macrociclo es valido
     boolean macrocicloVaiido = false;
+    //entero que almacena el total de semanas de un macrociclo
     int totalSemanas;
 
     /**
-     * Creates new form NewJFrame
+     * Metodo constructor que inicializar los componentes de la pantalla
      */
     public crearMacrocicloFrm() {
         initComponents();
@@ -217,86 +219,129 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Evento que calcula la cantidad de semanas de un macrociclo al presionar
+ * el boton calcular macrociclo
+ * @param evt 
+ */
     private void jbtnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCalcularActionPerformed
+        //establece el total de semanas y dias a 0
         this.jtxtTotalSemanas.setText("0");
         this.jtxtTotalDias.setText("0");
 
+        //crea 3 variables una para la fecha actual no definida, una para la fecha inicio nula y otra para la fecha fin nula
         LocalDate fechaActual, fechaInicio = null, fechaFin = null;
+        //obtiene la fecha de inicio ingresada por el usuario y lo guarda en la variable
         Date fechaElegidaInicio = jdcFechaInicio.getDate();
+        //obtiene la fecha de inicio ingresada por el usuario y lo guarda en la variable
         Date fechaElegidaFin = jdcFechaFin.getDate();
+        //instancia localdate con la fecha actual
         fechaActual = LocalDate.now();
 
         if (fechaElegidaInicio == null) {
+            //si la fecha elegida de inicio es nula muestra un mensaje de error indicando
             JOptionPane.showMessageDialog(this, "Error. Ingrese fecha de inicio.");
         } else {
+            //crea un date time formatter
             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+            //convierte la fecha a un instant y se ajusta a la zona horaria actual del sistema
             fechaInicio = fechaElegidaInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
+            //le da el formato a la fecha 
             String fechaInicioFormateada = formato.format(fechaInicio);
 
+            //imprime la fecha ingresada y la fecha formateada
             System.out.println(fechaInicio);
             System.out.println(fechaInicioFormateada);
         }
 
+        
         if (fechaElegidaFin == null) {
+            //si la fecha final elegida es nula muestra un mensaje de error
             JOptionPane.showMessageDialog(this, "Error. Ingrese fecha de inicio.");
         } else {
+            //crear un formato para la fecha
             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+            //convierte la fecha a un instant y se ajusta a la zona horaria actual del sistema
             fechaFin = fechaElegidaFin.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
+            //le da el formato a la fecha 
             String fechaFinFormateada = formato.format(fechaFin);
 
+            //imprime la fecha ingresada y la fecha formateada
             System.out.println(fechaFin);
             System.out.println(fechaFinFormateada);
         }
 
         if (fechaInicio != null && fechaFin != null) {
+            //si las fechas ingresadas no son nulas
+            //calcula los dias entre las fechas ingresadas
             long diasEntreFechas = ChronoUnit.DAYS.between(fechaInicio, fechaFin);
+            //se asignan al jtxt los dias totales
             this.jtxtTotalDias.setText(Long.toString(diasEntreFechas));
 
+            
             if (fechaInicio.equals(fechaFin)) {
+                //si la fecha de inicio y la fecha fin son iguales mostrando que son la misma fecha
                 JOptionPane.showMessageDialog(this, "Error. La fecha de finalización es igual a la de inicio.");
             }
             if (diasEntreFechas <= 0) {
+                //si los dias entre las fechas son iguales a 0 muestra un mensaje de error
                 JOptionPane.showMessageDialog(this, "Error. Números totales del macroclico menores o iguales a 0.");
             }
             if (diasEntreFechas % 7 != 0) {
+                //si los dias entre las fechas totales no son multiplo de 7 entonces muestra un mensaje de error
                 JOptionPane.showMessageDialog(this, "Error. Tienen que ser semanas completas.");
             } else {
+                //cambia el macrociclo es valido a true
                 macrocicloVaiido = true;
+                //calcula las semanas totales entre las fechas ingresadas
                 long semanasEntreFechas = ChronoUnit.WEEKS.between(fechaInicio, fechaFin);
+                //imprime el total de semanas
                 System.out.println("Semanas : " + semanasEntreFechas);
 
+                //le agrega el total de semanas al campo
                 this.jtxtTotalSemanas.setText(Long.toString(semanasEntreFechas));
+                //cambia el total de semanas a entero
                 totalSemanas = (int) semanasEntreFechas;
 
             }
         }
     }//GEN-LAST:event_jbtnCalcularActionPerformed
-
+/**
+ * metodo que se encarga de manejar el evento de crear macrociclo
+ * @param evt 
+ */
     private void jbtnCrearMacrocicloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCrearMacrocicloActionPerformed
+        //opciones del menu
         String[] opciones = {"Aceptar", "Cancelar"};
+        
         if (macrocicloVaiido) {
+            //si el macrociclo es valido
+            //obtiene la opciones seleccionada
             int opcion = JOptionPane.showOptionDialog(this, "¿Quieres crear este macrociclo?", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                     opciones, opciones[0]);
             if (opcion == 0) {
                 
             }
         } else {
+            //si el macrociclo no es valido muestra un mensaje de error
             JOptionPane.showMessageDialog(this, "Error. Macrociclo no válido, se necesita calcular semanas primero.");
         }
 
     }//GEN-LAST:event_jbtnCrearMacrocicloActionPerformed
 
     private void jbtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelarActionPerformed
+        //muestra las opciones del boton cancelar
         String[] opciones = {"Aceptar", "Cancelar"};
 
+        //obtiene la opcion seleccionada
         int opcion = JOptionPane.showOptionDialog(this, "¿Quieres cancelar la creación del macrociclo?", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 opciones, opciones[0]);
 
+        //si la opcion seleccionada es 0
         if (opcion == 0) {
 
         } else if (opcion == 1) {
@@ -306,13 +351,17 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnCancelarActionPerformed
 
     private void jlbSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbSalirMouseClicked
+        //muestra las opciones del boton salir
         String[] opciones = {"Aceptar", "Cancelar"};
 
+        //obtiene la opcion seleccionada
         int opcion = JOptionPane.showOptionDialog(this, "¿Quieres regresal al menu principal?", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 opciones, opciones[0]);
 
         if (opcion == 0) {
+            //si selecciona aceptar instancia la pantalla principal
             inicioFrm inicio = new inicioFrm();
+            //borra la pantalla actual
             this.dispose();
         } else if (opcion == 1) {
             // Código para la opción "Consultar"

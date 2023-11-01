@@ -8,13 +8,13 @@ package presentacion;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Pantalla principal del sistema
  * @author ldoar
  */
 public class inicioFrm extends javax.swing.JFrame {
 
     /**
-     * Creates new form inicioFrm
+     * Metodo constructor que inicializa la pantalla principal
      */
     public inicioFrm() {
         initComponents();
@@ -94,17 +94,24 @@ public class inicioFrm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Evento que escucha si se presiono el boton de administrar macrociclos
+ * @param evt 
+ */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //Opciones del menu del JOptionPane
         String[] opciones = {"Crear", "Consultar"};
 
+        //Obtiene la opcion seleccionada del JOptionPane
         int opcion = JOptionPane.showOptionDialog(this, "Selecciona una opción:", "Opciones", JOptionPane.DEFAULT_OPTION,  JOptionPane.PLAIN_MESSAGE, null, 
                 opciones, opciones[0]);
 
+        //si selecciona la opcion crear macrociclo crea la pantalla para crear macrociclos
         if (opcion == 0) {
             crearMacrocicloFrm crearMacro = new crearMacrocicloFrm();
             this.dispose();
         } else if (opcion == 1) {
+            //si selecciona consultar macrociclos 
             // Código para la opción "Consultar"
             // Por ejemplo, abrir una ventana para consultar algo.
         }
