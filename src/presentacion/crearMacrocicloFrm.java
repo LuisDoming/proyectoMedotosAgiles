@@ -70,6 +70,10 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
         jpPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jpPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jdcFechaInicio.setDateFormatString("dd/MM/yyyy");
+
+        jdcFechaFin.setDateFormatString("dd/MM/yyyy");
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Nuevo Macrociclo");
 
