@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class crearMacrocicloFrm extends javax.swing.JFrame {
 
+    String inicioPlan, finPlan;
     boolean macrocicloVaiido = false;
     int totalSemanas;
 
@@ -29,6 +30,8 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.jtxtTotalSemanas.setText("0");
+        this.jtxtTotalDias.setText("0");
     }
 
     /**
@@ -87,6 +90,7 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
         jtxtTotalSemanas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jbtnCalcular.setBackground(new java.awt.Color(204, 204, 255));
+        jbtnCalcular.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbtnCalcular.setText("Calcular semanas");
         jbtnCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +108,7 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
         jLabel10.setText("Total de dias: ");
 
         jbtnCrearMacrociclo.setBackground(new java.awt.Color(204, 255, 204));
+        jbtnCrearMacrociclo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbtnCrearMacrociclo.setText("Crear macrociclo");
         jbtnCrearMacrociclo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,6 +117,7 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
         });
 
         jbtnCancelar.setBackground(new java.awt.Color(255, 102, 102));
+        jbtnCancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbtnCancelar.setText("Cancelar");
         jbtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,7 +165,7 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
                                 .addComponent(jbtnCrearMacrociclo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jbtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1)
@@ -219,13 +225,10 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCalcularActionPerformed
-        this.jtxtTotalSemanas.setText("0");
-        this.jtxtTotalDias.setText("0");
-
-        LocalDate fechaActual, fechaInicio = null, fechaFin = null;
-        Date fechaElegidaInicio = jdcFechaInicio.getDate();
-        Date fechaElegidaFin = jdcFechaFin.getDate();
-        fechaActual = LocalDate.now();
+        LocalDate fechaInicio = null, fechaFin = null;
+        Date fechaElegidaInicio = this.jdcFechaInicio.getDate();
+        Date fechaElegidaFin = this.jdcFechaFin.getDate();
+        LocalDate fechaActual = LocalDate.now();
 
         if (fechaElegidaInicio == null) {
             JOptionPane.showMessageDialog(this, "Error. Ingrese fecha de inicio.");
@@ -234,10 +237,10 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
 
             fechaInicio = fechaElegidaInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-            String fechaInicioFormateada = formato.format(fechaInicio);
+            inicioPlan = formato.format(fechaInicio);
 
             System.out.println(fechaInicio);
-            System.out.println(fechaInicioFormateada);
+            System.out.println(inicioPlan);
         }
 
         if (fechaElegidaFin == null) {
@@ -247,10 +250,10 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
 
             fechaFin = fechaElegidaFin.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-            String fechaFinFormateada = formato.format(fechaFin);
+            finPlan = formato.format(fechaFin);
 
             System.out.println(fechaFin);
-            System.out.println(fechaFinFormateada);
+            System.out.println(finPlan);
         }
 
         if (fechaInicio != null && fechaFin != null) {
@@ -283,7 +286,8 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
             int opcion = JOptionPane.showOptionDialog(this, "¿Quieres crear este macrociclo?", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                     opciones, opciones[0]);
             if (opcion == 0) {
-                
+                macrocicloFrm macroNuevo = new macrocicloFrm(this);
+                this.dispose();
             }
         } else {
             JOptionPane.showMessageDialog(this, "Error. Macrociclo no válido, se necesita calcular semanas primero.");
@@ -315,8 +319,7 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
             inicioFrm inicio = new inicioFrm();
             this.dispose();
         } else if (opcion == 1) {
-            // Código para la opción "Consultar"
-            // Por ejemplo, abrir una ventana para consultar algo.
+
         }
     }//GEN-LAST:event_jlbSalirMouseClicked
 
