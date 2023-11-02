@@ -14,23 +14,34 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Pantalla que contiene la creacion de las fechas del macrociclo
  * @author ldoar
  */
 public class crearMacrocicloFrm extends javax.swing.JFrame {
 
+    /**
+     * Strings para el inicio y el fin del plan
+     */
     String inicioPlan, finPlan;
+    /**
+     * Boolean que contiene el estado del macrociclo
+     */
     boolean macrocicloValido = false;
+    /**
+     * Entero para guardar el total de semanas
+     */
     int totalSemanas;
 
     /**
-     * Creates new form NewJFrame
+     * Constructor que inicializa la pantalla y sus componentes
      */
     public crearMacrocicloFrm() {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        //Establece el total de semanas a 0
         this.jtxtTotalSemanas.setText("0");
+        //Establece el total de dias a 0
         this.jtxtTotalDias.setText("0");
     }
 
@@ -223,34 +234,52 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Manejador de eventos que escucha si se presiona el boton calcular
+ * @param evt 
+ */
     private void jbtnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCalcularActionPerformed
+        //declara localdate una fecha de inicio y una fecha fin
         LocalDate fechaInicio = null, fechaFin = null;
+        //obtiene la fecha de inicio ingresada por el usuario
         Date fechaElegidaInicio = this.jdcFechaInicio.getDate();
+        //obtiene la fecha de finalizacion ingresada por el usuario
         Date fechaElegidaFin = this.jdcFechaFin.getDate();
+        //se obtiene la fecha actual
         LocalDate fechaActual = LocalDate.now();
         if (fechaElegidaInicio == null) {
+            //si la fecha elegida es nula entonces muestra un mensaje de error
             JOptionPane.showMessageDialog(this, "Error. Ingrese fecha de inicio.");
         } else {
+            //si la fecha elegida de inicio no es nula
+            //Crea un date formatter con el patron especificado
             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
+            //Convierte la fecha de inicio a un instante y a la zona actual del sistema
             fechaInicio = fechaElegidaInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
+            //guarda la fecha de inicio ya con el formato
             inicioPlan = formato.format(fechaInicio);
 
+            //imprime la fecha de inicio
             System.out.println(fechaInicio);
             System.out.println(inicioPlan);
         }
 
         if (fechaElegidaFin == null) {
+            //si la fecha elegida es nula entonces muestra un mensaje de error
             JOptionPane.showMessageDialog(this, "Error. Ingrese fecha de fin.");
         } else {
+            //si la fecha elegida final no es nula
+            //Crea un date formatter con el patron especificado
             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
+            
+            //Convierte la fecha final a un instante y a la zona actual del sistema
             fechaFin = fechaElegidaFin.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
+            //guarda la fecha final ya con el formato
             finPlan = formato.format(fechaFin);
 
+            //imprime la fecha de inicio
             System.out.println(fechaFin);
             System.out.println(finPlan);
         }

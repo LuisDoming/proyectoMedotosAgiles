@@ -8,13 +8,15 @@ package presentacion;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Pantalla que contiene la distribucion de los mesociclos
  * @author ldoar
  */
 public class macrocicloFrm extends javax.swing.JFrame {
     private crearMacrocicloFrm crearMacro;
+    
     /**
-     * Creates new form macrocicloFrm
+     * 
+     * @param crearMacro 
      */
     public macrocicloFrm(crearMacrocicloFrm crearMacro) {
         this.crearMacro = crearMacro;
