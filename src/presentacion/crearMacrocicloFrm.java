@@ -285,10 +285,15 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
         }
 
         if (fechaInicio != null && fechaFin != null) {
+        //si la fecha de inicio y la fecha de finalizacion no son nulas
+            //calcula los dias entre las fechas            
             long diasEntreFechas = ChronoUnit.DAYS.between(fechaInicio, fechaFin);
+            //establece al texto la cantidad de dias calculados entre las dos fechas
             this.jtxtTotalDias.setText(Long.toString(diasEntreFechas));
 
             if (fechaInicio.equals(fechaFin)) {
+                //si la fecha de inicio es igual a la fecha de finalizacion
+                //manda un mensaje de error y restablece los valores ingresados
                 JOptionPane.showMessageDialog(this, "Error. La fecha de finalización es igual a la de inicio.");
                 jdcFechaInicio.setDate(null);
                 jdcFechaFin.setDate(null);
@@ -298,6 +303,8 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
 
             }
             if (diasEntreFechas <= 0) {
+                //si los dias entre las fechas son menores a iguales a 0
+                //manda un mensaje de error y restablece los valores ingresados
                 JOptionPane.showMessageDialog(this, "Error. Números totales del macroclico menores o iguales a 0.");
                 jdcFechaInicio.setDate(null);
                 jdcFechaFin.setDate(null);
@@ -308,6 +315,8 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
 
             }
             if (diasEntreFechas % 7 != 0) {
+                //si los dias totales no son semanas completas
+                //muestra un mensaje de error y restablece los valores ingresados
                 JOptionPane.showMessageDialog(this, "Error. Tienen que ser semanas completas.");
                 jdcFechaInicio.setDate(null);
                 jdcFechaFin.setDate(null);
@@ -317,8 +326,12 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
 
 
             } else {
+                //si pasa todas las validaciones
+                //el macrociclo es valido
                 macrocicloValido = true;
+                //calcula el total de semanas
                 long semanasEntreFechas = ChronoUnit.WEEKS.between(fechaInicio, fechaFin);
+                //establece el total de semanas a las semanas calculadas 
                 System.out.println("Semanas : " + semanasEntreFechas);
                 this.jtxtTotalSemanas.setText(Long.toString(semanasEntreFechas));
                 totalSemanas = (int) semanasEntreFechas;
@@ -326,13 +339,21 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jbtnCalcularActionPerformed
-
+/**
+ * Manejador de eventos cuando se presiona el boton crear macrociclos
+ * @param evt 
+ */
     private void jbtnCrearMacrocicloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCrearMacrocicloActionPerformed
+        //opciones al crear macrociclo
         String[] opciones = {"Aceptar", "Cancelar"};
+        //si las fechas del macrociclo son validas
         if (macrocicloValido) {
+            //obtiene el valor elegido
             int opcion = JOptionPane.showOptionDialog(this, "¿Quieres crear este macrociclo?", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                     opciones, opciones[0]);
             if (opcion == 0) {
+                //si se quiere crear el macrociclo
+                //crea la pantalla para la creacion y se envia esta al constructor
                 macrocicloFrm macroNuevo = new macrocicloFrm(this);
                 this.dispose();
             }
@@ -341,10 +362,15 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jbtnCrearMacrocicloActionPerformed
-
+/**
+ * 
+ * @param evt 
+ */
     private void jbtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelarActionPerformed
+        //`opciones al cancelar
         String[] opciones = {"Aceptar", "Cancelar"};
 
+        //obtiene la opcion elegida
         int opcion = JOptionPane.showOptionDialog(this, "¿Quieres cancelar la creación del macrociclo?", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 opciones, opciones[0]);
 
@@ -355,14 +381,21 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
             // Por ejemplo, abrir una ventana para consultar algo.
         }
     }//GEN-LAST:event_jbtnCancelarActionPerformed
-
+/**
+ * Manejador de eventos cuando se presiona el boton salir
+ * @param evt 
+ */
     private void jlbSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbSalirMouseClicked
+        //opciones a elegir
         String[] opciones = {"Aceptar", "Cancelar"};
 
+        //obtiene la opcion elegida
         int opcion = JOptionPane.showOptionDialog(this, "¿Quieres regresal al menu principal?", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 opciones, opciones[0]);
 
         if (opcion == 0) {
+            //si elige salir
+            //vuelve a la pantalla de inicio
             inicioFrm inicio = new inicioFrm();
             this.dispose();
         } else if (opcion == 1) {
