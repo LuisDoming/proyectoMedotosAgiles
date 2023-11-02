@@ -241,7 +241,7 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
         }
 
         if (fechaElegidaFin == null) {
-            JOptionPane.showMessageDialog(this, "Error. Ingrese fecha de inicio.");
+            JOptionPane.showMessageDialog(this, "Error. Ingrese fecha de fin.");
         } else {
             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -259,12 +259,27 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
 
             if (fechaInicio.equals(fechaFin)) {
                 JOptionPane.showMessageDialog(this, "Error. La fecha de finalización es igual a la de inicio.");
+                jdcFechaInicio.setDate(null);
+                jdcFechaFin.setDate(null);
+                jtxtTotalDias.setText("0");
+                jtxtTotalSemanas.setText("0");
+
             }
             if (diasEntreFechas <= 0) {
                 JOptionPane.showMessageDialog(this, "Error. Números totales del macroclico menores o iguales a 0.");
+                jdcFechaInicio.setDate(null);
+                jdcFechaFin.setDate(null);
+                jtxtTotalDias.setText("0");
+                jtxtTotalSemanas.setText("0");
+
             }
             if (diasEntreFechas % 7 != 0) {
                 JOptionPane.showMessageDialog(this, "Error. Tienen que ser semanas completas.");
+                jdcFechaInicio.setDate(null);
+                jdcFechaFin.setDate(null);
+                jtxtTotalDias.setText("0");
+                jtxtTotalSemanas.setText("0");
+
             } else {
                 macrocicloVaiido = true;
                 long semanasEntreFechas = ChronoUnit.WEEKS.between(fechaInicio, fechaFin);
@@ -283,7 +298,7 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
             int opcion = JOptionPane.showOptionDialog(this, "¿Quieres crear este macrociclo?", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                     opciones, opciones[0]);
             if (opcion == 0) {
-                
+
             }
         } else {
             JOptionPane.showMessageDialog(this, "Error. Macrociclo no válido, se necesita calcular semanas primero.");
