@@ -29,7 +29,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         //Establece el total de semanas asi como la semana de inicio y fin 
         //obtenidas en la pantalla anterior
-        this.semanasTotales = crearMacro.totalSemanas;
+        this.jtxtSemanas.setText(Integer.toString(crearMacro.totalSemanas));
         this.jtxtSemanaInicio.setText(crearMacro.inicioPlan.toString());
         this.jtxtSemanaFin.setText(crearMacro.finPlan.toString());
     }
