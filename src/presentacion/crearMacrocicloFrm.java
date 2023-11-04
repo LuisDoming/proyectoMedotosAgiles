@@ -65,8 +65,6 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jtxtTotalSemanas = new javax.swing.JTextField();
         jbtnCalcular = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
         jtxtTotalDias = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jbtnCrearMacrociclo = new javax.swing.JButton();
@@ -109,10 +107,6 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel6.setText("Disciplina");
-
         jtxtTotalDias.setEditable(false);
         jtxtTotalDias.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
@@ -151,31 +145,25 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
             .addGroup(jpPanel1Layout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(39, 39, 39)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jdcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
                     .addGroup(jpPanel1Layout.createSequentialGroup()
                         .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jdcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addGroup(jpPanel1Layout.createSequentialGroup()
-                                .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel4))
-                                .addGap(34, 34, 34)
-                                .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtxtTotalSemanas, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtxtTotalDias, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jbtnCalcular))
-                        .addGap(50, 50, 50)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel4))
+                        .addGap(34, 34, 34)
                         .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jdcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jpPanel1Layout.createSequentialGroup()
-                                .addComponent(jbtnCrearMacrociclo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jbtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jtxtTotalSemanas, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtxtTotalDias, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jbtnCalcular))
+                .addGap(50, 50, 50)
+                .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jdcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpPanel1Layout.createSequentialGroup()
+                        .addComponent(jbtnCrearMacrociclo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
@@ -191,11 +179,7 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
                 .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jlbSalir))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpPanel1Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
@@ -229,7 +213,7 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -405,13 +389,11 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JButton jbtnCalcular;
     private javax.swing.JButton jbtnCancelar;
