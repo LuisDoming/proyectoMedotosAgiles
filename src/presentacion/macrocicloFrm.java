@@ -39,54 +39,79 @@ public class macrocicloFrm extends javax.swing.JFrame {
         
     }
         
+    /**
+     * Metodo que oculta deshabilita las tablas de mesociclos
+     */
     public void ocultarTablaMeso(){
         this.jspEtapaPreparacion.setEnabled(false);
 //        this.jbtnValidar.setEnabled(false);
         this.tblEtapaPreparacion.setEnabled(false);
     }
     
+    /**
+     * Metodo que habilita las tablas de mesociclos
+     */
     public void mostrarTablaMeso(){
         this.jspEtapaPreparacion.setEnabled(true);
   //      this.jbtnValidar.setEnabled(true);
         this.tblEtapaPreparacion.setEnabled(true);
     }
         
+    /**
+     * metodo que deshabilita las tablas de desglose de semanas de las etapas
+     */
     public void deshabilitarEtapas(){
         this.jpPeriodoPreparativo.setVisible(false);
         this.jpPeriodoCompetitivo.setVisible(false);
         this.btnValidarSemanas.setVisible(false);
     }
     
+     /**
+     * metodo que habilita las tablas de desglose de semanas de las etapas
+     */
     public void habilitarEtapas(){
         this.jpPeriodoPreparativo.setVisible(true);
         this.jpPeriodoCompetitivo.setVisible(true);
         this.btnValidarSemanas.setVisible(true);
     }
     
+   /**
+    * valida las semanas del formulario detallado desglosado de las etapas
+    */
     public void validarEtapas(){
         
+        //obtiene los datos ingresados al formulario de periodo ingresado anteriormente
         int preparativa = Integer.valueOf(this.jtxtSemanasPreparativo.getText());
         int competitiva = Integer.valueOf(this.jtxtSemanasCompetitivo.getText());
         
+        //crea una variable para cada uno de los campos del desglose
         int etapaPreparacion,etapaEspecial,etapaPrecompetitiva,etapaCompetitiva,totalIngresado;
+        //variables para el total de semanas ingresadas al periodo y al competitivo
         int totalPreparativo,totalCompetitivo;
         
+        //obtiene el valor ingresado para la etapa precompetitiva
         String precompetitiva = this.jtxtSemanasEspecial.getText();
         
         if(precompetitiva.equalsIgnoreCase("")||precompetitiva.equalsIgnoreCase("0")){
+           //si se dejo el campo vacio o igual a 0
+           //obtiene los datos ingresados en los campos excepto el precompetitivo
         etapaPreparacion = Integer.valueOf(this.jtxtSemanasPreparacion.getText()); 
         etapaEspecial = Integer.valueOf(precompetitiva);
         etapaCompetitiva = Integer.valueOf(this.jtxtSemanasEtapaCompetitivo.getText());   
         
+        //calcula el total ingresado asi como el total preparativo y el total competitivo
         totalIngresado = etapaPreparacion + etapaEspecial + etapaCompetitiva;
         totalPreparativo = etapaPreparacion + etapaEspecial;
         totalCompetitivo = etapaCompetitiva;
         }else{
+        //si se ingresa algun valor en la competitiva
+        //obtiene los valores de todos los campos
         etapaPreparacion = Integer.valueOf(this.jtxtSemanasPreparacion.getText()); 
         etapaEspecial = Integer.valueOf(precompetitiva);
         etapaPrecompetitiva = Integer.valueOf(this.jtxtSemanasPrecompetitivo.getText()); 
         etapaCompetitiva = Integer.valueOf(this.jtxtSemanasEtapaCompetitivo.getText());  
         
+        //calcula el total como el total preparativo y el competitivo
         totalIngresado = etapaPreparacion + etapaEspecial + etapaPrecompetitiva + etapaCompetitiva;
         totalPreparativo = etapaPreparacion + etapaEspecial;
         totalCompetitivo = etapaCompetitiva + etapaPrecompetitiva;
@@ -94,66 +119,90 @@ public class macrocicloFrm extends javax.swing.JFrame {
         
         //validaciones
         if(totalIngresado != semanasTotales){
+            //si el total ingresado no es igual a las semanas totales del macrociclo
+            //muestra un mensaje de error
             JOptionPane.showMessageDialog(this, "Error. La suma de semanas ingresada no es igual a la semanas totales establecidas"
                     + "para el macrociclo");
             return;
         }
         
         if(totalPreparativo > preparativa){
+            //si el total de la etapa preparativa y especial
+            //es mayor al valor del preparativo del perido
+            //muestra mensaje de error
             JOptionPane.showMessageDialog(this, "Error. La suma de semanas de preparacion ingresada no es igual a la semanas totales establecidas");
             return;            
         }
- 
+
         if(totalCompetitivo > competitiva){
+             //si el total de la etapa precompetitiva y competitiva
+            //es mayor al valor del competitivo del periodo
+            //muestra mensaje de error            
             JOptionPane.showMessageDialog(this, "Error. La suma de semanas competitivas ingresada no es igual a la semanas totales establecidas");
             return;            
         }        
         
        
         boolean textosValidos = validarEntradasTexto();
-        
         if (textosValidos) {
+        //si los textos son validos no continua
             
         } else{
             return;
         }
         
-        //a
+        //desactiva los campos de edicion
         this.desactivarCamposEdicion();
+        //muestra la tabla de mesociclos
         this.mostrarTablaMeso();
         
         ///ojo
     }
     
+     /**
+     * valida el primer formulario de desglose de semanas (preparativo y competitivo)
+     */
     public void validarPeriodos(){
+        //obtiene los datos introducidos
         int etapaPreparativa = Integer.valueOf(this.jtxtSemanasPreparativo.getText());
         int etapaCompetitiva = Integer.valueOf(this.jtxtSemanasCompetitivo.getText());
         
+        //calcula la sumatoria de estos campos
         int totalIngresado = etapaPreparativa + etapaCompetitiva;
         
+        
         if(totalIngresado != semanasTotales){
+            //si excede el total de semanas del macrociclo muestra un mensaje de error
             JOptionPane.showMessageDialog(this, "Error. La suma de semanas ingresada no es igual a la semanas totales establecidas"
                     + "para el macrociclo");
             return;            
         }
         
         if(etapaPreparativa <= etapaCompetitiva){
+            //si la etapa preparativa es menor o igual a la competitiva entonces
+            //muestra un mensaje de error
             JOptionPane.showMessageDialog(this, "Error. la semana preparativa debe contenes mas semanas que la semana competitiva");
             return;                        
         }
         
-
+        //habilita las siguientes tablas
         this.habilitarEtapas();
 
     }
     
+    /**
+     * Calcula el porcentaje de los periodos
+     */
     public void calcularPorcentajePeriodos(){
+        //obtiene los valores introducidos
         int etapaPreparativa = Integer.valueOf(this.jtxtSemanasPreparativo.getText());
         int etapaCompetitiva = Integer.valueOf(this.jtxtSemanasCompetitivo.getText());
         
+        //obtiene los porcentajes
         int porcentajePreparativa = (etapaPreparativa * 100) / semanasTotales;
         int porcentajeCompetitiva = (etapaCompetitiva * 100) / semanasTotales;
         
+        //asigna los porcentajes a los campos de texto correspondiente
         this.jtxtPorcentajePreparativo.setText(String.valueOf(porcentajePreparativa));
         this.jtxtPorcentajeCompetitivo.setText(String.valueOf(porcentajeCompetitiva));
         
@@ -161,15 +210,20 @@ public class macrocicloFrm extends javax.swing.JFrame {
     }
     
     
-    
+    /**
+     * Valida las entradas de texto del formulario de datos del macrociclo
+     * @return True   si las entradas son correctas
+     */
       public boolean validarEntradasTexto() {
 
+          //obtiene las cadenas ingresadas en los campos
         String txtDeporte = this.txtDeporte.getText();
         String txtEntAux = this.txtEntAux.getText();
         String txtMetodologo = this.txtMetodologo.getText();
         String txtRama = this.txtRama.getText();
         String txtJefeRama = this.txtJefeRama.getText();
 
+        //si esta vacia regresa falso mostrando errores
         if (txtDeporte.equals("")) {
             JOptionPane.showMessageDialog(this, "Error. El campo de entrada de deporte no puede estar vacío");
             return false;
@@ -187,6 +241,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
             return false;
         }
 
+        //si algunos de los textos es mayor a 50
         if (txtDeporte.length() > 50) {
             JOptionPane.showMessageDialog(this, "Error. El campo de entrada de deporte sobrepasa los 50 caracteres");
             return false;
@@ -204,13 +259,15 @@ public class macrocicloFrm extends javax.swing.JFrame {
             return false;
         }
 
+        //regresa verdadero
         return true;
 
     }
 
+      //activa todos los campos para editar informacion 
     public void activarCamposEdicion() {
         
-        
+        //habilita todos los campos
         this.txtDeporte.setEnabled(true);
         this.txtEntAux.setEnabled(true);
         this.txtJefeRama.setEnabled(true);
@@ -227,7 +284,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
         this.jtxtSemanasPreparacion.setEnabled(true);
         this.jtxtSemanasPreparativo.setEnabled(true);
 
-        //Pa descativar el boton de hacer un macrociclo nuevo mientras el usuario se encuentre editando los campos
+        //descativar el boton de hacer un macrociclo nuevo mientras el usuario se encuentre editando los campos
         this.jbtnCrearMacrociclo.setEnabled(false);
         this.jbtnEditarMacrociclo.setEnabled(false);
         this.jLabel21.setVisible(false);
@@ -235,8 +292,10 @@ public class macrocicloFrm extends javax.swing.JFrame {
 
     }
 
+    //desactiva todos los campos
     public void desactivarCamposEdicion() {
         
+        //desactiva todos los campos
         this.txtDeporte.setEnabled(false);
         this.txtEntAux.setEnabled(false);
         this.txtJefeRama.setEnabled(false);
@@ -253,7 +312,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
         this.jtxtSemanasPreparacion.setEnabled(false);
         this.jtxtSemanasPreparativo.setEnabled(false);
 
-        //Pa activar el botón de hacer un macrociclo nuevo
+        //activar el botón de hacer un macrociclo nuevo
         this.jbtnCrearMacrociclo.setEnabled(true);
         this.jbtnEditarMacrociclo.setEnabled(true);
         this.jLabel21.setVisible(true);
@@ -1044,16 +1103,19 @@ public class macrocicloFrm extends javax.swing.JFrame {
 
 
     private void jlbSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbSalirMouseClicked
+        //opciones para salir de la pantalla actual
         String[] opciones = {"Aceptar", "Cancelar"};
 
+        //se muestra mensaje de confirmacion
         int opcion = JOptionPane.showOptionDialog(this, "¿Quieres regresar al menu principal?", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 opciones, opciones[0]);
 
         if (opcion == 0) {
+            //si elige aceptar regresa a la ventana anterior
             inicioFrm inicio = new inicioFrm();
             this.dispose();
         } else if (opcion == 1) {
-            
+            //cancela
         }
     }//GEN-LAST:event_jlbSalirMouseClicked
 
@@ -1082,9 +1144,11 @@ public class macrocicloFrm extends javax.swing.JFrame {
     private void btnCalcularEtapasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularEtapasActionPerformed
         // TODO add your handling code here:
         try{
+            //valida periodos y calcula el porcentaje
             this.validarPeriodos();
             this.calcularPorcentajePeriodos();
         }catch(NumberFormatException ex){
+            //muestra mensaje de error encaso de que un numero no sea entero
             JOptionPane.showMessageDialog(this, "Error. No se introdujo un numero entero en los periodos");
         }        
     }//GEN-LAST:event_btnCalcularEtapasActionPerformed
@@ -1092,15 +1156,18 @@ public class macrocicloFrm extends javax.swing.JFrame {
     private void btnValidarSemanasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarSemanasActionPerformed
         // TODO add your handling code here:
         try{
+            //valida las etapas
             this.validarEtapas();
             
         }catch(NumberFormatException ex){
+            //muestra mensaje de error en caso de que se introduce un numero no entero
             JOptionPane.showMessageDialog(this, "Error. No se introdujo un numero entero en los periodos");
         }        
     }//GEN-LAST:event_btnValidarSemanasActionPerformed
 
     private void jbtnEditarMacrocicloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEditarMacrocicloActionPerformed
-                this.activarCamposEdicion();
+        //activa los todos los campos        
+        this.activarCamposEdicion();
     }//GEN-LAST:event_jbtnEditarMacrocicloActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
