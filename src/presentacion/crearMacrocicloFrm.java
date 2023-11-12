@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Pantalla que contiene la creacion de las fechas del macrociclo
+ *
  * @author ldoar
  */
 public class crearMacrocicloFrm extends javax.swing.JFrame {
@@ -219,9 +220,10 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 /**
- * Manejador de eventos que escucha si se presiona el boton calcular
- * @param evt 
- */
+     * Manejador de eventos que escucha si se presiona el boton calcular
+     *
+     * @param evt
+     */
     private void jbtnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCalcularActionPerformed
         //declara localdate una fecha de inicio y una fecha fin
         LocalDate fechaInicio = null, fechaFin = null;
@@ -234,6 +236,11 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
         if (fechaElegidaInicio == null) {
             //si la fecha elegida es nula entonces muestra un mensaje de error
             JOptionPane.showMessageDialog(this, "Error. Ingrese fecha de inicio.");
+            jdcFechaInicio.setDate(null);
+            jdcFechaFin.setDate(null);
+            jtxtTotalDias.setText("0");
+            jtxtTotalSemanas.setText("0");
+            macrocicloValido = false;
         } else {
             //si la fecha elegida de inicio no es nula
             //Crea un date formatter con el patron especificado
@@ -252,11 +259,16 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
         if (fechaElegidaFin == null) {
             //si la fecha elegida es nula entonces muestra un mensaje de error
             JOptionPane.showMessageDialog(this, "Error. Ingrese fecha de fin.");
+            jdcFechaInicio.setDate(null);
+            jdcFechaFin.setDate(null);
+            jtxtTotalDias.setText("0");
+            jtxtTotalSemanas.setText("0");
+            macrocicloValido = false;
         } else {
             //si la fecha elegida final no es nula
             //Crea un date formatter con el patron especificado
             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            
+
             //Convierte la fecha final a un instante y a la zona actual del sistema
             fechaFin = fechaElegidaFin.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
@@ -269,7 +281,7 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
         }
 
         if (fechaInicio != null && fechaFin != null) {
-        //si la fecha de inicio y la fecha de finalizacion no son nulas
+            //si la fecha de inicio y la fecha de finalizacion no son nulas
             //calcula los dias entre las fechas            
             long diasEntreFechas = ChronoUnit.DAYS.between(fechaInicio, fechaFin);
             //establece al texto la cantidad de dias calculados entre las dos fechas
@@ -295,7 +307,6 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
                 jtxtTotalDias.setText("0");
                 jtxtTotalSemanas.setText("0");
                 macrocicloValido = false;
-                
 
             }
             if (diasEntreFechas % 7 != 0) {
@@ -307,7 +318,6 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
                 jtxtTotalDias.setText("0");
                 jtxtTotalSemanas.setText("0");
                 macrocicloValido = false;
-
 
             } else {
                 //si pasa todas las validaciones
@@ -323,10 +333,11 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jbtnCalcularActionPerformed
-/**
- * Manejador de eventos cuando se presiona el boton crear macrociclos
- * @param evt 
- */
+    /**
+     * Manejador de eventos cuando se presiona el boton crear macrociclos
+     *
+     * @param evt
+     */
     private void jbtnCrearMacrocicloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCrearMacrocicloActionPerformed
         //opciones al crear macrociclo
         String[] opciones = {"Aceptar", "Cancelar"};
@@ -343,13 +354,18 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
             }
         } else {
             JOptionPane.showMessageDialog(this, "Error. Macrociclo no válido, se necesita calcular semanas primero.");
+            jdcFechaInicio.setDate(null);
+            jdcFechaFin.setDate(null);
+            jtxtTotalDias.setText("0");
+            jtxtTotalSemanas.setText("0");
+            macrocicloValido = false;
         }
 
     }//GEN-LAST:event_jbtnCrearMacrocicloActionPerformed
-/**
- * 
- * @param evt 
- */
+    /**
+     *
+     * @param evt
+     */
     private void jbtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelarActionPerformed
         //`opciones al cancelar
         String[] opciones = {"Aceptar", "Cancelar"};
@@ -365,10 +381,11 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
             // Por ejemplo, abrir una ventana para consultar algo.
         }
     }//GEN-LAST:event_jbtnCancelarActionPerformed
-/**
- * Manejador de eventos cuando se presiona el boton salir
- * @param evt 
- */
+    /**
+     * Manejador de eventos cuando se presiona el boton salir
+     *
+     * @param evt
+     */
     private void jlbSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbSalirMouseClicked
         //opciones a elegir
         String[] opciones = {"Aceptar", "Cancelar"};
