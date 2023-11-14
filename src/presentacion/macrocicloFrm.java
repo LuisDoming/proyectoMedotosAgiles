@@ -684,16 +684,21 @@ public class macrocicloFrm extends javax.swing.JFrame {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(ciclicidad);  
         
+        //si los dos numeros introducicos son numeros enteros y tienen una coma en medio
         if(!matcher.matches()){
             JOptionPane.showMessageDialog(this, "Error: Tabla , Introduzca la ciclicidad en el siguiente formato: 5,1 (trabajo/descanso)");
             return false;
         }
         
+        //divide los numeros
         String numeros[] = ciclicidad.split(",");
         
+        //obtiene los dos numeros convirtiendolos 
         int semanastrabajo = Integer.parseInt(numeros[0]);
         int semanasDescanso = Integer.parseInt(numeros[1]);
+        //obtiene las semanas totales de la columna
         int semanastotales = Integer.parseInt(semanasMeso);
+        //obtiene la suma de los dos numeros de ciclicidad
         int semanassuma = semanastrabajo+semanasDescanso;
         
         System.out.println(semanastrabajo);
@@ -701,12 +706,13 @@ public class macrocicloFrm extends javax.swing.JFrame {
         System.out.println(semanastotales);
         System.out.println(semanassuma);
 
-        
+        //si las semanas totales de la suma y las semanas totales de la columna no son iguales da un mensaje de error
         if(semanastotales != semanassuma){
             JOptionPane.showMessageDialog(this, "Error: Tabla , las semanas no corresponden (trabajo/descanso)");
             return false;
         }
         
+        //si las semanas de trabajo son menores o iguales a las de descanso muestra un mensaje de error
         if(semanastrabajo <= semanasDescanso){
             JOptionPane.showMessageDialog(this, "Error: Tabla , semanas de trabajo son menores a las de descanso (trabajo/descanso)");
             return false;
@@ -714,6 +720,19 @@ public class macrocicloFrm extends javax.swing.JFrame {
         
         return true;
         
+    }
+    
+    public boolean validarSemanasMeso(String semanas){
+        String regex = "\\d+";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(semanas);  
+        
+        if(!matcher.matches()){
+            JOptionPane.showMessageDialog(this, "Error: Tabla , El numero de semanas no es un numero entero");
+            return false;
+        }  
+        
+        return true;
     }
     
     public boolean validarCiclicidad(){
@@ -726,16 +745,42 @@ public class macrocicloFrm extends javax.swing.JFrame {
         ArrayList<String> semanasPreparacion = new ArrayList<>();
  
         for (int i = 0; i < modeloTablaPreparacion.getColumnCount(); i++) {
-            //Checa que no haya nulos antes de hacer las pasadas por las columnas, si los encuentra, pone 0 tal cual
-            String ciclicidad = modeloTablaPreparacion.getValueAt(1, i).toString();
-            String semanasMeso = modeloTablaPreparacion.getValueAt(0, i).toString();
-           
-            if(!validarFormatoCiclicidad(ciclicidad,semanasMeso)){
+            //Checa que no haya nulos antes de hacer las pasadas por las columnas, si los encuentra, muestra mensaje de error al usuario
+            String ciclicidad = "";
+            String semanasMeso = "";
+            
+            try {
+                ciclicidad = modeloTablaPreparacion.getValueAt(1, i).toString();
+                semanasMeso = modeloTablaPreparacion.getValueAt(0, i).toString();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error: Tabla , se dejo vacio semanas microciclo o ciclicidad");
                 return false;
             }
+
+            //valida que las semanas del microciclo sean un numero entero
+            if(!this.validarSemanasMeso(semanasMeso)){
+               return false; 
+            }
             
-            ciclicidadPreparacion.add(ciclicidad);
-            semanasPreparacion.add(semanasMeso);
+            //convierte el string obtenido a int
+            int semanasEntero = Integer.parseInt(semanasMeso);
+            
+            if(semanasEntero == 1 || semanasEntero == 2){
+               //si la semana es 1 o 0 asigna automaticamente el valor de la ciclicidad a 1,0 o 2,0 dependiento el caso
+               ciclicidad = semanasMeso + ",0";
+               
+               ciclicidadPreparacion.add(ciclicidad);
+               semanasPreparacion.add(semanasMeso);               
+               
+            }else{
+                //si es cualquier otro valor valida si tienen el formato correcto
+               if(!validarFormatoCiclicidad(ciclicidad,semanasMeso)){
+                  return false;
+               } 
+               
+               ciclicidadPreparacion.add(ciclicidad);
+               semanasPreparacion.add(semanasMeso); 
+            }
         }
 
         ArrayList<String> ciclicidadEspecial = new ArrayList<>();
@@ -743,15 +788,38 @@ public class macrocicloFrm extends javax.swing.JFrame {
  
         for (int i = 0; i < modeloTablaEspecial.getColumnCount(); i++) {
             //Checa que no haya nulos antes de hacer las pasadas por las columnas, si los encuentra, pone 0 tal cual
-            String ciclicidad = modeloTablaEspecial.getValueAt(1, i).toString();
-            String semanasMeso = modeloTablaEspecial.getValueAt(0, i).toString();
-           
-            if(!validarFormatoCiclicidad(ciclicidad,semanasMeso)){
+            String ciclicidad = "";
+            String semanasMeso = "";
+            
+            try {
+                ciclicidad = modeloTablaEspecial.getValueAt(1, i).toString();
+                semanasMeso = modeloTablaEspecial.getValueAt(0, i).toString();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error: Tabla , se dejo vacio semanas microciclo o ciclicidad");
                 return false;
             }
+           
+            if(!this.validarSemanasMeso(semanasMeso)){
+               return false; 
+            }
             
-            ciclicidadEspecial.add(ciclicidad);
-            semanasEspecial.add(semanasMeso);
+            int semanasEntero = Integer.parseInt(semanasMeso);
+            
+            if(semanasEntero == 1 || semanasEntero == 2){
+
+               ciclicidad = semanasMeso + ",0";
+               
+               ciclicidadEspecial.add(ciclicidad);
+               semanasEspecial.add(semanasMeso);               
+               
+            }else{
+               if(!validarFormatoCiclicidad(ciclicidad,semanasMeso)){
+                  return false;
+               } 
+               
+               ciclicidadEspecial.add(ciclicidad);
+               semanasEspecial.add(semanasMeso); 
+            }
         }
 
         if(this.precompetitivasActiva){
@@ -760,15 +828,38 @@ public class macrocicloFrm extends javax.swing.JFrame {
  
         for (int i = 0; i < modeloTablaPrecompetitivo.getColumnCount(); i++) {
             //Checa que no haya nulos antes de hacer las pasadas por las columnas, si los encuentra, pone 0 tal cual
-            String ciclicidad = modeloTablaPrecompetitivo.getValueAt(1, i).toString();
-            String semanasMeso = modeloTablaPrecompetitivo.getValueAt(0, i).toString();
-           
-            if(!validarFormatoCiclicidad(ciclicidad,semanasMeso)){
+            String ciclicidad = "";
+            String semanasMeso = "";
+            
+            try {
+                ciclicidad = modeloTablaPrecompetitivo.getValueAt(1, i).toString();
+                semanasMeso = modeloTablaPrecompetitivo.getValueAt(0, i).toString();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error: Tabla , se dejo vacio semanas microciclo o ciclicidad");
                 return false;
             }
+           
+            if(!this.validarSemanasMeso(semanasMeso)){
+               return false; 
+            }
             
-            ciclicidadPrecompetitiva.add(ciclicidad);
-            semanasPrecompetitiva.add(semanasMeso);
+            int semanasEntero = Integer.parseInt(semanasMeso);
+            
+            if(semanasEntero == 1 || semanasEntero == 2){
+
+               ciclicidad = semanasMeso + ",0";
+               
+               ciclicidadPrecompetitiva.add(ciclicidad);
+               semanasPrecompetitiva.add(semanasMeso);               
+               
+            }else{
+               if(!validarFormatoCiclicidad(ciclicidad,semanasMeso)){
+                  return false;
+               } 
+               
+               ciclicidadPrecompetitiva.add(ciclicidad);
+               semanasPrecompetitiva.add(semanasMeso); 
+            }
         }
         }
 
@@ -778,17 +869,41 @@ public class macrocicloFrm extends javax.swing.JFrame {
  
         for (int i = 0; i < modeloTablaCompetitivo.getColumnCount(); i++) {
             //Checa que no haya nulos antes de hacer las pasadas por las columnas, si los encuentra, pone 0 tal cual
-            String ciclicidad = modeloTablaCompetitivo.getValueAt(1, i).toString();
-            String semanasMeso = modeloTablaCompetitivo.getValueAt(0, i).toString();
-           
-            if(!validarFormatoCiclicidad(ciclicidad,semanasMeso)){
+            String ciclicidad = "";
+            String semanasMeso = "";
+            
+            try {
+                ciclicidad = modeloTablaCompetitivo.getValueAt(1, i).toString();
+                semanasMeso = modeloTablaCompetitivo.getValueAt(0, i).toString();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error: Tabla , se dejo vacio semanas microciclo o ciclicidad");
                 return false;
             }
+           
+            if(!this.validarSemanasMeso(semanasMeso)){
+               return false; 
+            }
             
-            ciclicidadCompetitiva.add(ciclicidad);
-            semanasCompetitiva.add(semanasMeso);
+            int semanasEntero = Integer.parseInt(semanasMeso);
+            
+            if(semanasEntero == 1 || semanasEntero == 2){
+
+               ciclicidad = semanasMeso + ",0";
+               
+               ciclicidadCompetitiva.add(ciclicidad);
+               semanasCompetitiva.add(semanasMeso);               
+               
+            }else{
+               if(!validarFormatoCiclicidad(ciclicidad,semanasMeso)){
+                  return false;
+               } 
+               
+               ciclicidadCompetitiva.add(ciclicidad);
+               semanasCompetitiva.add(semanasMeso); 
+            }
         }
         
+
         return true;
     }
 
@@ -1810,6 +1925,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(validarCiclicidad()){
             System.out.println("se valido la ciclicidad");
+            
         }
     }//GEN-LAST:event_btnValidarCiclicidadActionPerformed
 
