@@ -724,6 +724,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
         int sumaCompetitivo = 0;
 
         //Sumatoria de preparacion
+        if(this.preparativaActiva){
         for (int i = 0; i < modeloTablaPreparacion.getColumnCount(); i++) {
 
             //Checa que no haya nulos antes de hacer las pasadas por las columnas, si los encuentra, pone 0 tal cual
@@ -747,8 +748,10 @@ public class macrocicloFrm extends javax.swing.JFrame {
             }
 
         }
+        }
 
         //Sumatoria de especial
+        if(this.especialActiva){
         for (int i = 0; i < modeloTablaEspecial.getColumnCount(); i++) {
 
             if (modeloTablaEspecial.getValueAt(0, i) == null) {
@@ -770,8 +773,10 @@ public class macrocicloFrm extends javax.swing.JFrame {
                 }
             }
         }
+        }
 
         //Sumatoria de Precompetitivo
+        if(this.precompetitivasActiva){
         for (int i = 0; i < modeloTablaPrecompetitivo.getColumnCount(); i++) {
 
             if (modeloTablaPrecompetitivo.getValueAt(0, i) == null) {
@@ -793,8 +798,10 @@ public class macrocicloFrm extends javax.swing.JFrame {
                 }
             }
         }
+        }
 
         //Sumatoria de Competitivo
+        if(this.competitivaActiva){
         for (int i = 0; i < modeloTablaCompetitivo.getColumnCount(); i++) {
 
             if (modeloTablaCompetitivo.getValueAt(0, i) == null) {
@@ -815,6 +822,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
 
                 }
             }
+        }
         }
 
         System.out.println(sumaPreparacion);
