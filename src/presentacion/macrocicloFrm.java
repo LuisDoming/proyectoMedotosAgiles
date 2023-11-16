@@ -28,6 +28,9 @@ public class macrocicloFrm extends javax.swing.JFrame {
     private crearMacrocicloFrm crearMacro;
     private int semanasTotales;
     private boolean precompetitivasActiva = false;
+    private boolean preparativaActiva = false;
+    private boolean competitivaActiva = false;
+    private boolean especialActiva = false;
 
     /**
      * Constructor que inicializa la pantalla y sus componentes
@@ -157,6 +160,25 @@ public class macrocicloFrm extends javax.swing.JFrame {
             totalIngresado = etapaPreparacion + etapaEspecial + etapaCompetitiva;
             totalPreparativo = etapaPreparacion + etapaEspecial;
             totalCompetitivo = etapaCompetitiva;
+            
+            if(etapaPreparacion <= 0){
+                this.preparativaActiva = false;
+            }else{
+                this.preparativaActiva = true;
+            }
+            
+            if(etapaEspecial <= 0){
+                this.especialActiva = false;
+            }else{
+                this.especialActiva = true;
+            }
+            
+            if(etapaCompetitiva <= 0){
+                this.competitivaActiva = false;
+            }else{
+                this.competitivaActiva = true;
+            }
+            
             this.precompetitivasActiva = false;
         } else {
             //si se ingresa algun valor en la competitiva
@@ -170,7 +192,32 @@ public class macrocicloFrm extends javax.swing.JFrame {
             totalIngresado = etapaPreparacion + etapaEspecial + etapaPrecompetitiva + etapaCompetitiva;
             totalPreparativo = etapaPreparacion + etapaEspecial;
             totalCompetitivo = etapaCompetitiva + etapaPrecompetitiva;
-            this.precompetitivasActiva = true;
+            
+            if(etapaPreparacion <= 0){
+                this.preparativaActiva = false;
+            }else{
+                this.preparativaActiva = true;
+            }
+            
+            if(etapaEspecial <= 0){
+                this.especialActiva = false;
+            }else{
+                this.especialActiva = true;
+            }
+            
+            if(etapaCompetitiva <= 0){
+                this.competitivaActiva = false;
+            }else{
+                this.competitivaActiva = true;
+            }
+            
+            if(etapaPrecompetitiva <= 0){
+                this.precompetitivasActiva = false;
+            }else{
+                this.precompetitivasActiva = true;
+            }
+            
+            
         }
 
         //validaciones
@@ -846,9 +893,9 @@ public class macrocicloFrm extends javax.swing.JFrame {
         DefaultTableModel modeloTablaPrecompetitivo = (DefaultTableModel) this.tblEtapaPrecompetitivo.getModel();
         DefaultTableModel modeloTablaCompetitivo = (DefaultTableModel) this.tblEtapaCompetitivo.getModel();
 
+        if(this.preparativaActiva){
         ArrayList<String> ciclicidadPreparacion = new ArrayList<>();
         ArrayList<String> semanasPreparacion = new ArrayList<>();
-
         for (int i = 0; i < modeloTablaPreparacion.getColumnCount(); i++) {
             //Checa que no haya nulos antes de hacer las pasadas por las columnas, si los encuentra, muestra mensaje de error al usuario
             String ciclicidad = "";
@@ -887,7 +934,9 @@ public class macrocicloFrm extends javax.swing.JFrame {
                 semanasPreparacion.add(semanasMeso);
             }
         }
+        }
 
+        if(this.especialActiva){
         ArrayList<String> ciclicidadEspecial = new ArrayList<>();
         ArrayList<String> semanasEspecial = new ArrayList<>();
 
@@ -925,6 +974,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
                 ciclicidadEspecial.add(ciclicidad);
                 semanasEspecial.add(semanasMeso);
             }
+        }
         }
 
         if (this.precompetitivasActiva) {
@@ -968,6 +1018,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
             }
         }
 
+        if(this.competitivaActiva){
         ArrayList<String> ciclicidadCompetitiva = new ArrayList<>();
         ArrayList<String> semanasCompetitiva = new ArrayList<>();
 
@@ -1005,6 +1056,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
                 ciclicidadCompetitiva.add(ciclicidad);
                 semanasCompetitiva.add(semanasMeso);
             }
+        }
         }
 
         JOptionPane.showMessageDialog(this, "La distribución de ciclicidad es válida");
