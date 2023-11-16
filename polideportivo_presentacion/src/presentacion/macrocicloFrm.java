@@ -5,6 +5,7 @@
  */
 package presentacion;
 
+import entidades.Macrociclo;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.util.regex.Matcher;
@@ -26,11 +27,14 @@ public class macrocicloFrm extends javax.swing.JFrame {
      * Pantalla anterior (pantalla de seleccion de semana de macrociclos
      */
     private crearMacrocicloFrm crearMacro;
+    private Macrociclo macrociclo;
     private int semanasTotales;
     private boolean precompetitivasActiva = false;
     private boolean preparativaActiva = false;
     private boolean competitivaActiva = false;
     private boolean especialActiva = false;
+    private ArrayList<Integer> distribucionPreparativa,distribucionEspecial,distribucionPrecom,distribucionCompetitiva;
+    private ArrayList<Integer> ciclicidadPreparativa,ciclicidadEspecial,ciclicidadPrecom,ciclicidadCompetitiva;
 
     /**
      * Constructor que inicializa la pantalla y sus componentes
@@ -54,7 +58,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
         this.activarCamposEdicion();
         ///Para que no se active antes de tiempo el botón de editar etapas
         this.jbtnEditarEtapas.setEnabled(false);
-
+  
         iniciarTablas();
         bloquearBotonesMesociclos();
         bloqueoBtnValidacionTablas();
@@ -1029,6 +1033,8 @@ public class macrocicloFrm extends javax.swing.JFrame {
                     semanasPreparacion.add(semanasMeso);
                 }
             }
+            
+            //this.distribucionPreparativa = semanasPreparacion;
         }
 
         if (this.especialActiva) {
@@ -1154,6 +1160,8 @@ public class macrocicloFrm extends javax.swing.JFrame {
             }
         }
 
+        
+        
         JOptionPane.showMessageDialog(this, "La distribución de ciclicidad es válida");
         return true;
     }
@@ -1173,6 +1181,26 @@ public class macrocicloFrm extends javax.swing.JFrame {
     public void desbloqueoBtnValidacionTablas() {
         //this.btnValidarCiclicidad.setEnabled(true);
         this.jbtnValidarMesociclos.setEnabled(true);
+    }
+    
+    public void crearMacrociclo(){
+        this.macrociclo = new Macrociclo();
+        macrociclo.setFechaInicio(crearMacro.inicioPlan.toString());
+        macrociclo.setFechaFin(crearMacro.finPlan.toString());
+        macrociclo.setTotalSemanas(semanasTotales);
+        macrociclo.setDeporte(this.txtDeporte.toString());
+        macrociclo.setRama(this.txtRama.toString());
+        macrociclo.setJefeRama(this.txtJefeRama.toString());
+        macrociclo.setPreparadorFis(this.txtEntAux.toString());
+        macrociclo.setMetodologo(this.txtMetodologo.toString());
+        macrociclo.setPeriodoPreparativo(Integer.valueOf(this.jtxtSemanasPreparativo.toString()));
+        macrociclo.setPeriodoCompetitivo(Integer.valueOf(this.jtxtSemanasCompetitivo.toString()));
+        macrociclo.setEtapaPreparativa(Integer.valueOf(this.jtxtSemanasPreparacion.toString()));
+        macrociclo.setEtapaEspecial(Integer.valueOf(this.jtxtSemanasEspecial.toString()));
+        macrociclo.setEtapaPrecompetitiva(Integer.valueOf(this.jtxtSemanasPrecompetitivo.toString()));
+        macrociclo.setEtapaCompetitiva(Integer.valueOf(this.jtxtSemanasEtapaCompetitivo.toString()));
+        
+        
     }
 
     /**
@@ -2181,6 +2209,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
 
         if (distribucionValida && ciclicidadValida) {
             this.jbtnCrearMacrociclo.setEnabled(true);
+            this.crearMacrociclo();
         }
 
 
