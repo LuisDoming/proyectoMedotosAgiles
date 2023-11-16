@@ -322,9 +322,20 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
             } else {
                 //si pasa todas las validaciones
                 //el macrociclo es valido
+
                 macrocicloValido = true;
                 //calcula el total de semanas
                 long semanasEntreFechas = ChronoUnit.WEEKS.between(fechaInicio, fechaFin);
+
+                //Si por alguna razon queda guardada una semana negativa, nuevamente va pa atras
+                if (semanasEntreFechas <= 0) {
+                    JOptionPane.showMessageDialog(this, "Error. la fecha de finalización no puede estar antes que la fecha de inicio");
+                    jdcFechaInicio.setDate(null);
+                    jdcFechaFin.setDate(null);
+                    jtxtTotalDias.setText("0");
+                    jtxtTotalSemanas.setText("0");
+                    macrocicloValido = false;
+                }
                 //establece el total de semanas a las semanas calculadas 
                 System.out.println("Semanas : " + semanasEntreFechas);
                 this.jtxtTotalSemanas.setText(Long.toString(semanasEntreFechas));

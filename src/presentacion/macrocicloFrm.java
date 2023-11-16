@@ -54,6 +54,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
 
         iniciarTablas();
         bloquearBotonesMesociclos();
+        bloqueoBtnValidacionTablas();
     }
 
     /**
@@ -76,16 +77,38 @@ public class macrocicloFrm extends javax.swing.JFrame {
      * Metodo que habilita las tablas de mesociclos
      */
     public void mostrarTablaMeso() {
-        this.jspEtapaPreparacion.setEnabled(true);
-        this.tblEtapaPreparacion.setEnabled(true);
 
-        this.jspEtapaCompetitivo.setEnabled(true);
-        this.jspEtapaPrecompetitivo.setEnabled(true);
-        this.jspEtapaEspecial.setEnabled(true);
+        String textoSemanaPreparacion = this.jtxtSemanasPreparacion.getText();
+        String textoSemanaEspecial = this.jtxtSemanasEspecial.getText();
+        String textoSemanaPrecompetitiva = this.jtxtSemanasPrecompetitivo.getText();
+        String textoSemanaCompetitiva = this.jtxtSemanasEtapaCompetitivo.getText();
 
-        this.tblEtapaCompetitivo.setEnabled(true);
-        this.tblEtapaPrecompetitivo.setEnabled(true);
-        this.tblEtapaEspecial.setEnabled(true);
+        int etapaPreparacion = Integer.valueOf(textoSemanaPreparacion);
+        int etapaEspecial = Integer.valueOf(textoSemanaEspecial);
+        int etapaPrecompetitivo = Integer.valueOf(textoSemanaPrecompetitiva);
+        int etapaCompetitivo = Integer.valueOf(textoSemanaCompetitiva);
+
+        if (etapaPreparacion > 0) {
+            this.jspEtapaPreparacion.setEnabled(true);
+            this.tblEtapaPreparacion.setEnabled(true);
+        }
+
+        if (etapaEspecial > 0) {
+            this.jspEtapaEspecial.setEnabled(true);
+            this.tblEtapaEspecial.setEnabled(true);
+        }
+
+        if (etapaPrecompetitivo > 0) {
+            this.jspEtapaPrecompetitivo.setEnabled(true);
+            this.tblEtapaPrecompetitivo.setEnabled(true);
+
+        }
+
+        if (etapaCompetitivo > 0) {
+            this.jspEtapaCompetitivo.setEnabled(true);
+            this.tblEtapaCompetitivo.setEnabled(true);
+        }
+
     }
 
     /**
@@ -188,6 +211,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
 
         //desactiva los campos de edicion
         this.desactivarCamposEdicion();
+        this.jbtnCrearMacrociclo.setEnabled(false);
         //muestra la tabla de mesociclos
         this.mostrarTablaMeso();
 
@@ -196,7 +220,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
         this.cargarSemanasEspecial(etapaEspecial);
         this.cargarSemanasPrecompetitiva(etapaPrecompetitiva);
         this.cargarSemanasCompetitiva(etapaCompetitiva);
-        
+        desbloqueoBtnValidacionTablas();
         return true;
     }
 
@@ -215,7 +239,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
         if (totalIngresado != semanasTotales) {
             //si excede el total de semanas del macrociclo muestra un mensaje de error
             JOptionPane.showMessageDialog(this, "Error. La suma de semanas ingresada no es igual a la semanas totales establecidas"
-                    + "para el macrociclo");
+                    + " para el macrociclo");
 
             this.resetearCamposSemanas();
             return;
@@ -324,9 +348,9 @@ public class macrocicloFrm extends javax.swing.JFrame {
         this.txtMetodologo.setEnabled(true);
         this.txtRama.setEnabled(true);
 
-        this.jtxtSemanaFin.setEnabled(true);
-        this.jtxtSemanaInicio.setEnabled(true);
-        this.jtxtSemanas.setEnabled(true);
+        //this.jtxtSemanaFin.setEnabled(true);
+        //this.jtxtSemanaInicio.setEnabled(true);
+        //this.jtxtSemanas.setEnabled(true);
         this.jtxtSemanasCompetitivo.setEnabled(true);
         this.jtxtSemanasEspecial.setEnabled(true);
         this.jtxtSemanasEtapaCompetitivo.setEnabled(true);
@@ -343,6 +367,17 @@ public class macrocicloFrm extends javax.swing.JFrame {
         //Activar el boton de validar semanas y editar etapas
         this.jbtnEditarEtapas.setEnabled(true);
         this.btnValidarSemanas.setEnabled(true);
+        
+        this.jbtnAgregarCompetitiva.setEnabled(false);
+        this.jbtnAgregarEspecial.setEnabled(false);
+        this.jbtnAgregarPrecompetitiva.setEnabled(false);
+        this.jbtnAgregarPreparacion.setEnabled(false);
+        
+        this.jbtnEliminarCompetitivo.setEnabled(false);
+        this.jbtnEliminarEspecial.setEnabled(false);
+        this.jbtnEliminarPrecompetitivo.setEnabled(false);
+        this.jbtnEliminarPreparacion.setEnabled(false);
+        
 
     }
 
@@ -356,9 +391,9 @@ public class macrocicloFrm extends javax.swing.JFrame {
         this.txtMetodologo.setEnabled(false);
         this.txtRama.setEnabled(false);
 
-        this.jtxtSemanaFin.setEnabled(false);
-        this.jtxtSemanaInicio.setEnabled(false);
-        this.jtxtSemanas.setEnabled(false);
+        //this.jtxtSemanaFin.setEnabled(false);
+        //this.jtxtSemanaInicio.setEnabled(false);
+        //this.jtxtSemanas.setEnabled(false);
         this.jtxtSemanasCompetitivo.setEnabled(false);
         this.jtxtSemanasEspecial.setEnabled(false);
         this.jtxtSemanasEtapaCompetitivo.setEnabled(false);
@@ -371,13 +406,17 @@ public class macrocicloFrm extends javax.swing.JFrame {
         this.jbtnEditarMacrociclo.setEnabled(true);
         this.jLabel21.setVisible(true);
         this.jLabel22.setVisible(true);
+        
+
+
+
     }
 
     public void iniciarTablas() {
 
         DefaultTableModel modeloTablaPreparacion = (DefaultTableModel) this.tblEtapaPreparacion.getModel();
-        DefaultTableModel modeloTablaEspecial = (DefaultTableModel) this.tblEtapaPrecompetitivo.getModel();
-        DefaultTableModel modeloTablaPrecompetitivo = (DefaultTableModel) this.tblEtapaEspecial.getModel();
+        DefaultTableModel modeloTablaEspecial = (DefaultTableModel) this.tblEtapaEspecial.getModel();
+        DefaultTableModel modeloTablaPrecompetitivo = (DefaultTableModel) this.tblEtapaPrecompetitivo.getModel();
         DefaultTableModel modeloTablaCompetitivo = (DefaultTableModel) this.tblEtapaCompetitivo.getModel();
 
         // Crear un nuevo vector de identificadores de columna con nombres actualizados
@@ -429,7 +468,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
 
         if (numSemanas > 0) {
             this.jbtnAgregarEspecial.setEnabled(true);
-            DefaultTableModel modeloTablaEspecial = (DefaultTableModel) this.tblEtapaPrecompetitivo.getModel();
+            DefaultTableModel modeloTablaEspecial = (DefaultTableModel) this.tblEtapaEspecial.getModel();
             Vector<Object> columnaNueva = new Vector<>();
 
             columnaNueva.add("1");
@@ -445,6 +484,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
 
         } else {
             ///Si se mandó un 0 o negativo pues no se cambia la tabla
+
         }
 
     }
@@ -453,7 +493,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
 
         if (numSemanas > 0) {
             this.jbtnAgregarPrecompetitiva.setEnabled(true);
-            DefaultTableModel modeloTablaPrecompetitivo = (DefaultTableModel) this.tblEtapaEspecial.getModel();
+            DefaultTableModel modeloTablaPrecompetitivo = (DefaultTableModel) this.tblEtapaPrecompetitivo.getModel();
             Vector<Object> columnaNueva = new Vector<>();
 
             columnaNueva.add("1");
@@ -598,7 +638,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
 
     }
 
-    public void validarDistribucionEtapas() {
+    public boolean validarDistribucionEtapas() {
 
         DefaultTableModel modeloTablaPreparacion = (DefaultTableModel) this.tblEtapaPreparacion.getModel();
         DefaultTableModel modeloTablaEspecial = (DefaultTableModel) this.tblEtapaEspecial.getModel();
@@ -610,10 +650,25 @@ public class macrocicloFrm extends javax.swing.JFrame {
         String textoSemanaPrecompetitiva = this.jtxtSemanasPrecompetitivo.getText();
         String textoSemanaCompetitiva = this.jtxtSemanasEtapaCompetitivo.getText();
 
-        int etapaPreparacion = Integer.valueOf(textoSemanaPreparacion);
-        int etapaEspecial = Integer.valueOf(textoSemanaEspecial);
-        int etapaPrecompetitivo = Integer.valueOf(textoSemanaPrecompetitiva);
-        int etapaCompetitivo = Integer.valueOf(textoSemanaCompetitiva);
+        int etapaPreparacion = 0, etapaEspecial = 0, etapaPrecompetitivo = 0, etapaCompetitivo = 0;
+
+        try {
+            etapaPreparacion = Integer.valueOf(textoSemanaPreparacion);
+        } catch (Exception e) {
+        }
+        try {
+            etapaEspecial = Integer.valueOf(textoSemanaEspecial);
+        } catch (Exception e) {
+        }
+        try {
+            etapaPrecompetitivo = Integer.valueOf(textoSemanaPrecompetitiva);
+
+        } catch (Exception e) {
+        }
+        try {
+            etapaCompetitivo = Integer.valueOf(textoSemanaCompetitiva);
+        } catch (Exception e) {
+        }
 
         //
         int sumaPreparacion = 0;
@@ -628,8 +683,20 @@ public class macrocicloFrm extends javax.swing.JFrame {
             if (modeloTablaPreparacion.getValueAt(0, i) == null) {
                 sumaPreparacion = sumaPreparacion + 0;
             } else {
-                int valorCelda = Integer.parseInt(modeloTablaPreparacion.getValueAt(0, i).toString());
-                sumaPreparacion = sumaPreparacion + valorCelda;
+                try {
+
+                    int valorCelda = Integer.parseInt(modeloTablaPreparacion.getValueAt(0, i).toString());
+                    if (valorCelda <= 0) {
+                        JOptionPane.showMessageDialog(this, "Error. Se detecto un campo con 0 en la tabla de preparación");
+                        return false;
+                    }
+                    sumaPreparacion = sumaPreparacion + valorCelda;
+
+                } catch (Exception e) {
+
+                    JOptionPane.showMessageDialog(this, "Error. Se detectó un campo que no es número entero positivo en la tabla de preparación");
+                    return false;
+                }
             }
 
         }
@@ -640,8 +707,20 @@ public class macrocicloFrm extends javax.swing.JFrame {
             if (modeloTablaEspecial.getValueAt(0, i) == null) {
                 sumaEspecial = sumaEspecial + 0;
             } else {
-                int valorCelda = Integer.parseInt(modeloTablaEspecial.getValueAt(0, i).toString());
-                sumaEspecial = sumaEspecial + valorCelda;
+                try {
+                    int valorCelda = Integer.parseInt(modeloTablaEspecial.getValueAt(0, i).toString());
+
+                    if (valorCelda <= 0) {
+                        JOptionPane.showMessageDialog(this, "Error. Se detecto un campo con 0 en la tabla de etapa especial");
+                        return false;
+                    }
+
+                    sumaEspecial = sumaEspecial + valorCelda;
+                } catch (Exception e) {
+
+                    JOptionPane.showMessageDialog(this, "Error. Se detectó un campo que no es número entero positivo en la tabla de etapa especial");
+                    return false;
+                }
             }
         }
 
@@ -651,8 +730,20 @@ public class macrocicloFrm extends javax.swing.JFrame {
             if (modeloTablaPrecompetitivo.getValueAt(0, i) == null) {
                 sumaPrecompetitivo = sumaPrecompetitivo + 0;
             } else {
-                int valorCelda = Integer.parseInt(modeloTablaPrecompetitivo.getValueAt(0, i).toString());
-                sumaPrecompetitivo = sumaPrecompetitivo + valorCelda;
+                try {
+                    int valorCelda = Integer.parseInt(modeloTablaPrecompetitivo.getValueAt(0, i).toString());
+
+                    if (valorCelda <= 0) {
+                        JOptionPane.showMessageDialog(this, "Error. Se detecto un campo con 0 en la tabla de etapa precompetitiva");
+                        return false;
+                    }
+
+                    sumaPrecompetitivo = sumaPrecompetitivo + valorCelda;
+                } catch (Exception e) {
+
+                    JOptionPane.showMessageDialog(this, "Error. Se detectó un campo que no es número entero positivo en la tabla de etapa precompetitiva");
+
+                }
             }
         }
 
@@ -662,8 +753,20 @@ public class macrocicloFrm extends javax.swing.JFrame {
             if (modeloTablaCompetitivo.getValueAt(0, i) == null) {
                 sumaCompetitivo = sumaCompetitivo + 0;
             } else {
-                int valorCelda = Integer.parseInt(modeloTablaCompetitivo.getValueAt(0, i).toString());
-                sumaCompetitivo = sumaCompetitivo + valorCelda;
+                try {
+                    int valorCelda = Integer.parseInt(modeloTablaCompetitivo.getValueAt(0, i).toString());
+
+                    if (valorCelda <= 0) {
+                        JOptionPane.showMessageDialog(this, "Error. Se detecto un campo con 0 en la tabla de etapa competitiva");
+                        return false;
+                    }
+
+                    sumaCompetitivo = sumaCompetitivo + valorCelda;
+                } catch (Exception e) {
+
+                    JOptionPane.showMessageDialog(this, "Error. Se detectó un campo que no es número entero positivo en la tabla de etapa competitiva");
+
+                }
             }
         }
 
@@ -674,237 +777,252 @@ public class macrocicloFrm extends javax.swing.JFrame {
 
         if (sumaPreparacion == etapaPreparacion && sumaEspecial == etapaEspecial && sumaPrecompetitivo == etapaPrecompetitivo && sumaCompetitivo == etapaCompetitivo) {
             JOptionPane.showMessageDialog(this, "La distribución en las etapas es válida");
+            return true;
         } else {
-            JOptionPane.showMessageDialog(this, "Ocurrio un error al validar");
+            JOptionPane.showMessageDialog(this, "Error. La distribución de etapas no coincide con las semanas establecidas");
+            return false;
         }
     }
-    
-    public boolean validarFormatoCiclicidad(String ciclicidad,String semanasMeso){
+
+    public boolean validarFormatoCiclicidad(String ciclicidad, String semanasMeso) {
         String regex = "\\d+,\\d+";
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(ciclicidad);  
-        
+        Matcher matcher = pattern.matcher(ciclicidad);
+
         //si los dos numeros introducicos son numeros enteros y tienen una coma en medio
-        if(!matcher.matches()){
+        if (!matcher.matches()) {
             JOptionPane.showMessageDialog(this, "Error: Tabla , Introduzca la ciclicidad en el siguiente formato: 5,1 (trabajo/descanso)");
             return false;
         }
-        
+
         //divide los numeros
         String numeros[] = ciclicidad.split(",");
-        
+
         //obtiene los dos numeros convirtiendolos 
         int semanastrabajo = Integer.parseInt(numeros[0]);
         int semanasDescanso = Integer.parseInt(numeros[1]);
         //obtiene las semanas totales de la columna
         int semanastotales = Integer.parseInt(semanasMeso);
         //obtiene la suma de los dos numeros de ciclicidad
-        int semanassuma = semanastrabajo+semanasDescanso;
-        
+        int semanassuma = semanastrabajo + semanasDescanso;
+
         System.out.println(semanastrabajo);
         System.out.println(semanasDescanso);
         System.out.println(semanastotales);
         System.out.println(semanassuma);
 
         //si las semanas totales de la suma y las semanas totales de la columna no son iguales da un mensaje de error
-        if(semanastotales != semanassuma){
+        if (semanastotales != semanassuma) {
             JOptionPane.showMessageDialog(this, "Error: Tabla , las semanas no corresponden (trabajo/descanso)");
             return false;
         }
-        
+
         //si las semanas de trabajo son menores o iguales a las de descanso muestra un mensaje de error
-        if(semanastrabajo <= semanasDescanso){
+        if (semanastrabajo <= semanasDescanso) {
             JOptionPane.showMessageDialog(this, "Error: Tabla , semanas de trabajo son menores a las de descanso (trabajo/descanso)");
             return false;
         }
-        
+
         return true;
-        
+
     }
-    
-    public boolean validarSemanasMeso(String semanas){
+
+    public boolean validarSemanasMeso(String semanas) {
         String regex = "\\d+";
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(semanas);  
-        
-        if(!matcher.matches()){
+        Matcher matcher = pattern.matcher(semanas);
+
+        if (!matcher.matches()) {
             JOptionPane.showMessageDialog(this, "Error: Tabla , El numero de semanas no es un numero entero");
             return false;
-        }  
-        
+        }
+
         return true;
     }
-    
-    public boolean validarCiclicidad(){
+
+    public boolean validarCiclicidad() {
         DefaultTableModel modeloTablaPreparacion = (DefaultTableModel) this.tblEtapaPreparacion.getModel();
         DefaultTableModel modeloTablaEspecial = (DefaultTableModel) this.tblEtapaEspecial.getModel();
         DefaultTableModel modeloTablaPrecompetitivo = (DefaultTableModel) this.tblEtapaPrecompetitivo.getModel();
-        DefaultTableModel modeloTablaCompetitivo = (DefaultTableModel) this.tblEtapaCompetitivo.getModel();   
-        
+        DefaultTableModel modeloTablaCompetitivo = (DefaultTableModel) this.tblEtapaCompetitivo.getModel();
+
         ArrayList<String> ciclicidadPreparacion = new ArrayList<>();
         ArrayList<String> semanasPreparacion = new ArrayList<>();
- 
+
         for (int i = 0; i < modeloTablaPreparacion.getColumnCount(); i++) {
             //Checa que no haya nulos antes de hacer las pasadas por las columnas, si los encuentra, muestra mensaje de error al usuario
             String ciclicidad = "";
             String semanasMeso = "";
-            
+
             try {
                 ciclicidad = modeloTablaPreparacion.getValueAt(1, i).toString();
                 semanasMeso = modeloTablaPreparacion.getValueAt(0, i).toString();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Error: Tabla , se dejo vacio semanas microciclo o ciclicidad");
+                JOptionPane.showMessageDialog(this, "Error: Tabla , se dejo vacío semanas microciclo o ciclicidad en tabla preparación");
                 return false;
             }
 
             //valida que las semanas del microciclo sean un numero entero
-            if(!this.validarSemanasMeso(semanasMeso)){
-               return false; 
+            if (!this.validarSemanasMeso(semanasMeso)) {
+                return false;
             }
-            
+
             //convierte el string obtenido a int
             int semanasEntero = Integer.parseInt(semanasMeso);
-            
-            if(semanasEntero == 1 || semanasEntero == 2){
-               //si la semana es 1 o 0 asigna automaticamente el valor de la ciclicidad a 1,0 o 2,0 dependiento el caso
-               ciclicidad = semanasMeso + ",0";
-               
-               ciclicidadPreparacion.add(ciclicidad);
-               semanasPreparacion.add(semanasMeso);               
-               
-            }else{
+
+            if (semanasEntero == 1 || semanasEntero == 2) {
+                //si la semana es 1 o 0 asigna automaticamente el valor de la ciclicidad a 1,0 o 2,0 dependiento el caso
+                ciclicidad = semanasMeso + ",0";
+
+                ciclicidadPreparacion.add(ciclicidad);
+                semanasPreparacion.add(semanasMeso);
+
+            } else {
                 //si es cualquier otro valor valida si tienen el formato correcto
-               if(!validarFormatoCiclicidad(ciclicidad,semanasMeso)){
-                  return false;
-               } 
-               
-               ciclicidadPreparacion.add(ciclicidad);
-               semanasPreparacion.add(semanasMeso); 
+                if (!validarFormatoCiclicidad(ciclicidad, semanasMeso)) {
+                    return false;
+                }
+
+                ciclicidadPreparacion.add(ciclicidad);
+                semanasPreparacion.add(semanasMeso);
             }
         }
 
         ArrayList<String> ciclicidadEspecial = new ArrayList<>();
         ArrayList<String> semanasEspecial = new ArrayList<>();
- 
+
         for (int i = 0; i < modeloTablaEspecial.getColumnCount(); i++) {
             //Checa que no haya nulos antes de hacer las pasadas por las columnas, si los encuentra, pone 0 tal cual
             String ciclicidad = "";
             String semanasMeso = "";
-            
+
             try {
                 ciclicidad = modeloTablaEspecial.getValueAt(1, i).toString();
                 semanasMeso = modeloTablaEspecial.getValueAt(0, i).toString();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Error: Tabla , se dejo vacio semanas microciclo o ciclicidad");
+                JOptionPane.showMessageDialog(this, "Error: Tabla , se dejo vacío semanas microciclo o ciclicidad en tabla especial");
                 return false;
             }
-           
-            if(!this.validarSemanasMeso(semanasMeso)){
-               return false; 
-            }
-            
-            int semanasEntero = Integer.parseInt(semanasMeso);
-            
-            if(semanasEntero == 1 || semanasEntero == 2){
 
-               ciclicidad = semanasMeso + ",0";
-               
-               ciclicidadEspecial.add(ciclicidad);
-               semanasEspecial.add(semanasMeso);               
-               
-            }else{
-               if(!validarFormatoCiclicidad(ciclicidad,semanasMeso)){
-                  return false;
-               } 
-               
-               ciclicidadEspecial.add(ciclicidad);
-               semanasEspecial.add(semanasMeso); 
-            }
-        }
-
-        if(this.precompetitivasActiva){
-        ArrayList<String> ciclicidadPrecompetitiva = new ArrayList<>();
-        ArrayList<String> semanasPrecompetitiva = new ArrayList<>();
- 
-        for (int i = 0; i < modeloTablaPrecompetitivo.getColumnCount(); i++) {
-            //Checa que no haya nulos antes de hacer las pasadas por las columnas, si los encuentra, pone 0 tal cual
-            String ciclicidad = "";
-            String semanasMeso = "";
-            
-            try {
-                ciclicidad = modeloTablaPrecompetitivo.getValueAt(1, i).toString();
-                semanasMeso = modeloTablaPrecompetitivo.getValueAt(0, i).toString();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Error: Tabla , se dejo vacio semanas microciclo o ciclicidad");
+            if (!this.validarSemanasMeso(semanasMeso)) {
                 return false;
             }
-           
-            if(!this.validarSemanasMeso(semanasMeso)){
-               return false; 
-            }
-            
+
             int semanasEntero = Integer.parseInt(semanasMeso);
-            
-            if(semanasEntero == 1 || semanasEntero == 2){
 
-               ciclicidad = semanasMeso + ",0";
-               
-               ciclicidadPrecompetitiva.add(ciclicidad);
-               semanasPrecompetitiva.add(semanasMeso);               
-               
-            }else{
-               if(!validarFormatoCiclicidad(ciclicidad,semanasMeso)){
-                  return false;
-               } 
-               
-               ciclicidadPrecompetitiva.add(ciclicidad);
-               semanasPrecompetitiva.add(semanasMeso); 
+            if (semanasEntero == 1 || semanasEntero == 2) {
+
+                ciclicidad = semanasMeso + ",0";
+
+                ciclicidadEspecial.add(ciclicidad);
+                semanasEspecial.add(semanasMeso);
+
+            } else {
+                if (!validarFormatoCiclicidad(ciclicidad, semanasMeso)) {
+                    return false;
+                }
+
+                ciclicidadEspecial.add(ciclicidad);
+                semanasEspecial.add(semanasMeso);
             }
         }
-        }
 
+        if (this.precompetitivasActiva) {
+            ArrayList<String> ciclicidadPrecompetitiva = new ArrayList<>();
+            ArrayList<String> semanasPrecompetitiva = new ArrayList<>();
+
+            for (int i = 0; i < modeloTablaPrecompetitivo.getColumnCount(); i++) {
+                //Checa que no haya nulos antes de hacer las pasadas por las columnas, si los encuentra, pone 0 tal cual
+                String ciclicidad = "";
+                String semanasMeso = "";
+
+                try {
+                    ciclicidad = modeloTablaPrecompetitivo.getValueAt(1, i).toString();
+                    semanasMeso = modeloTablaPrecompetitivo.getValueAt(0, i).toString();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Error: Tabla , se dejo vacío semanas microciclo o ciclicidad en tabla precompetitiva");
+                    return false;
+                }
+
+                if (!this.validarSemanasMeso(semanasMeso)) {
+                    return false;
+                }
+
+                int semanasEntero = Integer.parseInt(semanasMeso);
+
+                if (semanasEntero == 1 || semanasEntero == 2) {
+
+                    ciclicidad = semanasMeso + ",0";
+
+                    ciclicidadPrecompetitiva.add(ciclicidad);
+                    semanasPrecompetitiva.add(semanasMeso);
+
+                } else {
+                    if (!validarFormatoCiclicidad(ciclicidad, semanasMeso)) {
+                        return false;
+                    }
+
+                    ciclicidadPrecompetitiva.add(ciclicidad);
+                    semanasPrecompetitiva.add(semanasMeso);
+                }
+            }
+        }
 
         ArrayList<String> ciclicidadCompetitiva = new ArrayList<>();
         ArrayList<String> semanasCompetitiva = new ArrayList<>();
- 
+
         for (int i = 0; i < modeloTablaCompetitivo.getColumnCount(); i++) {
             //Checa que no haya nulos antes de hacer las pasadas por las columnas, si los encuentra, pone 0 tal cual
             String ciclicidad = "";
             String semanasMeso = "";
-            
+
             try {
                 ciclicidad = modeloTablaCompetitivo.getValueAt(1, i).toString();
                 semanasMeso = modeloTablaCompetitivo.getValueAt(0, i).toString();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Error: Tabla , se dejo vacio semanas microciclo o ciclicidad");
+                JOptionPane.showMessageDialog(this, "Error: Tabla , se dejo vacío semanas microciclo o ciclicidad en tabla competitiva");
                 return false;
             }
-           
-            if(!this.validarSemanasMeso(semanasMeso)){
-               return false; 
-            }
-            
-            int semanasEntero = Integer.parseInt(semanasMeso);
-            
-            if(semanasEntero == 1 || semanasEntero == 2){
 
-               ciclicidad = semanasMeso + ",0";
-               
-               ciclicidadCompetitiva.add(ciclicidad);
-               semanasCompetitiva.add(semanasMeso);               
-               
-            }else{
-               if(!validarFormatoCiclicidad(ciclicidad,semanasMeso)){
-                  return false;
-               } 
-               
-               ciclicidadCompetitiva.add(ciclicidad);
-               semanasCompetitiva.add(semanasMeso); 
+            if (!this.validarSemanasMeso(semanasMeso)) {
+                return false;
+            }
+
+            int semanasEntero = Integer.parseInt(semanasMeso);
+
+            if (semanasEntero == 1 || semanasEntero == 2) {
+
+                ciclicidad = semanasMeso + ",0";
+
+                ciclicidadCompetitiva.add(ciclicidad);
+                semanasCompetitiva.add(semanasMeso);
+
+            } else {
+                if (!validarFormatoCiclicidad(ciclicidad, semanasMeso)) {
+                    return false;
+                }
+
+                ciclicidadCompetitiva.add(ciclicidad);
+                semanasCompetitiva.add(semanasMeso);
             }
         }
-        
 
+        JOptionPane.showMessageDialog(this, "La distribución de ciclicidad es válida");
         return true;
+    }
+
+    /**
+     * Método para bloquear los botones de validación de distribucion de etapas
+     * y ciclicidad al inicio de la ventana
+     */
+    public void bloqueoBtnValidacionTablas() {
+        //this.btnValidarCiclicidad.setEnabled(false);
+        this.jbtnValidarMesociclos.setEnabled(false);
+    }
+
+    public void desbloqueoBtnValidacionTablas() {
+        //this.btnValidarCiclicidad.setEnabled(true);
+        this.jbtnValidarMesociclos.setEnabled(true);
     }
 
     /**
@@ -1002,11 +1120,11 @@ public class macrocicloFrm extends javax.swing.JFrame {
         jbtnAgregarCompetitiva = new javax.swing.JButton();
         jbtnAgregarPrecompetitiva = new javax.swing.JButton();
         jbtnEliminarPrecompetitivo = new javax.swing.JButton();
-        jbtnValidarDistribucionEtapas = new javax.swing.JButton();
-        btnValidarCiclicidad = new javax.swing.JButton();
+        jbtnValidarMesociclos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestion de macrociclo");
+        setResizable(false);
 
         jpMacrociclo.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1499,17 +1617,10 @@ public class macrocicloFrm extends javax.swing.JFrame {
             }
         });
 
-        jbtnValidarDistribucionEtapas.setText("Validar distribución de etapas");
-        jbtnValidarDistribucionEtapas.addActionListener(new java.awt.event.ActionListener() {
+        jbtnValidarMesociclos.setText("Validar mesociclos");
+        jbtnValidarMesociclos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnValidarDistribucionEtapasActionPerformed(evt);
-            }
-        });
-
-        btnValidarCiclicidad.setText("botonPrueba Validar ciclicidad");
-        btnValidarCiclicidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnValidarCiclicidadActionPerformed(evt);
+                jbtnValidarMesociclosActionPerformed(evt);
             }
         });
 
@@ -1595,12 +1706,8 @@ public class macrocicloFrm extends javax.swing.JFrame {
                                                     .addGroup(jpMacrocicloLayout.createSequentialGroup()
                                                         .addComponent(jLabelMicro2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addGap(7, 7, 7)))
-                                                .addGap(18, 18, 18)
                                                 .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(jpMacrocicloLayout.createSequentialGroup()
-                                                        .addComponent(jbtnValidarDistribucionEtapas)
-                                                        .addGap(32, 32, 32)
-                                                        .addComponent(btnValidarCiclicidad))
+                                                    .addComponent(jbtnValidarMesociclos)
                                                     .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                         .addComponent(jspEtapaEspecial)
                                                         .addGroup(jpMacrocicloLayout.createSequentialGroup()
@@ -1762,9 +1869,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
                     .addComponent(jLabel21)
                     .addComponent(jLabel22))
                 .addGap(4, 4, 4)
-                .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtnValidarDistribucionEtapas)
-                    .addComponent(btnValidarCiclicidad))
+                .addComponent(jbtnValidarMesociclos)
                 .addGap(3, 3, 3)
                 .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnCrearMacrociclo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1851,10 +1956,12 @@ public class macrocicloFrm extends javax.swing.JFrame {
                 this.btnValidarSemanas.setEnabled(false);
                 this.jbtnEditarEtapas.setEnabled(false);
             }
-
         } catch (NumberFormatException ex) {
             //muestra mensaje de error en caso de que se introduce un numero no entero
             JOptionPane.showMessageDialog(this, "Error. No se introdujo un numero entero en los periodos");
+            this.activarCamposEdicion();
+            this.btnValidarSemanas.setEnabled(true);
+            this.jbtnEditarEtapas.setEnabled(true);
             resetearPeriodos();
         }
     }//GEN-LAST:event_btnValidarSemanasActionPerformed
@@ -1862,6 +1969,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
     private void jbtnEditarMacrocicloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEditarMacrocicloActionPerformed
         //activa los todos los campos        
         this.activarCamposEdicion();
+        this.ocultarTablaMeso();
     }//GEN-LAST:event_jbtnEditarMacrocicloActionPerformed
 
     private void jbtnEditarEtapasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEditarEtapasActionPerformed
@@ -1917,21 +2025,19 @@ public class macrocicloFrm extends javax.swing.JFrame {
         eliminarMesociclo(this.tblEtapaPrecompetitivo, 3);
     }//GEN-LAST:event_jbtnEliminarPrecompetitivoActionPerformed
 
-    private void jbtnValidarDistribucionEtapasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnValidarDistribucionEtapasActionPerformed
-        validarDistribucionEtapas();
-    }//GEN-LAST:event_jbtnValidarDistribucionEtapasActionPerformed
+    private void jbtnValidarMesociclosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnValidarMesociclosActionPerformed
+        boolean distribucionValida = validarDistribucionEtapas();
+        boolean ciclicidadValida = validarCiclicidad();
 
-    private void btnValidarCiclicidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarCiclicidadActionPerformed
-        // TODO add your handling code here:
-        if(validarCiclicidad()){
-            System.out.println("se valido la ciclicidad");
-            
+        if (distribucionValida && ciclicidadValida) {
+            this.jbtnCrearMacrociclo.setEnabled(true);
         }
-    }//GEN-LAST:event_btnValidarCiclicidadActionPerformed
+
+
+    }//GEN-LAST:event_jbtnValidarMesociclosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcularEtapas;
-    private javax.swing.JButton btnValidarCiclicidad;
     private javax.swing.JButton btnValidarSemanas;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1984,7 +2090,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
     private javax.swing.JButton jbtnEliminarEspecial;
     private javax.swing.JButton jbtnEliminarPrecompetitivo;
     private javax.swing.JButton jbtnEliminarPreparacion;
-    private javax.swing.JButton jbtnValidarDistribucionEtapas;
+    private javax.swing.JButton jbtnValidarMesociclos;
     private javax.swing.JLabel jlbSalir;
     private javax.swing.JPanel jpMacrociclo;
     private javax.swing.JPanel jpPeriodoCompetitivo;
