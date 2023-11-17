@@ -33,8 +33,8 @@ public class macrocicloFrm extends javax.swing.JFrame {
     private boolean preparativaActiva = false;
     private boolean competitivaActiva = false;
     private boolean especialActiva = false;
-    private ArrayList<Integer> distribucionPreparativa,distribucionEspecial,distribucionPrecom,distribucionCompetitiva;
-    private ArrayList<Integer> ciclicidadPreparativa,ciclicidadEspecial,ciclicidadPrecom,ciclicidadCompetitiva;
+    private ArrayList<Integer> distribucionPreparativa, distribucionEspecial, distribucionPrecom, distribucionCompetitiva;
+    private ArrayList<Integer> ciclicidadPreparativa, ciclicidadEspecial, ciclicidadPrecom, ciclicidadCompetitiva;
 
     /**
      * Constructor que inicializa la pantalla y sus componentes
@@ -58,7 +58,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
         this.activarCamposEdicion();
         ///Para que no se active antes de tiempo el botón de editar etapas
         this.jbtnEditarEtapas.setEnabled(false);
-  
+
         iniciarTablas();
         bloquearBotonesMesociclos();
         bloqueoBtnValidacionTablas();
@@ -1033,7 +1033,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
                     semanasPreparacion.add(semanasMeso);
                 }
             }
-            
+
             //this.distribucionPreparativa = semanasPreparacion;
         }
 
@@ -1160,8 +1160,6 @@ public class macrocicloFrm extends javax.swing.JFrame {
             }
         }
 
-        
-        
         JOptionPane.showMessageDialog(this, "La distribución de ciclicidad es válida");
         return true;
     }
@@ -1182,8 +1180,8 @@ public class macrocicloFrm extends javax.swing.JFrame {
         //this.btnValidarCiclicidad.setEnabled(true);
         this.jbtnValidarMesociclos.setEnabled(true);
     }
-    
-    public void crearMacrociclo(){
+
+    public void crearMacrociclo() {
         this.macrociclo = new Macrociclo();
         macrociclo.setFechaInicio(crearMacro.inicioPlan.toString());
         macrociclo.setFechaFin(crearMacro.finPlan.toString());
@@ -1193,14 +1191,13 @@ public class macrocicloFrm extends javax.swing.JFrame {
         macrociclo.setJefeRama(this.txtJefeRama.toString());
         macrociclo.setPreparadorFis(this.txtEntAux.toString());
         macrociclo.setMetodologo(this.txtMetodologo.toString());
-        macrociclo.setPeriodoPreparativo(Integer.valueOf(this.jtxtSemanasPreparativo.toString()));
-        macrociclo.setPeriodoCompetitivo(Integer.valueOf(this.jtxtSemanasCompetitivo.toString()));
-        macrociclo.setEtapaPreparativa(Integer.valueOf(this.jtxtSemanasPreparacion.toString()));
-        macrociclo.setEtapaEspecial(Integer.valueOf(this.jtxtSemanasEspecial.toString()));
-        macrociclo.setEtapaPrecompetitiva(Integer.valueOf(this.jtxtSemanasPrecompetitivo.toString()));
-        macrociclo.setEtapaCompetitiva(Integer.valueOf(this.jtxtSemanasEtapaCompetitivo.toString()));
-        
-        
+        macrociclo.setPeriodoPreparativo(Integer.valueOf(this.jtxtSemanasPreparativo.getText().toString()));
+        macrociclo.setPeriodoCompetitivo(Integer.valueOf(this.jtxtSemanasCompetitivo.getText().toString()));
+        macrociclo.setEtapaPreparativa(Integer.valueOf(this.jtxtSemanasPreparacion.getText().toString()));
+        macrociclo.setEtapaEspecial(Integer.valueOf(this.jtxtSemanasEspecial.getText().toString()));
+        macrociclo.setEtapaPrecompetitiva(Integer.valueOf(this.jtxtSemanasPrecompetitivo.getText().toString()));
+        macrociclo.setEtapaCompetitiva(Integer.valueOf(this.jtxtSemanasEtapaCompetitivo.getText().toString()));
+
     }
 
     /**
@@ -2099,7 +2096,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
         if (opcion == 0) {
             //si se quiere crear el macrociclo
             //crea la pantalla para la creacion y se envia esta al constructor
-            this.dispose();
+            //this.dispose();
         }
     }//GEN-LAST:event_jbtnCrearMacrocicloActionPerformed
 
@@ -2138,6 +2135,9 @@ public class macrocicloFrm extends javax.swing.JFrame {
             //muestra mensaje de error en caso de que se introduce un numero no entero
             JOptionPane.showMessageDialog(this, "Error. No se introdujo un numero entero en los periodos");
             this.activarCamposEdicion();
+            this.jtxtSemanasPreparativo.setEnabled(false);
+            this.jtxtSemanasCompetitivo.setEnabled(false);
+            
             this.btnValidarSemanas.setEnabled(true);
             this.jbtnEditarEtapas.setEnabled(true);
             resetearPeriodos();
@@ -2147,7 +2147,12 @@ public class macrocicloFrm extends javax.swing.JFrame {
     private void jbtnEditarMacrocicloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEditarMacrocicloActionPerformed
         //activa los todos los campos        
         this.activarCamposEdicion();
+        this.cargarSemanasCompetitiva(0);
+        this.cargarSemanasEspecial(0);
+        this.cargarSemanasPrecompetitiva(0);
+        this.cargarSemanasPreparacion(0);
         this.ocultarTablaMeso();
+
     }//GEN-LAST:event_jbtnEditarMacrocicloActionPerformed
 
     private void jbtnEditarEtapasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEditarEtapasActionPerformed

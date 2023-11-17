@@ -320,8 +320,9 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
                 macrocicloValido = false;
 
             }
-
-            if ((fechaInicio.isBefore(fechaFin) && !(fechaInicio.isEqual(fechaActual))) || fechaFin.isBefore(fechaActual)) {
+            
+            //Si los dias se encuentran en el pasado
+            if ((fechaInicio.isBefore(fechaActual) && !(fechaInicio.isEqual(fechaActual))) || fechaFin.isBefore(fechaActual)) {
                 JOptionPane.showMessageDialog(this, "Error. No se permiten fechas en el pasado");
                 jdcFechaInicio.setDate(null);
                 jdcFechaFin.setDate(null);
