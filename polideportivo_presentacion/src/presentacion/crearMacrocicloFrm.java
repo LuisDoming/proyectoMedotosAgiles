@@ -319,6 +319,15 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
                 jtxtTotalSemanas.setText("0");
                 macrocicloValido = false;
 
+            }
+
+            if ((fechaInicio.isBefore(fechaFin) && !(fechaInicio.isEqual(fechaActual))) || fechaFin.isBefore(fechaActual)) {
+                JOptionPane.showMessageDialog(this, "Error. No se permiten fechas en el pasado");
+                jdcFechaInicio.setDate(null);
+                jdcFechaFin.setDate(null);
+                jtxtTotalDias.setText("0");
+                jtxtTotalSemanas.setText("0");
+                macrocicloValido = false;
             } else {
                 //si pasa todas las validaciones
                 //el macrociclo es valido
@@ -342,6 +351,7 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
                 totalSemanas = (int) semanasEntreFechas;
 
             }
+
         }
     }//GEN-LAST:event_jbtnCalcularActionPerformed
     /**
