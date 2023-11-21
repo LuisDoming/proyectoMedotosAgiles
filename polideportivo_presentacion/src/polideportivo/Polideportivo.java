@@ -5,6 +5,7 @@
  */
 package polideportivo;
 
+import presentacion.VolumenFrm;
 import presentacion.crearMacrocicloFrm;
 import presentacion.inicioFrm;
 
@@ -18,7 +19,8 @@ public class Polideportivo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        inicioFrm inicioApp = new inicioFrm();
+        //inicioFrm inicioApp = new inicioFrm();
+        VolumenFrm volumen = new VolumenFrm();
     }
     
 }
