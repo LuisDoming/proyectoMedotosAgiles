@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import negocio.macrocicloNegocio;
 
 /**
  * Pantalla que contiene la distribucion de los mesociclos y la distribucion de
@@ -33,8 +34,8 @@ public class macrocicloFrm extends javax.swing.JFrame {
     private boolean preparativaActiva = false;
     private boolean competitivaActiva = false;
     private boolean especialActiva = false;
-    private ArrayList<Integer> distribucionPreparativa, distribucionEspecial, distribucionPrecom, distribucionCompetitiva;
-    private ArrayList<Integer> ciclicidadPreparativa, ciclicidadEspecial, ciclicidadPrecom, ciclicidadCompetitiva;
+    private ArrayList<String> distribucionPreparativa, distribucionEspecial, distribucionPrecom, distribucionCompetitiva;
+    private ArrayList<String> ciclicidadPreparativa, ciclicidadEspecial, ciclicidadPrecom, ciclicidadCompetitiva;
 
     /**
      * Constructor que inicializa la pantalla y sus componentes
@@ -991,10 +992,21 @@ public class macrocicloFrm extends javax.swing.JFrame {
         DefaultTableModel modeloTablaEspecial = (DefaultTableModel) this.tblEtapaEspecial.getModel();
         DefaultTableModel modeloTablaPrecompetitivo = (DefaultTableModel) this.tblEtapaPrecompetitivo.getModel();
         DefaultTableModel modeloTablaCompetitivo = (DefaultTableModel) this.tblEtapaCompetitivo.getModel();
-
+        
+        ArrayList<String> ciclicidadPreparacion = new ArrayList<>();
+        ArrayList<String> semanasPreparacion = new ArrayList<>();
+        
+        ArrayList<String> ciclicidadEspecial = new ArrayList<>();
+        ArrayList<String> semanasEspecial = new ArrayList<>();
+        
+        ArrayList<String> ciclicidadPrecompetitiva = new ArrayList<>();
+        ArrayList<String> semanasPrecompetitiva = new ArrayList<>();
+        
+        ArrayList<String> ciclicidadCompetitiva = new ArrayList<>();
+        ArrayList<String> semanasCompetitiva = new ArrayList<>();
+        
         if (this.preparativaActiva) {
-            ArrayList<String> ciclicidadPreparacion = new ArrayList<>();
-            ArrayList<String> semanasPreparacion = new ArrayList<>();
+
             for (int i = 0; i < modeloTablaPreparacion.getColumnCount(); i++) {
                 //Checa que no haya nulos antes de hacer las pasadas por las columnas, si los encuentra, muestra mensaje de error al usuario
                 String ciclicidad = "";
@@ -1038,8 +1050,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
         }
 
         if (this.especialActiva) {
-            ArrayList<String> ciclicidadEspecial = new ArrayList<>();
-            ArrayList<String> semanasEspecial = new ArrayList<>();
+
 
             for (int i = 0; i < modeloTablaEspecial.getColumnCount(); i++) {
                 //Checa que no haya nulos antes de hacer las pasadas por las columnas, si los encuentra, pone 0 tal cual
@@ -1079,9 +1090,6 @@ public class macrocicloFrm extends javax.swing.JFrame {
         }
 
         if (this.precompetitivasActiva) {
-            ArrayList<String> ciclicidadPrecompetitiva = new ArrayList<>();
-            ArrayList<String> semanasPrecompetitiva = new ArrayList<>();
-
             for (int i = 0; i < modeloTablaPrecompetitivo.getColumnCount(); i++) {
                 //Checa que no haya nulos antes de hacer las pasadas por las columnas, si los encuentra, pone 0 tal cual
                 String ciclicidad = "";
@@ -1120,8 +1128,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
         }
 
         if (this.competitivaActiva) {
-            ArrayList<String> ciclicidadCompetitiva = new ArrayList<>();
-            ArrayList<String> semanasCompetitiva = new ArrayList<>();
+
 
             for (int i = 0; i < modeloTablaCompetitivo.getColumnCount(); i++) {
                 //Checa que no haya nulos antes de hacer las pasadas por las columnas, si los encuentra, pone 0 tal cual
@@ -1160,6 +1167,16 @@ public class macrocicloFrm extends javax.swing.JFrame {
             }
         }
 
+        this.distribucionPreparativa = semanasPreparacion;
+        this.distribucionEspecial = semanasEspecial;
+        this.distribucionPrecom = semanasPrecompetitiva;
+        this.distribucionCompetitiva = semanasCompetitiva;
+        
+        this.ciclicidadPreparativa = ciclicidadPreparacion;
+        this.ciclicidadEspecial = ciclicidadEspecial;
+        this.ciclicidadPrecom = ciclicidadPrecompetitiva;
+        this.ciclicidadCompetitiva = ciclicidadCompetitiva;
+        
         JOptionPane.showMessageDialog(this, "La distribución de ciclicidad es válida");
         return true;
     }
@@ -1186,18 +1203,44 @@ public class macrocicloFrm extends javax.swing.JFrame {
         macrociclo.setFechaInicio(crearMacro.inicioPlan.toString());
         macrociclo.setFechaFin(crearMacro.finPlan.toString());
         macrociclo.setTotalSemanas(semanasTotales);
-        macrociclo.setDeporte(this.txtDeporte.toString());
-        macrociclo.setRama(this.txtRama.toString());
-        macrociclo.setJefeRama(this.txtJefeRama.toString());
-        macrociclo.setPreparadorFis(this.txtEntAux.toString());
-        macrociclo.setMetodologo(this.txtMetodologo.toString());
+        macrociclo.setDeporte(this.txtDeporte.getText().toString());
+        macrociclo.setRama(this.txtRama.getText().toString());
+        macrociclo.setJefeRama(this.txtJefeRama.getText().toString());
+        macrociclo.setPreparadorFis(this.txtEntAux.getText().toString());
+        macrociclo.setMetodologo(this.txtMetodologo.getText().toString());
         macrociclo.setPeriodoPreparativo(Integer.valueOf(this.jtxtSemanasPreparativo.getText().toString()));
         macrociclo.setPeriodoCompetitivo(Integer.valueOf(this.jtxtSemanasCompetitivo.getText().toString()));
         macrociclo.setEtapaPreparativa(Integer.valueOf(this.jtxtSemanasPreparacion.getText().toString()));
         macrociclo.setEtapaEspecial(Integer.valueOf(this.jtxtSemanasEspecial.getText().toString()));
         macrociclo.setEtapaPrecompetitiva(Integer.valueOf(this.jtxtSemanasPrecompetitivo.getText().toString()));
         macrociclo.setEtapaCompetitiva(Integer.valueOf(this.jtxtSemanasEtapaCompetitivo.getText().toString()));
-
+        
+        if(this.preparativaActiva){
+            macrociclo.setDistribucionPreparativa(distribucionPreparativa);
+            macrociclo.setCiclicidadPreparativa(ciclicidadPreparativa);
+        }
+        
+        if(this.especialActiva){
+            macrociclo.setDistribucionEspecial(distribucionEspecial);
+            macrociclo.setCiclicidadEspecial(ciclicidadEspecial);
+        }
+        
+        if(this.precompetitivasActiva){
+            macrociclo.setDistribucionPrecom(distribucionPrecom);
+            macrociclo.setCiclicidadPrecom(ciclicidadPrecom);
+        }
+        
+        if(this.competitivaActiva){
+            macrociclo.setDistribucionCompetitiva(distribucionCompetitiva);
+            macrociclo.setCiclicidadCompetitiva(ciclicidadCompetitiva);
+        }
+        
+        macrocicloNegocio negocio = new macrocicloNegocio();
+        if(negocio.guardarMacrociclo(macrociclo)){
+            JOptionPane.showMessageDialog(this, "Macrociclo se ha guardado con exito");           
+        }else{
+            JOptionPane.showMessageDialog(this, "Error: Hubo un error al guardar el Macrociclo ");
+        }
     }
 
     /**
@@ -1962,7 +2005,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
                         .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtMetodologo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel29))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCalcularEtapas)
                     .addComponent(btnValidarSemanas)
@@ -2097,6 +2140,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
             //si se quiere crear el macrociclo
             //crea la pantalla para la creacion y se envia esta al constructor
             //this.dispose();
+            this.crearMacrociclo();
         }
     }//GEN-LAST:event_jbtnCrearMacrocicloActionPerformed
 
@@ -2214,7 +2258,6 @@ public class macrocicloFrm extends javax.swing.JFrame {
 
         if (distribucionValida && ciclicidadValida) {
             this.jbtnCrearMacrociclo.setEnabled(true);
-            this.crearMacrociclo();
         }
 
 

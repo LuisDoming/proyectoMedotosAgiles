@@ -16,13 +16,13 @@ public class Macrociclo {
     private String deporte,rama,jefeRama,preparadorFis,Metodologo;
     private int periodoPreparativo, periodoCompetitivo,totalSemanas;
     private int etapaPreparativa,etapaEspecial,etapaPrecompetitiva,etapaCompetitiva;
-    private ArrayList<Integer> distribucionPreparativa,distribucionEspecial,distribucionPrecom,distribucionCompetitiva;
-    private ArrayList<Integer> ciclicidadPreparativa,ciclicidadEspecial,ciclicidadPrecom,ciclicidadCompetitiva;
+    private ArrayList<String> distribucionPreparativa,distribucionEspecial,distribucionPrecom,distribucionCompetitiva;
+    private ArrayList<String> ciclicidadPreparativa,ciclicidadEspecial,ciclicidadPrecom,ciclicidadCompetitiva;
 
     public Macrociclo() {
     }
 
-    public Macrociclo(String fechaInicio, String fechaFin, String deporte, String rama, String jefeRama, String preparadorFis, String Metodologo, int periodoPreparativo, int periodoCompetitivo, int totalSemanas, int etapaPreparativa, int etapaEspecial, int etapaPrecompetitiva, int etapaCompetitiva, ArrayList<Integer> distribucionPreparativa, ArrayList<Integer> distribucionEspecial, ArrayList<Integer> distribucionPrecom, ArrayList<Integer> distribucionCompetitiva, ArrayList<Integer> ciclicidadPreparativa, ArrayList<Integer> ciclicidadEspecial, ArrayList<Integer> ciclicidadPrecom, ArrayList<Integer> ciclicidadCompetitiva) {
+    public Macrociclo(String fechaInicio, String fechaFin, String deporte, String rama, String jefeRama, String preparadorFis, String Metodologo, int periodoPreparativo, int periodoCompetitivo, int totalSemanas, int etapaPreparativa, int etapaEspecial, int etapaPrecompetitiva, int etapaCompetitiva, ArrayList<String> distribucionPreparativa, ArrayList<String> distribucionEspecial, ArrayList<String> distribucionPrecom, ArrayList<String> distribucionCompetitiva, ArrayList<String> ciclicidadPreparativa, ArrayList<String> ciclicidadEspecial, ArrayList<String> ciclicidadPrecom, ArrayList<String> ciclicidadCompetitiva) {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.deporte = deporte;
@@ -46,6 +46,7 @@ public class Macrociclo {
         this.ciclicidadPrecom = ciclicidadPrecom;
         this.ciclicidadCompetitiva = ciclicidadCompetitiva;
     }
+
 
     public String getFechaInicio() {
         return fechaInicio;
@@ -159,67 +160,67 @@ public class Macrociclo {
         this.etapaCompetitiva = etapaCompetitiva;
     }
 
-    public ArrayList<Integer> getDistribucionPreparativa() {
+    public ArrayList<String> getDistribucionPreparativa() {
         return distribucionPreparativa;
     }
 
-    public void setDistribucionPreparativa(ArrayList<Integer> distribucionPreparativa) {
+    public void setDistribucionPreparativa(ArrayList<String> distribucionPreparativa) {
         this.distribucionPreparativa = distribucionPreparativa;
     }
 
-    public ArrayList<Integer> getDistribucionEspecial() {
+    public ArrayList<String> getDistribucionEspecial() {
         return distribucionEspecial;
     }
 
-    public void setDistribucionEspecial(ArrayList<Integer> distribucionEspecial) {
+    public void setDistribucionEspecial(ArrayList<String> distribucionEspecial) {
         this.distribucionEspecial = distribucionEspecial;
     }
 
-    public ArrayList<Integer> getDistribucionPrecom() {
+    public ArrayList<String> getDistribucionPrecom() {
         return distribucionPrecom;
     }
 
-    public void setDistribucionPrecom(ArrayList<Integer> distribucionPrecom) {
+    public void setDistribucionPrecom(ArrayList<String> distribucionPrecom) {
         this.distribucionPrecom = distribucionPrecom;
     }
 
-    public ArrayList<Integer> getDistribucionCompetitiva() {
+    public ArrayList<String> getDistribucionCompetitiva() {
         return distribucionCompetitiva;
     }
 
-    public void setDistribucionCompetitiva(ArrayList<Integer> distribucionCompetitiva) {
+    public void setDistribucionCompetitiva(ArrayList<String> distribucionCompetitiva) {
         this.distribucionCompetitiva = distribucionCompetitiva;
     }
 
-    public ArrayList<Integer> getCiclicidadPreparativa() {
+    public ArrayList<String> getCiclicidadPreparativa() {
         return ciclicidadPreparativa;
     }
 
-    public void setCiclicidadPreparativa(ArrayList<Integer> ciclicidadPreparativa) {
+    public void setCiclicidadPreparativa(ArrayList<String> ciclicidadPreparativa) {
         this.ciclicidadPreparativa = ciclicidadPreparativa;
     }
 
-    public ArrayList<Integer> getCiclicidadEspecial() {
+    public ArrayList<String> getCiclicidadEspecial() {
         return ciclicidadEspecial;
     }
 
-    public void setCiclicidadEspecial(ArrayList<Integer> ciclicidadEspecial) {
+    public void setCiclicidadEspecial(ArrayList<String> ciclicidadEspecial) {
         this.ciclicidadEspecial = ciclicidadEspecial;
     }
 
-    public ArrayList<Integer> getCiclicidadPrecom() {
+    public ArrayList<String> getCiclicidadPrecom() {
         return ciclicidadPrecom;
     }
 
-    public void setCiclicidadPrecom(ArrayList<Integer> ciclicidadPrecom) {
+    public void setCiclicidadPrecom(ArrayList<String> ciclicidadPrecom) {
         this.ciclicidadPrecom = ciclicidadPrecom;
     }
 
-    public ArrayList<Integer> getCiclicidadCompetitiva() {
+    public ArrayList<String> getCiclicidadCompetitiva() {
         return ciclicidadCompetitiva;
     }
 
-    public void setCiclicidadCompetitiva(ArrayList<Integer> ciclicidadCompetitiva) {
+    public void setCiclicidadCompetitiva(ArrayList<String> ciclicidadCompetitiva) {
         this.ciclicidadCompetitiva = ciclicidadCompetitiva;
     }
 
