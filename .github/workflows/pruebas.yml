@@ -27,14 +27,13 @@ jobs:
         ls -l /usr/lib/jvm
         echo "JAVA_HOME is: $JAVA_HOME"
 
-    - name: localizar JDK
-      run: ant -Dplatforms.JDK_19.home=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/19.0.2-7/x64
+    - name: localizar JDK y build de negocios
+      run: ant -Dplatforms.JDK_19.home=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/19.0.2-7/x64 -f polideportivo_negocio/build.xml
         
-    - name: Build de negocios
       #env:
        # JAVA_HOME: '/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/19.0.2-7/x64'
         
-      run: ant -f polideportivo_negocio/build.xml
+       
       
     #- name: Pruebas unitarias
     #  run: ant test
