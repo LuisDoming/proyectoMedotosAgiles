@@ -28,9 +28,5 @@ jobs:
         echo "JAVA_HOME is: $JAVA_HOME"
 
     - name: localizar JDK y build de negocios
-      run: ant -Dplatforms.JDK_19.home=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/19.0.2-7/x64 -f polideportivo_negocio/build.xml
+      run: ant -Dplatforms.JDK_19.home=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/19.0.2-7/x64 -f polideportivo_negocio/build.xml test
         
-    - name: Pruebas unitarias
-      run: |
-        cd polideportivo_negocio
-        ant -f build.xml test
