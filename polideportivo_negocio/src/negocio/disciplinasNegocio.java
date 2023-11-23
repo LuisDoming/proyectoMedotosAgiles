@@ -22,7 +22,7 @@ public class disciplinasNegocio {
     
     //
     public boolean validarDisciplina(ArrayList<Disciplina> disciplinas){
-        if(!disciplinas.isEmpty()){
+        if(disciplinas.isEmpty()){
             return false;
         }
         
