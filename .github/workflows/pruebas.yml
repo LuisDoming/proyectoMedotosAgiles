@@ -23,7 +23,7 @@ jobs:
         distribution: 'temurin'
         
     - name: Build de negocios
-      run: ant -f /polideportivo_negocio/build.xml
+      run: ant -f polideportivo_negocio/build.xml
       
     #- name: Pruebas unitarias
     #  run: ant test
