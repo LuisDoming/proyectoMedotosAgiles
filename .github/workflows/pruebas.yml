@@ -22,8 +22,8 @@ jobs:
         java-version: '19'
         distribution: 'temurin'
         
-    - name: Build de negocios
-      run: -ls l #ant -f C:/Users/spide/OneDrive/Escritorio/TAREAS/Ágiles/Proyecto_agiles/proyectoMedotosAgiles/Polideportivo_accesodatos/build.xml
+    #- name: Build de negocios
+    #  run: -ls l #ant -f C:/Users/spide/OneDrive/Escritorio/TAREAS/Ágiles/Proyecto_agiles/proyectoMedotosAgiles/Polideportivo_accesodatos/build.xml
       
     #- name: Pruebas unitarias
     #  run: ant test
