@@ -21,6 +21,11 @@ jobs:
       with:
         java-version: '19'
         distribution: 'temurin'
+
+    - name: Show JDK location
+      run: |
+        ls -l /usr/lib/jvm
+        echo "JAVA_HOME is: $JAVA_HOME"
         
     - name: Build de negocios
       run: ant -f polideportivo_negocio/build.xml
