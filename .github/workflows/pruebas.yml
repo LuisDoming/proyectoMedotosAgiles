@@ -22,4 +22,4 @@ jobs:
         java-version: '19'
         distribution: 'temurin'
     - name: Build with Ant
-      run: ls -l
+      run: ant test
