@@ -28,7 +28,7 @@ jobs:
         echo "JAVA_HOME is: $JAVA_HOME"
 
     - name: localizar JDK
-      run: ant -Dplatforms.JDK_19.home=</opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/19.0.2-7/x64>
+      run: ant -Dplatforms.JDK_19.home=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/19.0.2-7/x64
         
     - name: Build de negocios
       #env:
