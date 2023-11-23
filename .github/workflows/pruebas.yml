@@ -31,4 +31,6 @@ jobs:
       run: ant -Dplatforms.JDK_19.home=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/19.0.2-7/x64 -f polideportivo_negocio/build.xml
         
     - name: Pruebas unitarias
-      run: ant test
+      run: |
+        cd polideportivo_negocio
+        ant -f build.xml test
