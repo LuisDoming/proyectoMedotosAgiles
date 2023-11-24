@@ -30,14 +30,14 @@ public class DisciplinaDAO {
         
             MongoDatabase database = mongoClient.getDatabase("polideportivo");
         
-            MongoCollection<Document> collection = database.getCollection("macrociclos");
+            MongoCollection<Document> collection = database.getCollection("disciplina");
             
             Document document = new Document()
                     .append("disciplina", disciplina.getNombre())
-                    .append("volumenPreparativa", disciplina.getPreparativa())
-                    .append("volumenEspecial", disciplina.getEspecial())
-                    .append("volumenPrecom", disciplina.getPrecom())
-                    .append("volumenCompetitiva", disciplina.getCompetitiva())
+                    .append("volumenPreparativa", disciplina.getPreparativa().toDocument())
+                    .append("volumenEspecial", disciplina.getEspecial().toDocument())
+                    .append("volumenPrecom", disciplina.getPrecom().toDocument())
+                    .append("volumenCompetitiva", disciplina.getCompetitiva().toDocument())
                     .append("total", disciplina.getTotal())
                     .append("idMacro", idMacro);
             

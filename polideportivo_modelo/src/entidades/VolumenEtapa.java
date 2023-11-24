@@ -4,6 +4,11 @@
  */
 package entidades;
 
+import org.bson.Document;
+
+
+
+
 /**
  *
  * @author rjsaa
@@ -80,6 +85,23 @@ public class VolumenEtapa {
 
     public void setSemanas(int semanas) {
         this.semanas = semanas;
+    }    
+    /**
+        private Etapa tipo;
+    private float minimo,maximo,promedio,total;
+    private int insitaciones,semanas;
+    * */
+    
+    public Document toDocument() {
+        Document document = new Document();
+        document.append("Etapa", this.tipo.toString())
+                .append("minimo", this.minimo)
+                .append("maximo", this.maximo)
+                .append("promedio", this.promedio)
+                .append("total", this.total)
+                .append("insitaciones", this.insitaciones)
+                .append("semanas", this.semanas);
+        return document;
     }
 
     @Override
