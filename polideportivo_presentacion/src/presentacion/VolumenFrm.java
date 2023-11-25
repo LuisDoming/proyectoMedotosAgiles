@@ -30,6 +30,8 @@ public class VolumenFrm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tablaEtapaGeneral1 = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
         jpVolumen = new javax.swing.JPanel();
         jcbDisciplinas = new javax.swing.JComboBox<>();
         bntSeleccionar = new javax.swing.JButton();
@@ -37,6 +39,42 @@ public class VolumenFrm extends javax.swing.JFrame {
         jcbDisciplinasSeleccionadas = new javax.swing.JComboBox<>();
         jlbSalir = new javax.swing.JLabel();
         jbGuardar = new javax.swing.JButton();
+        jspVolumenEtapaGeneral = new javax.swing.JScrollPane();
+        tablaEtapaGeneral = new javax.swing.JTable();
+        jlbEtapaGeneral = new javax.swing.JLabel();
+        jspVolumenEtapaEspecial = new javax.swing.JScrollPane();
+        tablaEtapaEspecial = new javax.swing.JTable();
+        jspVolumenEtapaCompetitiva = new javax.swing.JScrollPane();
+        tablaEtapaCompetitiva = new javax.swing.JTable();
+        jspVolumenEtapaPrecompetitiva = new javax.swing.JScrollPane();
+        tablaEtapaPrecompetitiva = new javax.swing.JTable();
+        jlbEtapaEspecial = new javax.swing.JLabel();
+        jlbEtapaPrecompetitiva = new javax.swing.JLabel();
+        jlbEtapaCompetitiva = new javax.swing.JLabel();
+        jspVolumenGeneral = new javax.swing.JScrollPane();
+        tablaVolumenGeneral = new javax.swing.JTable();
+        jlbVolumenTotal = new javax.swing.JLabel();
+        jbGuardarVolumen = new javax.swing.JButton();
+        jbCalcularVolumen = new javax.swing.JButton();
+
+        tablaEtapaGeneral1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Min", "Max", "Prom", "Ins.", "Semanas", "V. etapa"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+
+        jLabel3.setText("Etapa general");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Volumen");
@@ -68,50 +106,223 @@ public class VolumenFrm extends javax.swing.JFrame {
             }
         });
 
+        tablaEtapaGeneral.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Min", "Max", "Prom", "Ins.", "Semanas", "V. etapa"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jspVolumenEtapaGeneral.setViewportView(tablaEtapaGeneral);
+
+        jlbEtapaGeneral.setText("Etapa general");
+
+        tablaEtapaEspecial.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Min", "Max", "Prom", "Ins.", "Semanas", "V. etapa"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jspVolumenEtapaEspecial.setViewportView(tablaEtapaEspecial);
+
+        tablaEtapaCompetitiva.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Min", "Max", "Prom", "Ins.", "Semanas", "V. etapa"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jspVolumenEtapaCompetitiva.setViewportView(tablaEtapaCompetitiva);
+
+        tablaEtapaPrecompetitiva.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Min", "Max", "Prom", "Ins.", "Semanas", "V. etapa"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jspVolumenEtapaPrecompetitiva.setViewportView(tablaEtapaPrecompetitiva);
+
+        jlbEtapaEspecial.setText("Etapa especial");
+
+        jlbEtapaPrecompetitiva.setText("Etapa precompetitiva");
+
+        jlbEtapaCompetitiva.setText("Etapa competitiva");
+
+        tablaVolumenGeneral.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null}
+            },
+            new String [] {
+                "Nombre", "Volumen total"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jspVolumenGeneral.setViewportView(tablaVolumenGeneral);
+
+        jlbVolumenTotal.setText("Macrociclo");
+
+        jbGuardarVolumen.setBackground(new java.awt.Color(102, 255, 102));
+        jbGuardarVolumen.setText("Guardar volumen ");
+
+        jbCalcularVolumen.setBackground(new java.awt.Color(51, 153, 255));
+        jbCalcularVolumen.setText("Calcular");
+
         javax.swing.GroupLayout jpVolumenLayout = new javax.swing.GroupLayout(jpVolumen);
         jpVolumen.setLayout(jpVolumenLayout);
         jpVolumenLayout.setHorizontalGroup(
             jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpVolumenLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
                 .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bntSeleccionar)
-                    .addComponent(jcbDisciplinas, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bntEliminar)
                     .addGroup(jpVolumenLayout.createSequentialGroup()
-                        .addComponent(jcbDisciplinasSeleccionadas, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jspVolumenEtapaPrecompetitiva, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlbEtapaPrecompetitiva, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 692, Short.MAX_VALUE)
-                .addComponent(jlbSalir)
-                .addGap(30, 30, 30))
+                        .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jspVolumenEtapaCompetitiva, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlbEtapaCompetitiva, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpVolumenLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpVolumenLayout.createSequentialGroup()
+                                .addComponent(jlbEtapaGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(333, 333, 333)
+                                .addComponent(jlbEtapaEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpVolumenLayout.createSequentialGroup()
+                                .addComponent(jspVolumenEtapaGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jspVolumenEtapaEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpVolumenLayout.createSequentialGroup()
+                                .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bntSeleccionar)
+                                    .addComponent(jcbDisciplinas, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(32, 32, 32)
+                                .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jpVolumenLayout.createSequentialGroup()
+                                        .addComponent(bntEliminar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jpVolumenLayout.createSequentialGroup()
+                                        .addComponent(jcbDisciplinasSeleccionadas, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpVolumenLayout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jbCalcularVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbGuardarVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jpVolumenLayout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jlbSalir)
+                            .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jlbVolumenTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jspVolumenGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         jpVolumenLayout.setVerticalGroup(
             jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpVolumenLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpVolumenLayout.createSequentialGroup()
                 .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlbSalir)
                     .addGroup(jpVolumenLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jcbDisciplinas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bntSeleccionar))
+                    .addGroup(jpVolumenLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
                         .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jcbDisciplinasSeleccionadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jbGuardar))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bntEliminar))
                     .addGroup(jpVolumenLayout.createSequentialGroup()
-                        .addComponent(jcbDisciplinas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(jlbSalir)))
+                .addGap(33, 33, 33)
+                .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jpVolumenLayout.createSequentialGroup()
+                        .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jlbEtapaGeneral)
+                            .addComponent(jlbEtapaEspecial))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jspVolumenEtapaEspecial, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                            .addComponent(jspVolumenEtapaGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(39, 39, 39)
+                        .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jpVolumenLayout.createSequentialGroup()
+                                .addComponent(jlbEtapaCompetitiva)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jspVolumenEtapaCompetitiva, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpVolumenLayout.createSequentialGroup()
+                                .addComponent(jlbEtapaPrecompetitiva)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jspVolumenEtapaPrecompetitiva, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jpVolumenLayout.createSequentialGroup()
+                        .addComponent(jlbVolumenTotal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bntSeleccionar)))
-                .addContainerGap(547, Short.MAX_VALUE))
+                        .addComponent(jspVolumenGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(113, 113, 113)
+                        .addComponent(jbCalcularVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbGuardarVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpVolumen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jpVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,10 +406,29 @@ public class VolumenFrm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntEliminar;
     private javax.swing.JButton bntSeleccionar;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton jbCalcularVolumen;
     private javax.swing.JButton jbGuardar;
+    private javax.swing.JButton jbGuardarVolumen;
     private javax.swing.JComboBox<String> jcbDisciplinas;
     private javax.swing.JComboBox<String> jcbDisciplinasSeleccionadas;
+    private javax.swing.JLabel jlbEtapaCompetitiva;
+    private javax.swing.JLabel jlbEtapaEspecial;
+    private javax.swing.JLabel jlbEtapaGeneral;
+    private javax.swing.JLabel jlbEtapaPrecompetitiva;
     private javax.swing.JLabel jlbSalir;
+    private javax.swing.JLabel jlbVolumenTotal;
     private javax.swing.JPanel jpVolumen;
+    private javax.swing.JScrollPane jspVolumenEtapaCompetitiva;
+    private javax.swing.JScrollPane jspVolumenEtapaEspecial;
+    private javax.swing.JScrollPane jspVolumenEtapaGeneral;
+    private javax.swing.JScrollPane jspVolumenEtapaPrecompetitiva;
+    private javax.swing.JScrollPane jspVolumenGeneral;
+    private javax.swing.JTable tablaEtapaCompetitiva;
+    private javax.swing.JTable tablaEtapaEspecial;
+    private javax.swing.JTable tablaEtapaGeneral;
+    private javax.swing.JTable tablaEtapaGeneral1;
+    private javax.swing.JTable tablaEtapaPrecompetitiva;
+    private javax.swing.JTable tablaVolumenGeneral;
     // End of variables declaration//GEN-END:variables
 }
