@@ -23,6 +23,11 @@ public class macrocicloDAO {
         conexion = new Conexion();
     }
     
+    /**
+     * Método que guarda en la BD el Macrociclo enviado como parametro.
+     * @param macrociclo
+     * @return 
+     */
     public boolean guardarMacrociclo(Macrociclo macrociclo){
         
         

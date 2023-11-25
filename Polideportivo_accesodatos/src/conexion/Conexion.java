@@ -19,6 +19,10 @@ public class Conexion {
     public Conexion() {
     }
     
+    /**
+     * Método que crea la conexion con la base de datos
+     * @return 
+     */
     public MongoClient crearConexion(){
         try{
             mongoClient = MongoClients.create(uri);

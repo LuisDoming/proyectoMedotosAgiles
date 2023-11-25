@@ -121,26 +121,42 @@ public class VolumenFrm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método que agrega a un nuevo combobox las disciplinas seleccionadas del
+     * combobox de origen.
+     *
+     * @param evt
+     */
     private void bntSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntSeleccionarActionPerformed
-        String datoSeleccionado = (String) this.jcbDisciplinas.getSelectedItem();
-        this.jcbDisciplinasSeleccionadas.addItem(datoSeleccionado);
+        String[] opciones = {"Aceptar", "Cancelar"};
+        //obtiene la opcion seleccionada por el usuario
+        int opcion = JOptionPane.showOptionDialog(this, "¿Quieres agregar esa disciplina?:", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                opciones, opciones[0]);
 
-        // Oculta el dato seleccionado en el comboBoxOrigen
-        int index = this.jcbDisciplinas.getSelectedIndex();
-        if (index != -1) {
-            this.jcbDisciplinas.removeItemAt(index);
+        if (opcion == 0) {
+            String datoSeleccionado = (String) this.jcbDisciplinas.getSelectedItem();
+            this.jcbDisciplinasSeleccionadas.addItem(datoSeleccionado);
+
+            // Oculta el dato seleccionado en el comboBoxOrigen
+            int index = this.jcbDisciplinas.getSelectedIndex();
+            if (index != -1) {
+                this.jcbDisciplinas.removeItemAt(index);
+            }
         }
     }//GEN-LAST:event_bntSeleccionarActionPerformed
 
+    /**
+     * Método que elimina una discplina del combobox nuevo
+     * @param evt 
+     */
     private void bntEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntEliminarActionPerformed
         if (this.jcbDisciplinasSeleccionadas.getItemCount() == 0) {
             JOptionPane.showMessageDialog(this, "Error. Seleccione disciplinas");
-        }
-        //Al ser valido el combobox de disciplinas seleccionadas se realizara la eliminacion del campo seleccionado
-        else{
+        } //Al ser valido el combobox de disciplinas seleccionadas se realizara la eliminacion del campo seleccionado
+        else {
             String[] opciones = {"Aceptar", "Cancelar"};
             //obtiene la opcion seleccionada por el usuario
-            int opcion = JOptionPane.showOptionDialog(this, "¿Quieres eliminar esa disciplina?:", "Opciones", JOptionPane.DEFAULT_OPTION,  JOptionPane.PLAIN_MESSAGE, null, 
+            int opcion = JOptionPane.showOptionDialog(this, "¿Quieres eliminar esa disciplina?:", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                     opciones, opciones[0]);
 
             if (opcion == 0) {
@@ -153,22 +169,25 @@ public class VolumenFrm extends javax.swing.JFrame {
                     this.jcbDisciplinasSeleccionadas.removeItemAt(index);
                 }
             }
-        } 
+        }
     }//GEN-LAST:event_bntEliminarActionPerformed
 
+    /**
+     * Método que guarda el contenido del comobox nuevo
+     * @param evt 
+     */
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         if (this.jcbDisciplinasSeleccionadas.getItemCount() == 0) {
             JOptionPane.showMessageDialog(this, "Error. Seleccione disciplinas");
-        }
-        //Al ser valido el combobox de disciplinas seleccionadas se habilitan las tablas para calcular y distribuir el volumen
-        else{
+        } //Al ser valido el combobox de disciplinas seleccionadas se habilitan las tablas para calcular y distribuir el volumen
+        else {
             String[] opciones = {"Aceptar", "Cancelar"};
             //obtiene la opcion seleccionada por el usuario
-            int opcion = JOptionPane.showOptionDialog(this, "¿Guardar estas disciplinas?:", "Opciones", JOptionPane.DEFAULT_OPTION,  JOptionPane.PLAIN_MESSAGE, null, 
+            int opcion = JOptionPane.showOptionDialog(this, "¿Guardar estas disciplinas?:", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                     opciones, opciones[0]);
 
             if (opcion == 0) {
-                
+
             }
         }
     }//GEN-LAST:event_jbGuardarActionPerformed

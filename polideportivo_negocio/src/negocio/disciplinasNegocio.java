@@ -20,7 +20,11 @@ public class disciplinasNegocio {
         this.disdao = new DisciplinaDAO();
     }
     
-    //
+    /**
+     * Método que valida la longitud de la lista de disciplinas
+     * @param disciplinas
+     * @return 
+     */
     public boolean validarDisciplina(ArrayList<Disciplina> disciplinas){
         if(disciplinas.isEmpty()){
             return false;

@@ -23,6 +23,12 @@ public class DisciplinaDAO {
         this.conexion = new Conexion();
     }
     
+    /**
+     * Método que almacene en la BD las disciplinas enviadas como parametros
+     * @param disciplina
+     * @param idMacro
+     * @return 
+     */
     public boolean agregarDisciplina(Disciplina disciplina,String idMacro){
         
         try {

@@ -20,6 +20,11 @@ public class macrocicloNegocio {
         
     }
  
+    /**
+     * Método que válida el contenido del objeto Macrociclo
+     * @param macrociclo
+     * @return 
+     */
     public boolean guardarMacrociclo(Macrociclo macrociclo){
         if(!macrociclo.equals(null)){
             if(macrodao.guardarMacrociclo(macrociclo)){
@@ -32,6 +37,11 @@ public class macrocicloNegocio {
         return false;
     }
     
+    /**
+     * Método que convierte el objeto Macrocilo a gson para su futuro almacenamiento en BD
+     * @param macrociclo
+     * @return 
+     */
     public String convertirJSON(Macrociclo macrociclo){
        
         Gson gson = new Gson();
