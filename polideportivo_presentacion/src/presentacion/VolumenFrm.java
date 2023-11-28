@@ -4,13 +4,19 @@
  */
 package presentacion;
 
+
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author ldoar
  */
 public class VolumenFrm extends javax.swing.JFrame {
+    
+    public ArrayList<String> arregloDisciplinas;
 
     /**
      * Creates new form VolumenFrm
@@ -19,7 +25,85 @@ public class VolumenFrm extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.deshabilitarTablas();
+        this.jbGuardarVolumen.setEnabled(false);
+        arregloDisciplinas = new ArrayList<>();
     }
+    
+    
+    public void habilitarTablas(){
+        this.tablaVolumenGeneral.setEnabled(true);
+        this.tablaEtapaCompetitiva.setEnabled(true);
+        this.tablaEtapaPrecompetitiva.setEnabled(true);
+        this.tablaEtapaEspecial.setEnabled(true);
+        this.tablaEtapaGeneral.setEnabled(true);
+        this.jbCalcularVolumen.setEnabled(true);
+    }
+    
+    public void deshabilitarTablas(){
+        this.tablaVolumenGeneral.setEnabled(false);
+        this.tablaEtapaCompetitiva.setEnabled(false);
+        this.tablaEtapaPrecompetitiva.setEnabled(false);
+        this.tablaEtapaEspecial.setEnabled(false);
+        this.tablaEtapaGeneral.setEnabled(false);
+        this.jbCalcularVolumen.setEnabled(false);
+    }
+    
+    public void cargarDisciplinas(){
+        
+        DefaultTableModel tableModelGeneral = (DefaultTableModel) this.tablaEtapaGeneral.getModel();
+        JTable tableGeneral = new JTable(tableModelGeneral);
+        
+        DefaultTableModel tableModelEspecial = (DefaultTableModel) this.tablaEtapaEspecial.getModel();
+        JTable tableEspecial = new JTable(tableModelEspecial);
+
+        DefaultTableModel tableModelPrecom = (DefaultTableModel) this.tablaEtapaPrecompetitiva.getModel();
+        JTable tablePrecom = new JTable(tableModelPrecom);
+
+        DefaultTableModel tableModelCompetitiva = (DefaultTableModel) this.tablaEtapaCompetitiva.getModel();
+        JTable tableCompetitiva = new JTable(tableModelCompetitiva);   
+        
+        DefaultTableModel tableModelVolumen = (DefaultTableModel) this.tablaVolumenGeneral.getModel();
+        JTable tableVolumen = new JTable(tableModelVolumen);  
+        
+        for (int i = 0; i < this.arregloDisciplinas.size(); i++) {
+            tableModelGeneral.insertRow(i, new Object[]{this.arregloDisciplinas.get(i).toString()});
+            tableModelEspecial.insertRow(i, new Object[]{this.arregloDisciplinas.get(i).toString()});
+            tableModelPrecom.insertRow(i, new Object[]{this.arregloDisciplinas.get(i).toString()});
+            tableModelCompetitiva.insertRow(i, new Object[]{this.arregloDisciplinas.get(i).toString()});
+            tableModelVolumen.insertRow(i, new Object[]{this.arregloDisciplinas.get(i).toString()});
+        }
+    }
+    
+    public void limpiarTablas(){
+        DefaultTableModel tableModelGeneral = (DefaultTableModel) this.tablaEtapaGeneral.getModel();
+        JTable tableGeneral = new JTable(tableModelGeneral);
+        
+        DefaultTableModel tableModelEspecial = (DefaultTableModel) this.tablaEtapaEspecial.getModel();
+        JTable tableEspecial = new JTable(tableModelEspecial);
+
+        DefaultTableModel tableModelPrecom = (DefaultTableModel) this.tablaEtapaPrecompetitiva.getModel();
+        JTable tablePrecom = new JTable(tableModelPrecom);
+
+        DefaultTableModel tableModelCompetitiva = (DefaultTableModel) this.tablaEtapaCompetitiva.getModel();
+        JTable tableCompetitiva = new JTable(tableModelCompetitiva);   
+        
+        DefaultTableModel tableModelVolumen = (DefaultTableModel) this.tablaVolumenGeneral.getModel();
+        JTable tableVolumen = new JTable(tableModelVolumen);  
+        
+        for (int i = 0; i < this.arregloDisciplinas.size(); i++) {
+            tableModelGeneral.removeRow(i);
+            tableModelEspecial.removeRow(i);
+            tableModelPrecom.removeRow(i);
+            tableModelCompetitiva.removeRow(i);
+            tableModelVolumen.removeRow(i);
+        }
+        
+    }
+    
+
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -108,7 +192,7 @@ public class VolumenFrm extends javax.swing.JFrame {
 
         tablaEtapaGeneral.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Nombre", "Min", "Max", "Prom", "Ins.", "Semanas", "V. etapa"
@@ -128,7 +212,7 @@ public class VolumenFrm extends javax.swing.JFrame {
 
         tablaEtapaEspecial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Nombre", "Min", "Max", "Prom", "Ins.", "Semanas", "V. etapa"
@@ -146,7 +230,7 @@ public class VolumenFrm extends javax.swing.JFrame {
 
         tablaEtapaCompetitiva.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Nombre", "Min", "Max", "Prom", "Ins.", "Semanas", "V. etapa"
@@ -164,7 +248,7 @@ public class VolumenFrm extends javax.swing.JFrame {
 
         tablaEtapaPrecompetitiva.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Nombre", "Min", "Max", "Prom", "Ins.", "Semanas", "V. etapa"
@@ -188,7 +272,7 @@ public class VolumenFrm extends javax.swing.JFrame {
 
         tablaVolumenGeneral.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null}
+
             },
             new String [] {
                 "Nombre", "Volumen total"
@@ -244,9 +328,7 @@ public class VolumenFrm extends javax.swing.JFrame {
                                     .addComponent(jcbDisciplinas, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(32, 32, 32)
                                 .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jpVolumenLayout.createSequentialGroup()
-                                        .addComponent(bntEliminar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(bntEliminar)
                                     .addGroup(jpVolumenLayout.createSequentialGroup()
                                         .addComponent(jcbDisciplinasSeleccionadas, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -392,14 +474,32 @@ public class VolumenFrm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error. Seleccione disciplinas");
         } //Al ser valido el combobox de disciplinas seleccionadas se habilitan las tablas para calcular y distribuir el volumen
         else {
+
+            
+            
             String[] opciones = {"Aceptar", "Cancelar"};
             //obtiene la opcion seleccionada por el usuario
             int opcion = JOptionPane.showOptionDialog(this, "¿Guardar estas disciplinas?:", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                     opciones, opciones[0]);
 
             if (opcion == 0) {
-
+                this.limpiarTablas();
+                this.arregloDisciplinas.clear();
+                
+                this.habilitarTablas();
+                
+                for (int i = 0; i < jcbDisciplinasSeleccionadas.getItemCount(); i++) {
+                   this.arregloDisciplinas.add(jcbDisciplinasSeleccionadas.getItemAt(i).toString());
+                }
+            
+                System.out.println(this.arregloDisciplinas);
+                this.cargarDisciplinas();
+                
             }
+
+
+            
+            
         }
     }//GEN-LAST:event_jbGuardarActionPerformed
 
