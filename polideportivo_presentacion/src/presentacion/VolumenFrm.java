@@ -5,10 +5,14 @@
 package presentacion;
 
 
+import entidades.Disciplina;
+import entidades.Etapa;
+import entidades.VolumenEtapa;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import negocio.VolumenNegocio;
 
 /**
  *
@@ -52,19 +56,14 @@ public class VolumenFrm extends javax.swing.JFrame {
     public void cargarDisciplinas(){
         
         DefaultTableModel tableModelGeneral = (DefaultTableModel) this.tablaEtapaGeneral.getModel();
-        JTable tableGeneral = new JTable(tableModelGeneral);
         
         DefaultTableModel tableModelEspecial = (DefaultTableModel) this.tablaEtapaEspecial.getModel();
-        JTable tableEspecial = new JTable(tableModelEspecial);
 
         DefaultTableModel tableModelPrecom = (DefaultTableModel) this.tablaEtapaPrecompetitiva.getModel();
-        JTable tablePrecom = new JTable(tableModelPrecom);
 
         DefaultTableModel tableModelCompetitiva = (DefaultTableModel) this.tablaEtapaCompetitiva.getModel();
-        JTable tableCompetitiva = new JTable(tableModelCompetitiva);   
         
         DefaultTableModel tableModelVolumen = (DefaultTableModel) this.tablaVolumenGeneral.getModel();
-        JTable tableVolumen = new JTable(tableModelVolumen);  
         
         for (int i = 0; i < this.arregloDisciplinas.size(); i++) {
             tableModelGeneral.insertRow(i, new Object[]{this.arregloDisciplinas.get(i).toString()});
@@ -77,19 +76,14 @@ public class VolumenFrm extends javax.swing.JFrame {
     
     public void limpiarTablas(){
         DefaultTableModel tableModelGeneral = (DefaultTableModel) this.tablaEtapaGeneral.getModel();
-        JTable tableGeneral = new JTable(tableModelGeneral);
         
         DefaultTableModel tableModelEspecial = (DefaultTableModel) this.tablaEtapaEspecial.getModel();
-        JTable tableEspecial = new JTable(tableModelEspecial);
 
         DefaultTableModel tableModelPrecom = (DefaultTableModel) this.tablaEtapaPrecompetitiva.getModel();
-        JTable tablePrecom = new JTable(tableModelPrecom);
 
         DefaultTableModel tableModelCompetitiva = (DefaultTableModel) this.tablaEtapaCompetitiva.getModel();
-        JTable tableCompetitiva = new JTable(tableModelCompetitiva);   
         
         DefaultTableModel tableModelVolumen = (DefaultTableModel) this.tablaVolumenGeneral.getModel();
-        JTable tableVolumen = new JTable(tableModelVolumen);  
         
         for (int i = 0; i < this.arregloDisciplinas.size(); i++) {
             tableModelGeneral.removeRow(i);
@@ -99,6 +93,22 @@ public class VolumenFrm extends javax.swing.JFrame {
             tableModelVolumen.removeRow(i);
         }
         
+    }
+    
+    public boolean validarTablas(){
+         VolumenNegocio volneg = new VolumenNegocio();
+         
+         ArrayList<DefaultTableModel> tablas = new ArrayList<>();
+         tablas.add((DefaultTableModel) this.tablaEtapaGeneral.getModel());
+         tablas.add((DefaultTableModel) this.tablaEtapaEspecial.getModel());
+         tablas.add((DefaultTableModel) this.tablaEtapaPrecompetitiva.getModel());
+         tablas.add((DefaultTableModel) this.tablaEtapaCompetitiva.getModel());
+         
+         volneg.validarTablas(tablas);
+         
+         return true;
+
+         
     }
     
 
@@ -295,6 +305,11 @@ public class VolumenFrm extends javax.swing.JFrame {
 
         jbCalcularVolumen.setBackground(new java.awt.Color(51, 153, 255));
         jbCalcularVolumen.setText("Calcular");
+        jbCalcularVolumen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCalcularVolumenActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpVolumenLayout = new javax.swing.GroupLayout(jpVolumen);
         jpVolumen.setLayout(jpVolumenLayout);
@@ -502,6 +517,15 @@ public class VolumenFrm extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jbCalcularVolumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCalcularVolumenActionPerformed
+        // TODO add your handling code here:
+       
+        if(this.validarTablas()){
+            
+        }
+        
+    }//GEN-LAST:event_jbCalcularVolumenActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntEliminar;
