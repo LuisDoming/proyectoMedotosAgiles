@@ -59,4 +59,35 @@ public class DisciplinaDAO {
         
         return true;
     }
+    
+        public boolean agregarDisciplinaD(Disciplina disciplina,String idMacro){
+        
+        try {
+            //MongoClient mongoClient = conexion.crearConexion();
+        
+            //MongoDatabase database = mongoClient.getDatabase("polideportivo");
+        
+            //MongoCollection<Document> collection = database.getCollection("disciplina");
+            
+            Document document = new Document()
+                    .append("disciplina", disciplina.getNombre())
+                    .append("volumenPreparativa", disciplina.getPreparativa().toDocument())
+                    .append("volumenEspecial", disciplina.getEspecial().toDocument())
+                    .append("volumenPrecom", disciplina.getPrecom().toDocument())
+                    .append("volumenCompetitiva", disciplina.getCompetitiva().toDocument())
+                    .append("total", disciplina.getTotal())
+                    .append("idMacro", idMacro);
+            
+            //collection.insertOne(document);
+            
+            //mongoClient.close();
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        
+        return true;
+    }
 }
