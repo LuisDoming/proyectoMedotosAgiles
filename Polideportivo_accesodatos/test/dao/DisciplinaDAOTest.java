@@ -43,7 +43,7 @@ public class DisciplinaDAOTest {
      * Test of agregarDisciplina method, of class DisciplinaDAO.
      */
     @Test
-    public void testAgregarDisciplina() {
+    public void testAgregarDisciplinaD() {
         System.out.println("agregarDisciplina");
 
         VolumenEtapa volumenPreparativa = new VolumenEtapa(Etapa.PREPARATIVA, 1, 2, 1.5f, 1, 1, 1);
@@ -63,7 +63,7 @@ public class DisciplinaDAOTest {
         DisciplinaDAO instance = new DisciplinaDAO();
         
         boolean expResult = true;
-        boolean result = instance.agregarDisciplina(disciplina, idMacro);
+        boolean result = instance.agregarDisciplinaD(disciplina, idMacro);
         
         if (result==false) {
             fail("Error al agregar objeto a la base de datos");

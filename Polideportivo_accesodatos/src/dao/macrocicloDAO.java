@@ -108,7 +108,7 @@ public class macrocicloDAO {
                 .append("ciclicidadEspecial", macrociclo.getCiclicidadEspecial())
                 .append("ciclicidadPrecom", macrociclo.getCiclicidadPrecom())
                 .append("ciclicidadCompetitiva", macrociclo.getCiclicidadCompetitiva());
-
+            System.out.println(document);
             //collection.insertOne(document);
             
             //mongoClient.close();

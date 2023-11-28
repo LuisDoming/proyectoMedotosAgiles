@@ -78,6 +78,7 @@ public class DisciplinaDAO {
                     .append("total", disciplina.getTotal())
                     .append("idMacro", idMacro);
             
+            System.out.println(document);
             //collection.insertOne(document);
             
             //mongoClient.close();
