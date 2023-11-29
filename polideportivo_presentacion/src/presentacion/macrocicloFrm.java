@@ -79,6 +79,26 @@ public class macrocicloFrm extends javax.swing.JFrame {
         this.tblEtapaCompetitivo.setEnabled(false);
         this.tblEtapaPrecompetitivo.setEnabled(false);
         this.tblEtapaEspecial.setEnabled(false);
+
+        this.txtAgregarCiclicidadPreparacion.setText("0,0");
+        this.txtAgregarMicrocicloPreparacion.setText("0");
+        this.txtAgregarCiclicidadPreparacion.setEnabled(false);
+        this.txtAgregarMicrocicloPreparacion.setEnabled(false);
+
+        this.txtAgregarCiclicidadEspecial.setText("0,0");
+        this.txtAgregarMicrocicloEspecial.setText("0");
+        this.txtAgregarCiclicidadEspecial.setEnabled(false);
+        this.txtAgregarMicrocicloEspecial.setEnabled(false);
+
+        this.txtAgregarCiclicidadPrecompetitiva.setText("0,0");
+        this.txtAgregarMicrocicloPrecompetitiva.setText("0");
+        this.txtAgregarCiclicidadPrecompetitiva.setEnabled(false);
+        this.txtAgregarMicrocicloPrecompetitiva.setEnabled(false);
+
+        this.txtAgregarCiclicidadCompetitiva.setText("0,0");
+        this.txtAgregarMicrocicloCompetitiva.setText("0");
+        this.txtAgregarCiclicidadCompetitiva.setEnabled(false);
+        this.txtAgregarMicrocicloCompetitiva.setEnabled(false);
     }
 
     /**
@@ -99,22 +119,30 @@ public class macrocicloFrm extends javax.swing.JFrame {
         if (etapaPreparacion > 0) {
             this.jspEtapaPreparacion.setEnabled(true);
             this.tblEtapaPreparacion.setEnabled(true);
+            this.txtAgregarCiclicidadPreparacion.setEnabled(true);
+            this.txtAgregarMicrocicloPreparacion.setEnabled(true);
         }
 
         if (etapaEspecial > 0) {
             this.jspEtapaEspecial.setEnabled(true);
             this.tblEtapaEspecial.setEnabled(true);
+            this.txtAgregarCiclicidadEspecial.setEnabled(true);
+            this.txtAgregarMicrocicloEspecial.setEnabled(true);
         }
 
         if (etapaPrecompetitivo > 0) {
             this.jspEtapaPrecompetitivo.setEnabled(true);
             this.tblEtapaPrecompetitivo.setEnabled(true);
+            this.txtAgregarCiclicidadPrecompetitiva.setEnabled(true);
+            this.txtAgregarMicrocicloPrecompetitiva.setEnabled(true);
 
         }
 
         if (etapaCompetitivo > 0) {
             this.jspEtapaCompetitivo.setEnabled(true);
             this.tblEtapaCompetitivo.setEnabled(true);
+            this.txtAgregarCiclicidadCompetitiva.setEnabled(true);
+            this.txtAgregarMicrocicloCompetitiva.setEnabled(true);
         }
 
     }
@@ -342,10 +370,10 @@ public class macrocicloFrm extends javax.swing.JFrame {
     public boolean validarEntradasTexto() {
 
         //obtiene las cadenas ingresadas en los campos
-        String txtDeporte = this.txtDeporte.getText();
+        String txtDeporte = this.cbDeporte.getSelectedItem().toString();
+        String txtRama = this.cbRama.getSelectedItem().toString();
         String txtEntAux = this.txtEntAux.getText();
         String txtMetodologo = this.txtMetodologo.getText();
-        String txtRama = this.txtRama.getText();
         String txtJefeRama = this.txtJefeRama.getText();
 
         //si esta vacia regresa falso mostrando errores
@@ -395,11 +423,11 @@ public class macrocicloFrm extends javax.swing.JFrame {
     public void activarCamposEdicion() {
 
         //habilita todos los campos
-        this.txtDeporte.setEnabled(true);
+        this.cbDeporte.setEnabled(true);
+        this.cbRama.setEnabled(true);
         this.txtEntAux.setEnabled(true);
         this.txtJefeRama.setEnabled(true);
         this.txtMetodologo.setEnabled(true);
-        this.txtRama.setEnabled(true);
 
         //this.jtxtSemanaFin.setEnabled(true);
         //this.jtxtSemanaInicio.setEnabled(true);
@@ -439,11 +467,11 @@ public class macrocicloFrm extends javax.swing.JFrame {
     public void desactivarCamposEdicion() {
 
         //desactiva todos los campos
-        this.txtDeporte.setEnabled(false);
+        this.cbDeporte.setEnabled(false);
+        this.cbRama.setEnabled(false);
         this.txtEntAux.setEnabled(false);
         this.txtJefeRama.setEnabled(false);
         this.txtMetodologo.setEnabled(false);
-        this.txtRama.setEnabled(false);
 
         //this.jtxtSemanaFin.setEnabled(false);
         //this.jtxtSemanaInicio.setEnabled(false);
@@ -664,7 +692,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
      * PREPARACION 2: TABLA ESPECIAL 3: TABLA PRECOMPETITIVA 4: TABLA
      * COMPETITIVA)
      */
-    public void agregarMesociclo(JTable tabla, int numTabla) {
+    public void agregarMesociclo(JTable tabla, int numTabla, String microciclo, String ciclicidad) {
         //NUM 1, TABLA PREPARACION -  NUM 2, TABLA ESPECIAL - NUM 3, TABLA PRECOMPETITIVA - NUM 4, TABLA COMPETITIVA
         switch (numTabla) {
             case 1:
@@ -697,7 +725,8 @@ public class macrocicloFrm extends javax.swing.JFrame {
         int nuevaColumnaIndex = modeloTabla.getColumnCount() - 1;
 
         // Establecer el valor 0 en la nueva columna 
-        modeloTabla.setValueAt(0, 0, nuevaColumnaIndex);
+        modeloTabla.setValueAt(microciclo, 0, nuevaColumnaIndex);
+        modeloTabla.setValueAt(ciclicidad, 1, nuevaColumnaIndex);
 
     }
 
@@ -992,19 +1021,19 @@ public class macrocicloFrm extends javax.swing.JFrame {
         DefaultTableModel modeloTablaEspecial = (DefaultTableModel) this.tblEtapaEspecial.getModel();
         DefaultTableModel modeloTablaPrecompetitivo = (DefaultTableModel) this.tblEtapaPrecompetitivo.getModel();
         DefaultTableModel modeloTablaCompetitivo = (DefaultTableModel) this.tblEtapaCompetitivo.getModel();
-        
+
         ArrayList<String> ciclicidadPreparacion = new ArrayList<>();
         ArrayList<String> semanasPreparacion = new ArrayList<>();
-        
+
         ArrayList<String> ciclicidadEspecial = new ArrayList<>();
         ArrayList<String> semanasEspecial = new ArrayList<>();
-        
+
         ArrayList<String> ciclicidadPrecompetitiva = new ArrayList<>();
         ArrayList<String> semanasPrecompetitiva = new ArrayList<>();
-        
+
         ArrayList<String> ciclicidadCompetitiva = new ArrayList<>();
         ArrayList<String> semanasCompetitiva = new ArrayList<>();
-        
+
         if (this.preparativaActiva) {
 
             for (int i = 0; i < modeloTablaPreparacion.getColumnCount(); i++) {
@@ -1050,7 +1079,6 @@ public class macrocicloFrm extends javax.swing.JFrame {
         }
 
         if (this.especialActiva) {
-
 
             for (int i = 0; i < modeloTablaEspecial.getColumnCount(); i++) {
                 //Checa que no haya nulos antes de hacer las pasadas por las columnas, si los encuentra, pone 0 tal cual
@@ -1129,7 +1157,6 @@ public class macrocicloFrm extends javax.swing.JFrame {
 
         if (this.competitivaActiva) {
 
-
             for (int i = 0; i < modeloTablaCompetitivo.getColumnCount(); i++) {
                 //Checa que no haya nulos antes de hacer las pasadas por las columnas, si los encuentra, pone 0 tal cual
                 String ciclicidad = "";
@@ -1171,12 +1198,12 @@ public class macrocicloFrm extends javax.swing.JFrame {
         this.distribucionEspecial = semanasEspecial;
         this.distribucionPrecom = semanasPrecompetitiva;
         this.distribucionCompetitiva = semanasCompetitiva;
-        
+
         this.ciclicidadPreparativa = ciclicidadPreparacion;
         this.ciclicidadEspecial = ciclicidadEspecial;
         this.ciclicidadPrecom = ciclicidadPrecompetitiva;
         this.ciclicidadCompetitiva = ciclicidadCompetitiva;
-        
+
         JOptionPane.showMessageDialog(this, "La distribución de ciclicidad es válida");
         return true;
     }
@@ -1203,8 +1230,8 @@ public class macrocicloFrm extends javax.swing.JFrame {
         macrociclo.setFechaInicio(crearMacro.inicioPlan.toString());
         macrociclo.setFechaFin(crearMacro.finPlan.toString());
         macrociclo.setTotalSemanas(semanasTotales);
-        macrociclo.setDeporte(this.txtDeporte.getText().toString());
-        macrociclo.setRama(this.txtRama.getText().toString());
+        macrociclo.setDeporte(this.cbDeporte.getSelectedItem().toString());
+        macrociclo.setRama(this.cbRama.getSelectedItem().toString());
         macrociclo.setJefeRama(this.txtJefeRama.getText().toString());
         macrociclo.setPreparadorFis(this.txtEntAux.getText().toString());
         macrociclo.setMetodologo(this.txtMetodologo.getText().toString());
@@ -1214,31 +1241,31 @@ public class macrocicloFrm extends javax.swing.JFrame {
         macrociclo.setEtapaEspecial(Integer.valueOf(this.jtxtSemanasEspecial.getText().toString()));
         macrociclo.setEtapaPrecompetitiva(Integer.valueOf(this.jtxtSemanasPrecompetitivo.getText().toString()));
         macrociclo.setEtapaCompetitiva(Integer.valueOf(this.jtxtSemanasEtapaCompetitivo.getText().toString()));
-        
-        if(this.preparativaActiva){
+
+        if (this.preparativaActiva) {
             macrociclo.setDistribucionPreparativa(distribucionPreparativa);
             macrociclo.setCiclicidadPreparativa(ciclicidadPreparativa);
         }
-        
-        if(this.especialActiva){
+
+        if (this.especialActiva) {
             macrociclo.setDistribucionEspecial(distribucionEspecial);
             macrociclo.setCiclicidadEspecial(ciclicidadEspecial);
         }
-        
-        if(this.precompetitivasActiva){
+
+        if (this.precompetitivasActiva) {
             macrociclo.setDistribucionPrecom(distribucionPrecom);
             macrociclo.setCiclicidadPrecom(ciclicidadPrecom);
         }
-        
-        if(this.competitivaActiva){
+
+        if (this.competitivaActiva) {
             macrociclo.setDistribucionCompetitiva(distribucionCompetitiva);
             macrociclo.setCiclicidadCompetitiva(ciclicidadCompetitiva);
         }
-        
+
         macrocicloNegocio negocio = new macrocicloNegocio();
-        if(negocio.guardarMacrociclo(macrociclo)){
-            JOptionPane.showMessageDialog(this, "Macrociclo se ha guardado con exito");           
-        }else{
+        if (negocio.guardarMacrociclo(macrociclo)) {
+            JOptionPane.showMessageDialog(this, "Macrociclo se ha guardado con exito");
+        } else {
             JOptionPane.showMessageDialog(this, "Error: Hubo un error al guardar el Macrociclo ");
         }
     }
@@ -1303,8 +1330,6 @@ public class macrocicloFrm extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
-        txtDeporte = new javax.swing.JTextField();
-        txtRama = new javax.swing.JTextField();
         txtJefeRama = new javax.swing.JTextField();
         txtEntAux = new javax.swing.JTextField();
         txtMetodologo = new javax.swing.JTextField();
@@ -1339,6 +1364,20 @@ public class macrocicloFrm extends javax.swing.JFrame {
         jbtnAgregarPrecompetitiva = new javax.swing.JButton();
         jbtnEliminarPrecompetitivo = new javax.swing.JButton();
         jbtnValidarMesociclos = new javax.swing.JButton();
+        cbRama = new javax.swing.JComboBox<>();
+        cbDeporte = new javax.swing.JComboBox<>();
+        jLabelDistribucion4 = new javax.swing.JLabel();
+        jLabelDistribucion5 = new javax.swing.JLabel();
+        jLabelDistribucion7 = new javax.swing.JLabel();
+        jLabelDistribucion8 = new javax.swing.JLabel();
+        txtAgregarMicrocicloPreparacion = new javax.swing.JTextField();
+        txtAgregarCiclicidadPreparacion = new javax.swing.JTextField();
+        txtAgregarMicrocicloEspecial = new javax.swing.JTextField();
+        txtAgregarCiclicidadEspecial = new javax.swing.JTextField();
+        txtAgregarCiclicidadPrecompetitiva = new javax.swing.JTextField();
+        txtAgregarMicrocicloPrecompetitiva = new javax.swing.JTextField();
+        txtAgregarCiclicidadCompetitiva = new javax.swing.JTextField();
+        txtAgregarMicrocicloCompetitiva = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestion de macrociclo");
@@ -1389,7 +1428,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Total de semanas del macrociclo:");
 
-        jLabelDistribucion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelDistribucion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelDistribucion.setText("Distribución por etapa de preparación");
 
         jpPeriodos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1640,12 +1679,6 @@ public class macrocicloFrm extends javax.swing.JFrame {
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel29.setText("Metodólogo");
 
-        txtDeporte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDeporteActionPerformed(evt);
-            }
-        });
-
         txtEntAux.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEntAuxActionPerformed(evt);
@@ -1686,7 +1719,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
         tblEtapaPrecompetitivo.getTableHeader().setReorderingAllowed(false);
         jspEtapaPrecompetitivo.setViewportView(tblEtapaPrecompetitivo);
 
-        jLabelDistribucion1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelDistribucion1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelDistribucion1.setText("Distribución por etapa precompetitiva");
 
         jLabelMeso1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -1718,7 +1751,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
         tblEtapaEspecial.getTableHeader().setReorderingAllowed(false);
         jspEtapaEspecial.setViewportView(tblEtapaEspecial);
 
-        jLabelDistribucion2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelDistribucion2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelDistribucion2.setText("Distribución por etapa especial");
 
         jLabelMeso2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -1730,7 +1763,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
         jLabelCicli2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jLabelCicli2.setText("Ciclicidad");
 
-        jLabelDistribucion3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelDistribucion3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabelDistribucion3.setText("Distribución por etapa competitiva");
 
         jspEtapaCompetitivo.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -1786,14 +1819,14 @@ public class macrocicloFrm extends javax.swing.JFrame {
             }
         });
 
-        jbtnEliminarPreparacion.setText("Eliminar uno");
+        jbtnEliminarPreparacion.setText("Borrar uno");
         jbtnEliminarPreparacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnEliminarPreparacionActionPerformed(evt);
             }
         });
 
-        jbtnEliminarEspecial.setText("Eliminar uno");
+        jbtnEliminarEspecial.setText("Borrar uno");
         jbtnEliminarEspecial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnEliminarEspecialActionPerformed(evt);
@@ -1807,7 +1840,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
             }
         });
 
-        jbtnEliminarCompetitivo.setText("Eliminar uno");
+        jbtnEliminarCompetitivo.setText("Borrar uno");
         jbtnEliminarCompetitivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnEliminarCompetitivoActionPerformed(evt);
@@ -1828,7 +1861,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
             }
         });
 
-        jbtnEliminarPrecompetitivo.setText("Eliminar uno");
+        jbtnEliminarPrecompetitivo.setText("Borrar uno");
         jbtnEliminarPrecompetitivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnEliminarPrecompetitivoActionPerformed(evt);
@@ -1842,6 +1875,43 @@ public class macrocicloFrm extends javax.swing.JFrame {
             }
         });
 
+        cbRama.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Varonil", "Femenil" }));
+        cbRama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbRamaActionPerformed(evt);
+            }
+        });
+
+        cbDeporte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Atletismo", "Basquetbol", "Beisbol", "Futbol asociación", "Futbol bardas", "Gimnasia aeróbica", "Halterofilia", "Handball", "Judo", "Karate do", "Tae kwon do", "Tenis", "Tenis de mesa", "Tiro con arco", "Triatlón", "Voleibol playa", "Voleibol sala" }));
+
+        jLabelDistribucion4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelDistribucion4.setText("n semanas");
+
+        jLabelDistribucion5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelDistribucion5.setText("n semanas");
+
+        jLabelDistribucion7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelDistribucion7.setText("n semanas");
+
+        jLabelDistribucion8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelDistribucion8.setText("n semanas");
+
+        txtAgregarMicrocicloPreparacion.setText("0");
+
+        txtAgregarCiclicidadPreparacion.setText("0,0");
+
+        txtAgregarMicrocicloEspecial.setText("0");
+
+        txtAgregarCiclicidadEspecial.setText("0,0");
+
+        txtAgregarCiclicidadPrecompetitiva.setText("0,0");
+
+        txtAgregarMicrocicloPrecompetitiva.setText("0");
+
+        txtAgregarCiclicidadCompetitiva.setText("0,0");
+
+        txtAgregarMicrocicloCompetitiva.setText("0");
+
         javax.swing.GroupLayout jpMacrocicloLayout = new javax.swing.GroupLayout(jpMacrociclo);
         jpMacrociclo.setLayout(jpMacrocicloLayout);
         jpMacrocicloLayout.setHorizontalGroup(
@@ -1854,46 +1924,61 @@ public class macrocicloFrm extends javax.swing.JFrame {
                             .addGroup(jpMacrocicloLayout.createSequentialGroup()
                                 .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jpMacrocicloLayout.createSequentialGroup()
-                                        .addComponent(jbtnEditarEtapas)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnCalcularEtapas))
-                                    .addComponent(jpPeriodos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(33, 33, 33)
-                                .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jpMacrocicloLayout.createSequentialGroup()
-                                        .addComponent(jpPeriodoPreparativo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(jpPeriodoCompetitivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(btnValidarSemanas)
-                                    .addGroup(jpMacrocicloLayout.createSequentialGroup()
-                                        .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jLabelMeso1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabelMicro1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabelCicli1, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(jpMacrocicloLayout.createSequentialGroup()
-                                                .addComponent(jLabelDistribucion1)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jbtnEliminarPrecompetitivo)
+                                                .addComponent(jbtnEditarEtapas)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(jbtnAgregarPrecompetitiva))
-                                            .addComponent(jspEtapaPrecompetitivo)))
+                                                .addComponent(btnCalcularEtapas))
+                                            .addComponent(jpPeriodos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMacrocicloLayout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jLabelMeso1)
+                                                    .addComponent(jLabelMicro1)
+                                                    .addComponent(jLabelCicli1))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addGroup(jpMacrocicloLayout.createSequentialGroup()
+                                                        .addComponent(jLabelDistribucion1)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(jLabelDistribucion7)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(txtAgregarMicrocicloPrecompetitiva, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(18, 18, 18)
+                                                        .addComponent(txtAgregarCiclicidadPrecompetitiva, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(jspEtapaPrecompetitivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(jpMacrocicloLayout.createSequentialGroup()
+                                                .addGap(33, 33, 33)
+                                                .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addGroup(jpMacrocicloLayout.createSequentialGroup()
+                                                        .addComponent(jpPeriodoPreparativo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(30, 30, 30)
+                                                        .addComponent(jpPeriodoCompetitivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(btnValidarSemanas)))))
                                     .addGroup(jpMacrocicloLayout.createSequentialGroup()
-                                        .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jLabelMeso3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabelMicro3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabelCicli3, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabelMeso3)
+                                            .addComponent(jLabelCicli3)
+                                            .addComponent(jLabelMicro3))
                                         .addGap(18, 18, 18)
                                         .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(jpMacrocicloLayout.createSequentialGroup()
                                                 .addComponent(jLabelDistribucion3)
+                                                .addGap(14, 14, 14)
+                                                .addComponent(jLabelDistribucion8)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jbtnEliminarCompetitivo)
+                                                .addComponent(txtAgregarMicrocicloCompetitiva, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(jbtnAgregarCompetitiva))
-                                            .addComponent(jspEtapaCompetitivo, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(297, 297, 297))
+                                                .addComponent(txtAgregarCiclicidadCompetitiva, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jspEtapaCompetitivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jbtnEliminarPrecompetitivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jbtnAgregarPrecompetitiva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jbtnEliminarCompetitivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jbtnAgregarCompetitiva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(194, 194, 194))
                             .addGroup(jpMacrocicloLayout.createSequentialGroup()
                                 .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jpMacrocicloLayout.createSequentialGroup()
@@ -1908,43 +1993,62 @@ public class macrocicloFrm extends javax.swing.JFrame {
                                                     .addComponent(jLabel28))
                                                 .addGap(18, 18, 18)
                                                 .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txtRama, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtDeporte, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(txtMetodologo, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(txtJefeRama, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtEntAux, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                    .addComponent(txtEntAux, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                        .addComponent(cbDeporte, javax.swing.GroupLayout.Alignment.LEADING, 0, 143, Short.MAX_VALUE)
+                                                        .addComponent(cbRama, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                             .addGroup(jpMacrocicloLayout.createSequentialGroup()
-                                                .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                            .addComponent(jLabelMeso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                            .addComponent(jLabelMicro, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(jLabelCicli, javax.swing.GroupLayout.Alignment.LEADING))
-                                                        .addComponent(jLabelCicli2))
+                                                .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addGroup(jpMacrocicloLayout.createSequentialGroup()
-                                                        .addComponent(jLabelMicro2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(7, 7, 7)))
+                                                        .addGap(7, 7, 7)
+                                                        .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(jLabelCicli)
+                                                            .addComponent(jLabelCicli2))
+                                                        .addGap(7, 7, 7))
+                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMacrocicloLayout.createSequentialGroup()
+                                                        .addComponent(jLabelMicro2)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMacrocicloLayout.createSequentialGroup()
+                                                        .addComponent(jLabelMicro)
+                                                        .addGap(5, 5, 5))
+                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMacrocicloLayout.createSequentialGroup()
+                                                        .addComponent(jLabelMeso)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                                 .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jbtnValidarMesociclos)
                                                     .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                         .addComponent(jspEtapaEspecial)
                                                         .addGroup(jpMacrocicloLayout.createSequentialGroup()
                                                             .addComponent(jLabelDistribucion2)
-                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                            .addComponent(jbtnEliminarEspecial)
                                                             .addGap(18, 18, 18)
-                                                            .addComponent(jbtnAgregarEspecial)
-                                                            .addGap(1, 1, 1))
+                                                            .addComponent(jLabelDistribucion5)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                            .addComponent(txtAgregarMicrocicloEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addGap(18, 18, 18)
+                                                            .addComponent(txtAgregarCiclicidadEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(jspEtapaPreparacion, javax.swing.GroupLayout.Alignment.TRAILING)
                                                         .addGroup(jpMacrocicloLayout.createSequentialGroup()
                                                             .addComponent(jLabelDistribucion)
                                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                            .addComponent(jbtnEliminarPreparacion)
+                                                            .addComponent(jLabelDistribucion4)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                            .addComponent(txtAgregarMicrocicloPreparacion, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                             .addGap(18, 18, 18)
-                                                            .addComponent(jbtnAgregarPreparacion))
-                                                        .addComponent(jspEtapaPreparacion, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                                            .addComponent(txtAgregarCiclicidadPreparacion, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                             .addComponent(jLabelMeso2))
-                                        .addGap(15, 15, 15)
-                                        .addComponent(jLabel23))
+                                        .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jpMacrocicloLayout.createSequentialGroup()
+                                                .addGap(15, 15, 15)
+                                                .addComponent(jLabel23))
+                                            .addGroup(jpMacrocicloLayout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jbtnEliminarPreparacion, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jbtnAgregarEspecial, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jbtnAgregarPreparacion, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jbtnEliminarEspecial, javax.swing.GroupLayout.Alignment.LEADING)))))
                                     .addComponent(jLabel24))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1972,7 +2076,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
         jpMacrocicloLayout.setVerticalGroup(
             jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMacrocicloLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(12, 12, 12)
                 .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlbSalir)
                     .addGroup(jpMacrocicloLayout.createSequentialGroup()
@@ -1987,12 +2091,12 @@ public class macrocicloFrm extends javax.swing.JFrame {
                             .addComponent(jtxtSemanaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jpMacrocicloLayout.createSequentialGroup()
                         .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtDeporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel25))
+                            .addComponent(jLabel25)
+                            .addComponent(cbDeporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtRama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel26))
+                            .addComponent(jLabel26)
+                            .addComponent(cbRama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtJefeRama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2005,7 +2109,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
                         .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtMetodologo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel29))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCalcularEtapas)
                     .addComponent(btnValidarSemanas)
@@ -2018,12 +2122,13 @@ public class macrocicloFrm extends javax.swing.JFrame {
                             .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jpPeriodos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jpPeriodoPreparativo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(29, 29, 29)
+                        .addGap(35, 35, 35)
                         .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelDistribucion)
-                            .addComponent(jbtnAgregarPreparacion)
-                            .addComponent(jbtnEliminarPreparacion))
-                        .addGap(18, 18, 18)
+                            .addComponent(jLabelDistribucion4)
+                            .addComponent(txtAgregarMicrocicloPreparacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAgregarCiclicidadPreparacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpMacrocicloLayout.createSequentialGroup()
                                 .addGap(8, 8, 8)
@@ -2036,10 +2141,12 @@ public class macrocicloFrm extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMacrocicloLayout.createSequentialGroup()
                         .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelDistribucion1)
-                            .addComponent(jbtnAgregarPrecompetitiva)
-                            .addComponent(jbtnEliminarPrecompetitivo))
+                            .addComponent(txtAgregarMicrocicloPrecompetitiva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAgregarCiclicidadPrecompetitiva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelDistribucion7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jspEtapaPrecompetitivo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jpMacrocicloLayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(jLabelMeso1)
@@ -2047,32 +2154,54 @@ public class macrocicloFrm extends javax.swing.JFrame {
                                 .addComponent(jLabelMicro1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabelCicli1))
-                            .addComponent(jspEtapaPrecompetitivo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jpMacrocicloLayout.createSequentialGroup()
+                                .addComponent(jbtnAgregarPreparacion)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbtnEliminarPreparacion))
+                            .addGroup(jpMacrocicloLayout.createSequentialGroup()
+                                .addComponent(jbtnAgregarPrecompetitiva)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbtnEliminarPrecompetitivo)))))
                 .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpMacrocicloLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelDistribucion3)
-                            .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jbtnAgregarCompetitiva)
-                                .addComponent(jbtnEliminarCompetitivo)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpMacrocicloLayout.createSequentialGroup()
-                                .addGap(9, 9, 9)
+                                .addGap(39, 39, 39)
+                                .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelDistribucion3)
+                                    .addComponent(jLabelDistribucion8)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMacrocicloLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtAgregarMicrocicloCompetitiva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtAgregarCiclicidadCompetitiva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpMacrocicloLayout.createSequentialGroup()
+                                .addGap(22, 22, 22)
                                 .addComponent(jLabelMeso3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabelMicro3)
+                                .addGap(10, 10, 10)
+                                .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelMicro3)
+                                    .addComponent(jbtnEliminarEspecial))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabelCicli3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jspEtapaCompetitivo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jpMacrocicloLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jpMacrocicloLayout.createSequentialGroup()
+                                        .addComponent(jbtnAgregarCompetitiva)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jbtnEliminarCompetitivo)
+                                        .addGap(42, 42, 42))
+                                    .addComponent(jspEtapaCompetitivo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jpMacrocicloLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelDistribucion2)
-                            .addComponent(jbtnAgregarEspecial)
-                            .addComponent(jbtnEliminarEspecial))
-                        .addGap(8, 8, 8)
+                            .addComponent(jLabelDistribucion5)
+                            .addComponent(txtAgregarMicrocicloEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAgregarCiclicidadEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9)
                         .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jspEtapaEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jpMacrocicloLayout.createSequentialGroup()
@@ -2081,8 +2210,9 @@ public class macrocicloFrm extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabelMicro2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabelCicli2)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                                .addComponent(jLabelCicli2))
+                            .addComponent(jbtnAgregarEspecial))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(jpMacrocicloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
                     .addComponent(jLabel22))
@@ -2099,9 +2229,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jpMacrociclo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jpMacrociclo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2111,93 +2239,82 @@ public class macrocicloFrm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jbtnValidarMesociclosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnValidarMesociclosActionPerformed
+        boolean distribucionValida = validarDistribucionEtapas();
+        boolean ciclicidadValida = validarCiclicidad();
 
-    private void jlbSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbSalirMouseClicked
-        //opciones para salir de la pantalla actual
-        String[] opciones = {"Aceptar", "Cancelar"};
-
-        //se muestra mensaje de confirmacion
-        int opcion = JOptionPane.showOptionDialog(this, "¿Quieres regresar al menu principal?", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-                opciones, opciones[0]);
-
-        if (opcion == 0) {
-            //si elige aceptar regresa a la ventana anterior
-            inicioFrm inicio = new inicioFrm();
-            this.dispose();
-        } else if (opcion == 1) {
-            //cancela
+        if (distribucionValida && ciclicidadValida) {
+            this.jbtnCrearMacrociclo.setEnabled(true);
         }
-    }//GEN-LAST:event_jlbSalirMouseClicked
+    }//GEN-LAST:event_jbtnValidarMesociclosActionPerformed
 
-    private void jbtnCrearMacrocicloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCrearMacrocicloActionPerformed
-        //opciones al crear macrociclo
-        String[] opciones = {"Aceptar", "Cancelar"};
-        //si las fechas del macrociclo son validas
-        //obtiene el valor elegido
-        int opcion = JOptionPane.showOptionDialog(this, "¿Quieres crear este macrociclo?", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-                opciones, opciones[0]);
-        if (opcion == 0) {
-            //si se quiere crear el macrociclo
-            //crea la pantalla para la creacion y se envia esta al constructor
-            //this.dispose();
-            this.crearMacrociclo();
+    private void jbtnEliminarPrecompetitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarPrecompetitivoActionPerformed
+        eliminarMesociclo(this.tblEtapaPrecompetitivo, 3);
+    }//GEN-LAST:event_jbtnEliminarPrecompetitivoActionPerformed
+
+    private void jbtnAgregarPrecompetitivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAgregarPrecompetitivaActionPerformed
+        String ciclicidad = this.txtAgregarCiclicidadPrecompetitiva.getText();
+        String microciclo = this.txtAgregarMicrocicloPrecompetitiva.getText();
+        if (ciclicidad.equals("") || microciclo.equals("")) {
+
+        } else {
+            agregarMesociclo(this.tblEtapaPrecompetitivo, 3, microciclo, ciclicidad);
+            this.txtAgregarMicrocicloPrecompetitiva.setText("0");
+            this.txtAgregarCiclicidadPrecompetitiva.setText("0,0");
         }
-    }//GEN-LAST:event_jbtnCrearMacrocicloActionPerformed
 
-    private void txtDeporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDeporteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDeporteActionPerformed
 
-    private void txtEntAuxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEntAuxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEntAuxActionPerformed
+    }//GEN-LAST:event_jbtnAgregarPrecompetitivaActionPerformed
 
-    private void btnCalcularEtapasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularEtapasActionPerformed
-        // TODO add your handling code here:
-        try {
-            //valida periodos y calcula el porcentaje
-            this.validarPeriodos();
-            this.calcularPorcentajePeriodos();
-        } catch (NumberFormatException ex) {
-            //muestra mensaje de error encaso de que un numero no sea entero
-            JOptionPane.showMessageDialog(this, "Error. No se introdujo un numero entero en los periodos");
-            this.resetearCamposSemanas();
+    private void jbtnAgregarCompetitivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAgregarCompetitivaActionPerformed
+        String ciclicidad = this.txtAgregarCiclicidadCompetitiva.getText();
+        String microciclo = this.txtAgregarMicrocicloCompetitiva.getText();
+        if ((ciclicidad.equals("") || microciclo.equals(""))||(ciclicidad.equals("0") || microciclo.equals("0,0"))) {
+
+        } else {
+            agregarMesociclo(this.tblEtapaCompetitivo, 4, microciclo, ciclicidad);
+            this.txtAgregarMicrocicloCompetitiva.setText("0");
+            this.txtAgregarCiclicidadCompetitiva.setText("0,0");
         }
-    }//GEN-LAST:event_btnCalcularEtapasActionPerformed
 
-    private void btnValidarSemanasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarSemanasActionPerformed
-        // TODO add your handling code here:
-        boolean esValido;
-        try {
-            //valida las etapas
-            esValido = this.validarEtapas();
-            if (esValido) {
-                this.btnValidarSemanas.setEnabled(false);
-                this.jbtnEditarEtapas.setEnabled(false);
-            }
-        } catch (NumberFormatException ex) {
-            //muestra mensaje de error en caso de que se introduce un numero no entero
-            JOptionPane.showMessageDialog(this, "Error. No se introdujo un numero entero en los periodos");
-            this.activarCamposEdicion();
-            this.jtxtSemanasPreparativo.setEnabled(false);
-            this.jtxtSemanasCompetitivo.setEnabled(false);
-            
-            this.btnValidarSemanas.setEnabled(true);
-            this.jbtnEditarEtapas.setEnabled(true);
-            resetearPeriodos();
+    }//GEN-LAST:event_jbtnAgregarCompetitivaActionPerformed
+
+    private void jbtnEliminarCompetitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarCompetitivoActionPerformed
+        eliminarMesociclo(this.tblEtapaCompetitivo, 4);
+    }//GEN-LAST:event_jbtnEliminarCompetitivoActionPerformed
+
+    private void jbtnAgregarEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAgregarEspecialActionPerformed
+        String ciclicidad = this.txtAgregarCiclicidadEspecial.getText();
+        String microciclo = this.txtAgregarMicrocicloEspecial.getText();
+        if ((ciclicidad.equals("") || microciclo.equals(""))||(ciclicidad.equals("0") || microciclo.equals("0,0"))) {
+
+        } else {
+            agregarMesociclo(this.tblEtapaEspecial, 2, microciclo, ciclicidad);
+            this.txtAgregarMicrocicloEspecial.setText("0");
+            this.txtAgregarCiclicidadEspecial.setText("0,0");
+
         }
-    }//GEN-LAST:event_btnValidarSemanasActionPerformed
+    }//GEN-LAST:event_jbtnAgregarEspecialActionPerformed
 
-    private void jbtnEditarMacrocicloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEditarMacrocicloActionPerformed
-        //activa los todos los campos        
-        this.activarCamposEdicion();
-        this.cargarSemanasCompetitiva(0);
-        this.cargarSemanasEspecial(0);
-        this.cargarSemanasPrecompetitiva(0);
-        this.cargarSemanasPreparacion(0);
-        this.ocultarTablaMeso();
+    private void jbtnEliminarEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarEspecialActionPerformed
+        eliminarMesociclo(this.tblEtapaEspecial, 2);
+    }//GEN-LAST:event_jbtnEliminarEspecialActionPerformed
 
-    }//GEN-LAST:event_jbtnEditarMacrocicloActionPerformed
+    private void jbtnEliminarPreparacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarPreparacionActionPerformed
+        eliminarMesociclo(this.tblEtapaPreparacion, 1);
+    }//GEN-LAST:event_jbtnEliminarPreparacionActionPerformed
+
+    private void jbtnAgregarPreparacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAgregarPreparacionActionPerformed
+        String ciclicidad = this.txtAgregarCiclicidadPreparacion.getText();
+        String microciclo = this.txtAgregarMicrocicloPreparacion.getText();
+        if ((ciclicidad.equals("") || microciclo.equals(""))||(ciclicidad.equals("0") || microciclo.equals("0,0"))) {
+
+        } else {
+            agregarMesociclo(this.tblEtapaPreparacion, 1, microciclo, ciclicidad);
+            this.txtAgregarMicrocicloPreparacion.setText("0");
+            this.txtAgregarCiclicidadPreparacion.setText("0,0");
+        }
+    }//GEN-LAST:event_jbtnAgregarPreparacionActionPerformed
 
     private void jbtnEditarEtapasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEditarEtapasActionPerformed
         //Activa el boton para calcular de las etapas nuevamente
@@ -2217,55 +2334,100 @@ public class macrocicloFrm extends javax.swing.JFrame {
 
         //Se desactiva a si mismo
         this.jbtnEditarEtapas.setEnabled(false);
-
     }//GEN-LAST:event_jbtnEditarEtapasActionPerformed
 
-    private void jbtnAgregarPreparacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAgregarPreparacionActionPerformed
-        agregarMesociclo(this.tblEtapaPreparacion, 1);
-    }//GEN-LAST:event_jbtnAgregarPreparacionActionPerformed
+    private void jbtnEditarMacrocicloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEditarMacrocicloActionPerformed
+        //activa los todos los campos
+        this.activarCamposEdicion();
+        this.cargarSemanasCompetitiva(0);
+        this.cargarSemanasEspecial(0);
+        this.cargarSemanasPrecompetitiva(0);
+        this.cargarSemanasPreparacion(0);
+        this.ocultarTablaMeso();
+    }//GEN-LAST:event_jbtnEditarMacrocicloActionPerformed
 
-    private void jbtnEliminarPreparacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarPreparacionActionPerformed
-        eliminarMesociclo(this.tblEtapaPreparacion, 1);
-    }//GEN-LAST:event_jbtnEliminarPreparacionActionPerformed
+    private void btnValidarSemanasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarSemanasActionPerformed
+        // TODO add your handling code here:
+        boolean esValido;
+        try {
+            //valida las etapas
+            esValido = this.validarEtapas();
+            if (esValido) {
+                this.btnValidarSemanas.setEnabled(false);
+                this.jbtnEditarEtapas.setEnabled(false);
+            }
+        } catch (NumberFormatException ex) {
+            //muestra mensaje de error en caso de que se introduce un numero no entero
+            JOptionPane.showMessageDialog(this, "Error. No se introdujo un numero entero en los periodos");
+            this.activarCamposEdicion();
+            this.jtxtSemanasPreparativo.setEnabled(false);
+            this.jtxtSemanasCompetitivo.setEnabled(false);
 
-    private void jbtnEliminarEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarEspecialActionPerformed
-        eliminarMesociclo(this.tblEtapaEspecial, 2);
-    }//GEN-LAST:event_jbtnEliminarEspecialActionPerformed
-
-    private void jbtnAgregarEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAgregarEspecialActionPerformed
-        agregarMesociclo(this.tblEtapaEspecial, 2);
-    }//GEN-LAST:event_jbtnAgregarEspecialActionPerformed
-
-    private void jbtnEliminarCompetitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarCompetitivoActionPerformed
-        eliminarMesociclo(this.tblEtapaCompetitivo, 4);
-    }//GEN-LAST:event_jbtnEliminarCompetitivoActionPerformed
-
-    private void jbtnAgregarCompetitivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAgregarCompetitivaActionPerformed
-        agregarMesociclo(this.tblEtapaCompetitivo, 4);
-    }//GEN-LAST:event_jbtnAgregarCompetitivaActionPerformed
-
-    private void jbtnAgregarPrecompetitivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAgregarPrecompetitivaActionPerformed
-        agregarMesociclo(this.tblEtapaPrecompetitivo, 3);
-    }//GEN-LAST:event_jbtnAgregarPrecompetitivaActionPerformed
-
-    private void jbtnEliminarPrecompetitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarPrecompetitivoActionPerformed
-        eliminarMesociclo(this.tblEtapaPrecompetitivo, 3);
-    }//GEN-LAST:event_jbtnEliminarPrecompetitivoActionPerformed
-
-    private void jbtnValidarMesociclosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnValidarMesociclosActionPerformed
-        boolean distribucionValida = validarDistribucionEtapas();
-        boolean ciclicidadValida = validarCiclicidad();
-
-        if (distribucionValida && ciclicidadValida) {
-            this.jbtnCrearMacrociclo.setEnabled(true);
+            this.btnValidarSemanas.setEnabled(true);
+            this.jbtnEditarEtapas.setEnabled(true);
+            resetearPeriodos();
         }
+    }//GEN-LAST:event_btnValidarSemanasActionPerformed
 
+    private void btnCalcularEtapasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularEtapasActionPerformed
+        // TODO add your handling code here:
+        try {
+            //valida periodos y calcula el porcentaje
+            this.validarPeriodos();
+            this.calcularPorcentajePeriodos();
+        } catch (NumberFormatException ex) {
+            //muestra mensaje de error encaso de que un numero no sea entero
+            JOptionPane.showMessageDialog(this, "Error. No se introdujo un numero entero en los periodos");
+            this.resetearCamposSemanas();
+        }
+    }//GEN-LAST:event_btnCalcularEtapasActionPerformed
 
-    }//GEN-LAST:event_jbtnValidarMesociclosActionPerformed
+    private void txtEntAuxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEntAuxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEntAuxActionPerformed
+
+    private void jbtnCrearMacrocicloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCrearMacrocicloActionPerformed
+        //opciones al crear macrociclo
+        String[] opciones = {"Aceptar", "Cancelar"};
+        //si las fechas del macrociclo son validas
+        //obtiene el valor elegido
+        int opcion = JOptionPane.showOptionDialog(this, "¿Quieres crear este macrociclo?", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                opciones, opciones[0]);
+        if (opcion == 0) {
+            //si se quiere crear el macrociclo
+            //crea la pantalla para la creacion y se envia esta al constructor
+            //this.dispose();
+            this.crearMacrociclo();
+        }
+    }//GEN-LAST:event_jbtnCrearMacrocicloActionPerformed
+
+    private void jlbSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbSalirMouseClicked
+        //opciones para salir de la pantalla actual
+        String[] opciones = {"Aceptar", "Cancelar"};
+
+        //se muestra mensaje de confirmacion
+        int opcion = JOptionPane.showOptionDialog(this, "¿Quieres regresar al menu principal?", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                opciones, opciones[0]);
+
+        if (opcion == 0) {
+            //si elige aceptar regresa a la ventana anterior
+            inicioFrm inicio = new inicioFrm();
+            this.dispose();
+        } else if (opcion == 1) {
+            //cancela
+        }
+    }//GEN-LAST:event_jlbSalirMouseClicked
+
+    private void cbRamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRamaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbRamaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcularEtapas;
     private javax.swing.JButton btnValidarSemanas;
+    private javax.swing.JComboBox<String> cbDeporte;
+    private javax.swing.JComboBox<String> cbRama;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -2298,6 +2460,10 @@ public class macrocicloFrm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelDistribucion1;
     private javax.swing.JLabel jLabelDistribucion2;
     private javax.swing.JLabel jLabelDistribucion3;
+    private javax.swing.JLabel jLabelDistribucion4;
+    private javax.swing.JLabel jLabelDistribucion5;
+    private javax.swing.JLabel jLabelDistribucion7;
+    private javax.swing.JLabel jLabelDistribucion8;
     private javax.swing.JLabel jLabelMeso;
     private javax.swing.JLabel jLabelMeso1;
     private javax.swing.JLabel jLabelMeso2;
@@ -2346,10 +2512,16 @@ public class macrocicloFrm extends javax.swing.JFrame {
     private javax.swing.JTable tblEtapaEspecial;
     private javax.swing.JTable tblEtapaPrecompetitivo;
     private javax.swing.JTable tblEtapaPreparacion;
-    private javax.swing.JTextField txtDeporte;
+    private javax.swing.JTextField txtAgregarCiclicidadCompetitiva;
+    private javax.swing.JTextField txtAgregarCiclicidadEspecial;
+    private javax.swing.JTextField txtAgregarCiclicidadPrecompetitiva;
+    private javax.swing.JTextField txtAgregarCiclicidadPreparacion;
+    private javax.swing.JTextField txtAgregarMicrocicloCompetitiva;
+    private javax.swing.JTextField txtAgregarMicrocicloEspecial;
+    private javax.swing.JTextField txtAgregarMicrocicloPrecompetitiva;
+    private javax.swing.JTextField txtAgregarMicrocicloPreparacion;
     private javax.swing.JTextField txtEntAux;
     private javax.swing.JTextField txtJefeRama;
     private javax.swing.JTextField txtMetodologo;
-    private javax.swing.JTextField txtRama;
     // End of variables declaration//GEN-END:variables
 }
