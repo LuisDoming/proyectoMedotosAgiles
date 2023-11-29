@@ -85,6 +85,8 @@ public class VolumenFrm extends javax.swing.JFrame {
         
         DefaultTableModel tableModelVolumen = (DefaultTableModel) this.tablaVolumenGeneral.getModel();
         
+        System.out.println(this.arregloDisciplinas);
+        
         for (int i = 0; i < this.arregloDisciplinas.size(); i++) {
             tableModelGeneral.removeRow(i);
             tableModelEspecial.removeRow(i);
@@ -93,24 +95,70 @@ public class VolumenFrm extends javax.swing.JFrame {
             tableModelVolumen.removeRow(i);
         }
         
+        this.arregloDisciplinas.clear();
+        
     }
     
     public boolean validarTablas(){
          VolumenNegocio volneg = new VolumenNegocio();
          
-         ArrayList<DefaultTableModel> tablas = new ArrayList<>();
-         tablas.add((DefaultTableModel) this.tablaEtapaGeneral.getModel());
-         tablas.add((DefaultTableModel) this.tablaEtapaEspecial.getModel());
-         tablas.add((DefaultTableModel) this.tablaEtapaPrecompetitiva.getModel());
-         tablas.add((DefaultTableModel) this.tablaEtapaCompetitiva.getModel());
+         DefaultTableModel volumenGeneral = (DefaultTableModel) this.tablaEtapaGeneral.getModel();
+         DefaultTableModel volumenEspecial = (DefaultTableModel) this.tablaEtapaEspecial.getModel();
+         DefaultTableModel volumenPrecom = (DefaultTableModel) this.tablaEtapaPrecompetitiva.getModel();
+         DefaultTableModel volumenCompetitivo = (DefaultTableModel) this.tablaEtapaCompetitiva.getModel();
          
-         volneg.validarTablas(tablas);
+         if(!volneg.validarTablaVolumen(volumenGeneral,this,"preparativa")){
+             return false;
+         }
+         
+         if(!volneg.validarTablaVolumen(volumenEspecial,this,"especial")){
+             return false;
+         }
+         
+         if(!volneg.validarTablaVolumen(volumenPrecom,this,"precompetitiva")){
+             return false;
+         }
+         
+         if(!volneg.validarTablaVolumen(volumenCompetitivo,this,"competitiva")){
+             return false;
+         }         
          
          return true;
-
          
     }
     
+    public void calcularVolumenEtapa(){
+         VolumenNegocio volneg = new VolumenNegocio();
+         
+         DefaultTableModel volumenGeneral = (DefaultTableModel) this.tablaEtapaGeneral.getModel();
+         DefaultTableModel volumenEspecial = (DefaultTableModel) this.tablaEtapaEspecial.getModel();
+         DefaultTableModel volumenPrecom = (DefaultTableModel) this.tablaEtapaPrecompetitiva.getModel();
+         DefaultTableModel volumenCompetitivo = (DefaultTableModel) this.tablaEtapaCompetitiva.getModel();   
+         
+         volneg.calcularVolumen(volumenGeneral, 5);
+         volneg.calcularVolumen(volumenEspecial, 5);
+         volneg.calcularVolumen(volumenPrecom, 5); 
+         volneg.calcularVolumen(volumenCompetitivo, 5);         
+    }
+    
+    public void calcularTotal(){
+         VolumenNegocio volneg = new VolumenNegocio();
+         
+         ArrayList<DefaultTableModel> lista = new ArrayList<>();
+         DefaultTableModel volumenGeneral = (DefaultTableModel) this.tablaEtapaGeneral.getModel();
+         DefaultTableModel volumenEspecial = (DefaultTableModel) this.tablaEtapaEspecial.getModel();
+         DefaultTableModel volumenPrecom = (DefaultTableModel) this.tablaEtapaPrecompetitiva.getModel();
+         DefaultTableModel volumenCompetitivo = (DefaultTableModel) this.tablaEtapaCompetitiva.getModel(); 
+         DefaultTableModel volumenTotal = (DefaultTableModel) this.tablaVolumenGeneral.getModel(); 
+         
+         lista.add(volumenPrecom);
+         lista.add(volumenGeneral);
+         lista.add(volumenEspecial);
+         lista.add(volumenCompetitivo);
+         
+         volneg.calcularTablaTotal(lista, volumenTotal);
+         
+    }
 
     
     
@@ -211,12 +259,28 @@ public class VolumenFrm extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, false, true, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jspVolumenEtapaGeneral.setViewportView(tablaEtapaGeneral);
+        if (tablaEtapaGeneral.getColumnModel().getColumnCount() > 0) {
+            tablaEtapaGeneral.getColumnModel().getColumn(0).setResizable(false);
+            tablaEtapaGeneral.getColumnModel().getColumn(1).setResizable(false);
+            tablaEtapaGeneral.getColumnModel().getColumn(2).setResizable(false);
+            tablaEtapaGeneral.getColumnModel().getColumn(3).setResizable(false);
+            tablaEtapaGeneral.getColumnModel().getColumn(4).setResizable(false);
+            tablaEtapaGeneral.getColumnModel().getColumn(5).setResizable(false);
+            tablaEtapaGeneral.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         jlbEtapaGeneral.setText("Etapa general");
 
@@ -231,12 +295,28 @@ public class VolumenFrm extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, false, true, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jspVolumenEtapaEspecial.setViewportView(tablaEtapaEspecial);
+        if (tablaEtapaEspecial.getColumnModel().getColumnCount() > 0) {
+            tablaEtapaEspecial.getColumnModel().getColumn(0).setResizable(false);
+            tablaEtapaEspecial.getColumnModel().getColumn(1).setResizable(false);
+            tablaEtapaEspecial.getColumnModel().getColumn(2).setResizable(false);
+            tablaEtapaEspecial.getColumnModel().getColumn(3).setResizable(false);
+            tablaEtapaEspecial.getColumnModel().getColumn(4).setResizable(false);
+            tablaEtapaEspecial.getColumnModel().getColumn(5).setResizable(false);
+            tablaEtapaEspecial.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         tablaEtapaCompetitiva.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -249,12 +329,28 @@ public class VolumenFrm extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, false, true, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jspVolumenEtapaCompetitiva.setViewportView(tablaEtapaCompetitiva);
+        if (tablaEtapaCompetitiva.getColumnModel().getColumnCount() > 0) {
+            tablaEtapaCompetitiva.getColumnModel().getColumn(0).setResizable(false);
+            tablaEtapaCompetitiva.getColumnModel().getColumn(1).setResizable(false);
+            tablaEtapaCompetitiva.getColumnModel().getColumn(2).setResizable(false);
+            tablaEtapaCompetitiva.getColumnModel().getColumn(3).setResizable(false);
+            tablaEtapaCompetitiva.getColumnModel().getColumn(4).setResizable(false);
+            tablaEtapaCompetitiva.getColumnModel().getColumn(5).setResizable(false);
+            tablaEtapaCompetitiva.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         tablaEtapaPrecompetitiva.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -267,12 +363,28 @@ public class VolumenFrm extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, false, true, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jspVolumenEtapaPrecompetitiva.setViewportView(tablaEtapaPrecompetitiva);
+        if (tablaEtapaPrecompetitiva.getColumnModel().getColumnCount() > 0) {
+            tablaEtapaPrecompetitiva.getColumnModel().getColumn(0).setResizable(false);
+            tablaEtapaPrecompetitiva.getColumnModel().getColumn(1).setResizable(false);
+            tablaEtapaPrecompetitiva.getColumnModel().getColumn(2).setResizable(false);
+            tablaEtapaPrecompetitiva.getColumnModel().getColumn(3).setResizable(false);
+            tablaEtapaPrecompetitiva.getColumnModel().getColumn(4).setResizable(false);
+            tablaEtapaPrecompetitiva.getColumnModel().getColumn(5).setResizable(false);
+            tablaEtapaPrecompetitiva.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         jlbEtapaEspecial.setText("Etapa especial");
 
@@ -291,12 +403,23 @@ public class VolumenFrm extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jspVolumenGeneral.setViewportView(tablaVolumenGeneral);
+        if (tablaVolumenGeneral.getColumnModel().getColumnCount() > 0) {
+            tablaVolumenGeneral.getColumnModel().getColumn(0).setResizable(false);
+            tablaVolumenGeneral.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         jlbVolumenTotal.setText("Macrociclo");
 
@@ -499,7 +622,6 @@ public class VolumenFrm extends javax.swing.JFrame {
 
             if (opcion == 0) {
                 this.limpiarTablas();
-                this.arregloDisciplinas.clear();
                 
                 this.habilitarTablas();
                 
@@ -522,7 +644,11 @@ public class VolumenFrm extends javax.swing.JFrame {
         // TODO add your handling code here:
        
         if(this.validarTablas()){
-            
+            this.calcularVolumenEtapa();
+            this.calcularTotal();
+            System.out.println("calculo exitoso");
+        }else{
+            System.out.println("no jalo we");
         }
         
     }//GEN-LAST:event_jbCalcularVolumenActionPerformed
