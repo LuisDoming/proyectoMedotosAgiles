@@ -25,10 +25,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jpMacrociclo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jpMacrociclo" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -55,59 +52,79 @@
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="jbtnEditarEtapas" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="btnCalcularEtapas" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="jpPeriodos" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="jpPeriodoPreparativo" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                          <Component id="jpPeriodoCompetitivo" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="btnValidarSemanas" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="jLabelMeso1" alignment="1" max="32767" attributes="0"/>
-                                              <Component id="jLabelMicro1" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
-                                              <Component id="jLabelCicli1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
                                               <Group type="102" attributes="0">
-                                                  <Component id="jLabelDistribucion1" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jbtnEliminarPrecompetitivo" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                                  <Component id="jbtnAgregarPrecompetitiva" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jbtnEditarEtapas" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="btnCalcularEtapas" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="jspEtapaPrecompetitivo" max="32767" attributes="0"/>
+                                              <Component id="jpPeriodos" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="1" attributes="0">
+                                                      <Component id="jLabelMeso1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabelMicro1" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabelCicli1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Group type="102" attributes="0">
+                                                          <Component id="jLabelDistribucion1" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                          <Component id="jLabelDistribucion7" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace max="32767" attributes="0"/>
+                                                          <Component id="txtAgregarMicrocicloPrecompetitiva" min="-2" pref="60" max="-2" attributes="0"/>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                          <Component id="txtAgregarCiclicidadPrecompetitiva" min="-2" pref="60" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Component id="jspEtapaPrecompetitivo" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="1" attributes="0">
+                                                      <Group type="102" attributes="0">
+                                                          <Component id="jpPeriodoPreparativo" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                                          <Component id="jpPeriodoCompetitivo" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Component id="btnValidarSemanas" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="jLabelMeso3" alignment="1" max="32767" attributes="0"/>
-                                              <Component id="jLabelMicro3" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
-                                              <Component id="jLabelCicli3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="jLabelMeso3" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabelCicli3" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabelMicro3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Group type="102" attributes="0">
                                                   <Component id="jLabelDistribucion3" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                                  <Component id="jLabelDistribucion8" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="jbtnEliminarCompetitivo" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txtAgregarMicrocicloCompetitiva" min="-2" pref="60" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="jbtnAgregarCompetitiva" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txtAgregarCiclicidadCompetitiva" min="-2" pref="60" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="jspEtapaCompetitivo" min="-2" pref="484" max="-2" attributes="0"/>
+                                              <Component id="jspEtapaCompetitivo" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="297" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jbtnEliminarPrecompetitivo" max="32767" attributes="0"/>
+                                      <Component id="jbtnAgregarPrecompetitiva" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jbtnEliminarCompetitivo" max="32767" attributes="0"/>
+                                      <Component id="jbtnAgregarCompetitiva" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="194" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
@@ -124,26 +141,36 @@
                                                   </Group>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="txtRama" alignment="0" min="-2" pref="253" max="-2" attributes="0"/>
-                                                      <Component id="txtDeporte" alignment="0" min="-2" pref="253" max="-2" attributes="0"/>
                                                       <Component id="txtMetodologo" min="-2" pref="253" max="-2" attributes="0"/>
                                                       <Component id="txtJefeRama" min="-2" pref="253" max="-2" attributes="0"/>
                                                       <Component id="txtEntAux" min="-2" pref="253" max="-2" attributes="0"/>
+                                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                          <Component id="cbDeporte" alignment="0" pref="143" max="32767" attributes="0"/>
+                                                          <Component id="cbRama" alignment="0" max="32767" attributes="0"/>
+                                                      </Group>
                                                   </Group>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                              <Component id="jLabelMeso" max="32767" attributes="0"/>
-                                                              <Component id="jLabelMicro" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" attributes="0">
+                                                          <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
                                                               <Component id="jLabelCicli" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="jLabelCicli2" alignment="0" min="-2" max="-2" attributes="0"/>
                                                           </Group>
-                                                          <Component id="jLabelCicli2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                                                       </Group>
                                                       <Group type="102" alignment="1" attributes="0">
-                                                          <Component id="jLabelMicro2" min="-2" pref="50" max="-2" attributes="0"/>
-                                                          <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                                                          <Component id="jLabelMicro2" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="1" attributes="0">
+                                                          <Component id="jLabelMicro" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="1" attributes="0">
+                                                          <Component id="jLabelMeso" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -152,27 +179,43 @@
                                                           <Component id="jspEtapaEspecial" max="32767" attributes="0"/>
                                                           <Group type="102" alignment="0" attributes="0">
                                                               <Component id="jLabelDistribucion2" min="-2" max="-2" attributes="0"/>
+                                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                              <Component id="jLabelDistribucion5" min="-2" max="-2" attributes="0"/>
                                                               <EmptySpace max="32767" attributes="0"/>
-                                                              <Component id="jbtnEliminarEspecial" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="txtAgregarMicrocicloEspecial" min="-2" pref="60" max="-2" attributes="0"/>
                                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                              <Component id="jbtnAgregarEspecial" min="-2" max="-2" attributes="0"/>
-                                                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <Group type="102" alignment="0" attributes="0">
-                                                              <Component id="jLabelDistribucion" min="-2" max="-2" attributes="0"/>
-                                                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                                                              <Component id="jbtnEliminarPreparacion" min="-2" max="-2" attributes="0"/>
-                                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                              <Component id="jbtnAgregarPreparacion" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="txtAgregarCiclicidadEspecial" min="-2" pref="60" max="-2" attributes="0"/>
                                                           </Group>
                                                           <Component id="jspEtapaPreparacion" alignment="1" max="32767" attributes="0"/>
+                                                          <Group type="102" alignment="0" attributes="0">
+                                                              <Component id="jLabelDistribucion" min="-2" max="-2" attributes="0"/>
+                                                              <EmptySpace max="-2" attributes="0"/>
+                                                              <Component id="jLabelDistribucion4" min="-2" max="-2" attributes="0"/>
+                                                              <EmptySpace max="32767" attributes="0"/>
+                                                              <Component id="txtAgregarMicrocicloPreparacion" min="-2" pref="60" max="-2" attributes="0"/>
+                                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                              <Component id="txtAgregarCiclicidadPreparacion" min="-2" pref="60" max="-2" attributes="0"/>
+                                                          </Group>
                                                       </Group>
                                                   </Group>
                                               </Group>
                                               <Component id="jLabelMeso2" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                                          <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                                  <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="1" attributes="0">
+                                                      <Component id="jbtnEliminarPreparacion" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
+                                                      <Component id="jbtnAgregarEspecial" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                                                      <Component id="jbtnAgregarPreparacion" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
+                                                      <Component id="jbtnEliminarEspecial" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
                                       </Group>
                                       <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -212,7 +255,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jlbSalir" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
@@ -230,13 +273,13 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtDeporte" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbDeporte" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtRama" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbRama" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -255,7 +298,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="27" max="32767" attributes="0"/>
+                  <EmptySpace pref="25" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnCalcularEtapas" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnValidarSemanas" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -271,13 +314,14 @@
                                   <Component id="jpPeriodoPreparativo" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabelDistribucion" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jbtnAgregarPreparacion" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jbtnEliminarPreparacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelDistribucion4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtAgregarMicrocicloPreparacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtAgregarCiclicidadPreparacion" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
@@ -293,11 +337,13 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabelDistribucion1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jbtnAgregarPrecompetitiva" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jbtnEliminarPrecompetitivo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtAgregarMicrocicloPrecompetitiva" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtAgregarCiclicidadPrecompetitiva" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelDistribucion7" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jspEtapaPrecompetitivo" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                   <Component id="jLabelMeso1" min="-2" max="-2" attributes="0"/>
@@ -306,41 +352,72 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabelCicli1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jspEtapaPrecompetitivo" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jbtnAgregarPreparacion" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jbtnEliminarPreparacion" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jbtnAgregarPrecompetitiva" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jbtnEliminarPrecompetitivo" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jLabelDistribucion3" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jbtnAgregarCompetitiva" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jbtnEliminarCompetitivo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabelDistribucion3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabelDistribucion8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="txtAgregarMicrocicloCompetitiva" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtAgregarCiclicidadCompetitiva" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                   <Component id="jLabelMeso3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jLabelMicro3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabelMicro3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jbtnEliminarEspecial" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabelCicli3" min="-2" pref="14" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jspEtapaCompetitivo" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jbtnAgregarCompetitiva" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="jbtnEliminarCompetitivo" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="jspEtapaCompetitivo" min="-2" pref="100" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabelDistribucion2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jbtnAgregarEspecial" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jbtnEliminarEspecial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelDistribucion5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtAgregarMicrocicloEspecial" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtAgregarCiclicidadEspecial" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jspEtapaEspecial" min="-2" pref="100" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
@@ -351,10 +428,11 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jLabelCicli2" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="jbtnAgregarEspecial" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                  <EmptySpace pref="22" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -490,7 +568,7 @@
         <Component class="javax.swing.JLabel" name="jLabelDistribucion">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="18" style="0"/>
+              <Font name="Tahoma" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Distribuci&#xf3;n por etapa de preparaci&#xf3;n"/>
           </Properties>
@@ -948,13 +1026,6 @@
             <Property name="text" type="java.lang.String" value="Metod&#xf3;logo"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtDeporte">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDeporteActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtRama">
-        </Component>
         <Component class="javax.swing.JTextField" name="txtJefeRama">
         </Component>
         <Component class="javax.swing.JTextField" name="txtEntAux">
@@ -1047,7 +1118,7 @@
         <Component class="javax.swing.JLabel" name="jLabelDistribucion1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="18" style="0"/>
+              <Font name="Tahoma" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Distribuci&#xf3;n por etapa precompetitiva"/>
           </Properties>
@@ -1143,7 +1214,7 @@
         <Component class="javax.swing.JLabel" name="jLabelDistribucion2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="18" style="0"/>
+              <Font name="Tahoma" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Distribuci&#xf3;n por etapa especial"/>
           </Properties>
@@ -1175,7 +1246,7 @@
         <Component class="javax.swing.JLabel" name="jLabelDistribucion3">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="18" style="0"/>
+              <Font name="Tahoma" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Distribuci&#xf3;n por etapa competitiva"/>
           </Properties>
@@ -1301,7 +1372,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jbtnEliminarPreparacion">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Eliminar uno"/>
+            <Property name="text" type="java.lang.String" value="Borrar uno"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnEliminarPreparacionActionPerformed"/>
@@ -1309,7 +1380,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jbtnEliminarEspecial">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Eliminar uno"/>
+            <Property name="text" type="java.lang.String" value="Borrar uno"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnEliminarEspecialActionPerformed"/>
@@ -1325,7 +1396,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jbtnEliminarCompetitivo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Eliminar uno"/>
+            <Property name="text" type="java.lang.String" value="Borrar uno"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnEliminarCompetitivoActionPerformed"/>
@@ -1349,7 +1420,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jbtnEliminarPrecompetitivo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Eliminar uno"/>
+            <Property name="text" type="java.lang.String" value="Borrar uno"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnEliminarPrecompetitivoActionPerformed"/>
@@ -1362,6 +1433,122 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnValidarMesociclosActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cbRama">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="2">
+                <StringItem index="0" value="Varonil"/>
+                <StringItem index="1" value="Femenil"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbRamaActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cbDeporte">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="17">
+                <StringItem index="0" value="Atletismo"/>
+                <StringItem index="1" value="Basquetbol"/>
+                <StringItem index="2" value="Beisbol"/>
+                <StringItem index="3" value="Futbol asociaci&#xf3;n"/>
+                <StringItem index="4" value="Futbol bardas"/>
+                <StringItem index="5" value="Gimnasia aer&#xf3;bica"/>
+                <StringItem index="6" value="Halterofilia"/>
+                <StringItem index="7" value="Handball"/>
+                <StringItem index="8" value="Judo"/>
+                <StringItem index="9" value="Karate do"/>
+                <StringItem index="10" value="Tae kwon do"/>
+                <StringItem index="11" value="Tenis"/>
+                <StringItem index="12" value="Tenis de mesa"/>
+                <StringItem index="13" value="Tiro con arco"/>
+                <StringItem index="14" value="Triatl&#xf3;n"/>
+                <StringItem index="15" value="Voleibol playa"/>
+                <StringItem index="16" value="Voleibol sala"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelDistribucion4">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="n semanas"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelDistribucion5">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="n semanas"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelDistribucion7">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="n semanas"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelDistribucion8">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="n semanas"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtAgregarMicrocicloPreparacion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtAgregarCiclicidadPreparacion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="0,0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtAgregarMicrocicloEspecial">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtAgregarCiclicidadEspecial">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="0,0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtAgregarCiclicidadPrecompetitiva">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="0,0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtAgregarMicrocicloPrecompetitiva">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtAgregarCiclicidadCompetitiva">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="0,0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtAgregarMicrocicloCompetitiva">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="0"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
