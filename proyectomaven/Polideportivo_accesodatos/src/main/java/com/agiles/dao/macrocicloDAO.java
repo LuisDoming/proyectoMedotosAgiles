@@ -23,6 +23,10 @@ public class macrocicloDAO {
         conexion = new Conexion();
     }
     
+    public void setConexion(Conexion conexion){
+        this.conexion = conexion;
+    }
+    
     /**
      * Método que guarda en la BD el Macrociclo enviado como parametro.
      * @param macrociclo

@@ -5,6 +5,8 @@
 package com.agiles.polideportivo_negocio;
 
 import com.agiles.entidades.Disciplina;
+import com.agiles.entidades.Etapa;
+import com.agiles.entidades.VolumenEtapa;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -38,22 +40,41 @@ public class disciplinasNegocioTest {
     public void tearDown() {
     }
 
+
     /**
      * Test of validarDisciplina method, of class disciplinasNegocio.
      */
     @Test
     public void testValidarDisciplina() {
         System.out.println("validarDisciplina");
+        ArrayList<Disciplina> disciplinas = new ArrayList();
+
+        ///Creamos una disciplina completa
+        VolumenEtapa volumenPreparativa = new VolumenEtapa(Etapa.PREPARATIVA, 1, 2, 1.5f, 1, 1, 1);
+        VolumenEtapa volumenEspecial = new VolumenEtapa(Etapa.ESPECIAL, 1, 2, 1.5f, 1, 1, 1);
+        VolumenEtapa volumenPrecompetitiva = new VolumenEtapa(Etapa.PRECOM, 1, 2, 1.5f, 1, 1, 1);
+        VolumenEtapa volumenCompetitiva = new VolumenEtapa(Etapa.COMPETITIVA, 1, 2, 1.5f, 1, 1, 1);
+
+        Disciplina disciplina = new Disciplina();
+        disciplina.setPreparativa(volumenPreparativa);
+        disciplina.setEspecial(volumenEspecial);
+        disciplina.setPrecom(volumenPrecompetitiva);
+        disciplina.setCompetitiva(volumenCompetitiva);
+        disciplina.setNombre("prueba");
+        disciplina.setTotal(4);
+        //Disciplina de prueba
+        disciplinas.add(disciplina);
+
+        disciplinasNegocio instance = new disciplinasNegocio();
+        //Se espera que regrese true
+        boolean expResult = true;
+        boolean result = instance.validarDisciplina(disciplinas);
+        
+        if (result != expResult) {
+            fail("Las disciplinas son nulas");
+        }
+        
+        assertEquals(expResult, result);
 
     }
-
-    /**
-     * Test of agregarDisciplina method, of class disciplinasNegocio.
-     */
-    @Test
-    public void testAgregarDisciplina() {
-        System.out.println("agregarDisciplina");
-
-    }
-    
 }

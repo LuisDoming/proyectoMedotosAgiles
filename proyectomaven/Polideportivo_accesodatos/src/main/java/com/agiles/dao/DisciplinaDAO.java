@@ -18,26 +18,31 @@ import org.bson.Document;
 public class DisciplinaDAO {
 
     Conexion conexion;
-    
+
     public DisciplinaDAO() {
         this.conexion = new Conexion();
     }
-    
+
+    public void setConexion(Conexion conexion) {
+        this.conexion = conexion;
+    }
+
     /**
      * Método que almacene en la BD las disciplinas enviadas como parametros
+     *
      * @param disciplina
      * @param idMacro
-     * @return 
+     * @return
      */
-    public boolean agregarDisciplina(Disciplina disciplina,String idMacro){
-        
+    public boolean agregarDisciplina(Disciplina disciplina, String idMacro) {
+
         try {
             MongoClient mongoClient = conexion.crearConexion();
-        
+
             MongoDatabase database = mongoClient.getDatabase("polideportivo");
-        
+
             MongoCollection<Document> collection = database.getCollection("disciplina");
-            
+
             Document document = new Document()
                     .append("disciplina", disciplina.getNombre())
                     .append("volumenPreparativa", disciplina.getPreparativa().toDocument())
@@ -46,29 +51,26 @@ public class DisciplinaDAO {
                     .append("volumenCompetitiva", disciplina.getCompetitiva().toDocument())
                     .append("total", disciplina.getTotal())
                     .append("idMacro", idMacro);
-            
+
             collection.insertOne(document);
-            
+
             mongoClient.close();
-            
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
-        
+
         return true;
     }
-    
-        public boolean agregarDisciplinaD(Disciplina disciplina,String idMacro){
-        
+
+    public boolean agregarDisciplinaD(Disciplina disciplina, String idMacro) {
+
         try {
             //MongoClient mongoClient = conexion.crearConexion();
-        
+
             //MongoDatabase database = mongoClient.getDatabase("polideportivo");
-        
             //MongoCollection<Document> collection = database.getCollection("disciplina");
-            
             Document document = new Document()
                     .append("disciplina", disciplina.getNombre())
                     .append("volumenPreparativa", disciplina.getPreparativa().toDocument())
@@ -77,18 +79,16 @@ public class DisciplinaDAO {
                     .append("volumenCompetitiva", disciplina.getCompetitiva().toDocument())
                     .append("total", disciplina.getTotal())
                     .append("idMacro", idMacro);
-            
+
             System.out.println(document);
             //collection.insertOne(document);
-            
+
             //mongoClient.close();
-            
-            
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
-        
+
         return true;
     }
 }

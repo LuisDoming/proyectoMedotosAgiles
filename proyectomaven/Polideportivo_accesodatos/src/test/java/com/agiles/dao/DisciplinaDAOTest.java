@@ -4,13 +4,22 @@
  */
 package com.agiles.dao;
 
+import com.agiles.conexion.Conexion;
 import com.agiles.entidades.Disciplina;
+import com.agiles.entidades.VolumenEtapa;
+import com.agiles.entidades.Etapa;
+import com.mongodb.MongoClient;
+import org.bson.Document;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -44,15 +53,35 @@ public class DisciplinaDAOTest {
     public void testAgregarDisciplina() {
         System.out.println("agregarDisciplina");
 
+        VolumenEtapa volumenPreparativa = new VolumenEtapa(Etapa.PREPARATIVA, 1, 2, 1.5f, 1, 1, 1);
+        VolumenEtapa volumenEspecial = new VolumenEtapa(Etapa.ESPECIAL, 1, 2, 1.5f, 1, 1, 1);
+        VolumenEtapa volumenPrecompetitiva = new VolumenEtapa(Etapa.PRECOM, 1,  2, 1.5f, 1, 1, 1);
+        VolumenEtapa volumenCompetitiva = new VolumenEtapa(Etapa.COMPETITIVA, 1, 2, 1.5f, 1, 1, 1);
+
+        Disciplina disciplina = new Disciplina();
+        disciplina.setPreparativa(volumenPreparativa);
+        disciplina.setEspecial(volumenEspecial);
+        disciplina.setPrecom(volumenPrecompetitiva);
+        disciplina.setCompetitiva(volumenCompetitiva);
+        disciplina.setNombre("prueba");
+        disciplina.setTotal(4);
+
+        String idMacro = "1";
+        DisciplinaDAO instance = new DisciplinaDAO();
+        
+        boolean expResult = true;
+        boolean result = instance.agregarDisciplina(disciplina, idMacro);
+        
+        if (result==false) {
+            fail("Error al agregar objeto a la base de datos");
+        } else if (result == true){
+            System.out.println("Se agregó disciplina");
+        }
+        
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+
     }
 
-    /**
-     * Test of agregarDisciplinaD method, of class DisciplinaDAO.
-     */
-    @Test
-    public void testAgregarDisciplinaD() {
-        System.out.println("agregarDisciplinaD");
-
-    }
     
 }
