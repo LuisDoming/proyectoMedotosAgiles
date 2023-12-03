@@ -14,9 +14,15 @@ on:
   pull_request:
     branches: [ "main" ]
 
+
 jobs:
   build-projects:
     runs-on: ubuntu-latest
+    services:
+      mongodb:
+        image: mongo:latest
+        ports:
+          - 27017:27017
 
     steps:
     - name: Checkout Repository
