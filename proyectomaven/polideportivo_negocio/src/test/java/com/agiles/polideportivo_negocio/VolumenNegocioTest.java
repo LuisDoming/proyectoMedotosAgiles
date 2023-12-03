@@ -5,7 +5,6 @@
 package com.agiles.polideportivo_negocio;
 
 import java.util.ArrayList;
-import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -45,10 +44,6 @@ public class VolumenNegocioTest {
     @Test
     public void testValidarTablaVolumen() {
         System.out.println("validarTablaVolumen");
-        JFrame frame = new JFrame();
-
-        frame.setSize(640, 480);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         ///agregar la tabla
         DefaultTableModel tablaPrueba = new DefaultTableModel();
