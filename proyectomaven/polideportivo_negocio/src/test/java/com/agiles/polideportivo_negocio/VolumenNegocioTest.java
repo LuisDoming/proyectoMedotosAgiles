@@ -76,7 +76,7 @@ public class VolumenNegocioTest {
         tablaPrueba.addRow(datofilas);
 
         VolumenNegocio instance = new VolumenNegocio();
-        boolean result = instance.validarTablaVolumen(tablaPrueba, frame, "preparativa");
+        boolean result = instance.validarTablaVolumen(tablaPrueba, null, "preparativa");
         boolean expResult = true;
         
         if (expResult!=result) {

@@ -16,14 +16,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 /**
  *
@@ -45,7 +37,6 @@ public class macrocicloDAOTest {
 
     @Before
     public void setUp() {
-        macrocicloDAO mock = Mockito.mock(macrocicloDAO.class);
     }
 
     @After

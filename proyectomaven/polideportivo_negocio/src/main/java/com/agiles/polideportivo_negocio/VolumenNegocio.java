@@ -21,8 +21,8 @@ public class VolumenNegocio {
     }
 
     public boolean validarTablaVolumen(DefaultTableModel tabla, JFrame frame, String etapa) {
-
-        for (int i = 0; i < tabla.getRowCount(); i++) {
+        if (frame!=null) {
+          for (int i = 0; i < tabla.getRowCount(); i++) {
             float minimo = 0, maximo = 0;
             int insitaciones = 0;
 
@@ -73,7 +73,65 @@ public class VolumenNegocio {
                         + " de la tabla: " + etapa + ", no deben ser menores a 0 veces por semanas");
                 return false;
             }
+  
+        }
+        
+        }else{
+        
+            for (int i = 0; i < tabla.getRowCount(); i++) {
+            float minimo = 0, maximo = 0;
+            int insitaciones = 0;
 
+            String valorCeldaMinimo = tabla.getValueAt(i, 1).toString();
+
+            if (!this.validarFlotante(valorCeldaMinimo)) {
+                System.out.println("Error. El minimo de la disciplina: " + tabla.getValueAt(i, 0).toString()
+                        + " de la tabla: " + etapa + ", no es un numero decimal");
+                return false;
+            }
+
+            minimo = Float.valueOf(valorCeldaMinimo);
+
+            String valorCeldaMaximo = tabla.getValueAt(i, 2).toString();
+
+            if (!this.validarFlotante(valorCeldaMaximo)) {
+                System.out.println("Error. El maximo de la disciplina: " + tabla.getValueAt(i, 0).toString()
+                        + " de la tabla: " + etapa + ", no es un numero decimal");
+                return false;
+            }
+
+            maximo = Float.valueOf(valorCeldaMaximo);
+
+            String valorCeldaIns = tabla.getValueAt(i, 4).toString();
+
+            if (!this.validarEntero(valorCeldaIns)) {
+                System.out.println("Error. Las insitaciones de la disciplina: " + tabla.getValueAt(i, 0).toString()
+                        + " de la tabla: " + etapa + ", no es un numero entero");
+                return false;
+            }
+
+            insitaciones = Integer.valueOf(valorCeldaIns);
+
+            if (minimo > maximo) {
+                System.out.println("Error. El minimo de la disciplina: " + tabla.getValueAt(i, 0).toString()
+                        + " de la tabla: " + etapa + ", no puede ser mayor que el valor maximo");
+                return false;
+            }
+
+            if (insitaciones > 7) {
+                System.out.println("Error. Las insitaciones de la disciplina: " + tabla.getValueAt(i, 0).toString()
+                        + " de la tabla: " + etapa + ", no deben ser mayores a 7 veces por semanas");
+                return false;
+            }
+
+            if (insitaciones < 0) {
+                System.out.println("Error. Las insitaciones de la disciplina: " + tabla.getValueAt(i, 0).toString()
+                        + " de la tabla: " + etapa + ", no deben ser menores a 0 veces por semanas");
+                return false;
+            }
+  
+        }
+            
         }
 
         return true;

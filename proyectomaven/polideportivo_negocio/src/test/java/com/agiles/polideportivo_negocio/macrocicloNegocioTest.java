@@ -44,15 +44,34 @@ public class macrocicloNegocioTest {
     public void testGuardarMacrociclo() {
         System.out.println("guardarMacrociclo");
 
+                System.out.println("guardarMacrocicloD");
+        Macrociclo macrociclo = new Macrociclo();
+
+        macrociclo.setFechaInicio("12/12/2023");
+        macrociclo.setFechaFin("12/04/2024");
+        macrociclo.setTotalSemanas(13);
+        macrociclo.setDeporte("judo");
+        macrociclo.setRama("varonil");
+        macrociclo.setJefeRama("Jorge Miguel Utra Reyna");
+        macrociclo.setPreparadorFis("prueba");
+        macrociclo.setMetodologo("prueba");
+        macrociclo.setPeriodoPreparativo(10);
+        macrociclo.setPeriodoCompetitivo(3);
+        macrociclo.setEtapaPreparativa(6);
+        macrociclo.setEtapaEspecial(4);
+        macrociclo.setEtapaPrecompetitiva(2);
+        macrociclo.setEtapaCompetitiva(1);
+
+        macrocicloNegocio instance = new macrocicloNegocio();
+        boolean expResult = true;
+        boolean result = instance.guardarMacrociclo(macrociclo);
+        if (result != true) {
+            fail("No se pudo guardar el macrociclo.");
+
+        }
+        assertEquals(expResult, result);
+        
     }
 
-    /**
-     * Test of convertirJSON method, of class macrocicloNegocio.
-     */
-    @Test
-    public void testConvertirJSON() {
-        System.out.println("convertirJSON");
-
-    }
     
 }
