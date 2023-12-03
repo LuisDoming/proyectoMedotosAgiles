@@ -70,7 +70,6 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jbtnCrearMacrociclo = new javax.swing.JButton();
         jbtnCancelar = new javax.swing.JButton();
-        jlbSalir = new javax.swing.JLabel();
 
         jtxtTotalSemanas1.setEditable(false);
 
@@ -131,14 +130,6 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
             }
         });
 
-        jlbSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/media/salir.png"))); // NOI18N
-        jlbSalir.setToolTipText("");
-        jlbSalir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlbSalirMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jpPanel1Layout = new javax.swing.GroupLayout(jpPanel1);
         jpPanel1.setLayout(jpPanel1Layout);
         jpPanel1Layout.setHorizontalGroup(
@@ -169,18 +160,14 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
             .addGroup(jpPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlbSalir)
-                .addGap(35, 35, 35))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpPanel1Layout.setVerticalGroup(
             jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jlbSalir))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(jpPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpPanel1Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
@@ -403,28 +390,6 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
             // Por ejemplo, abrir una ventana para consultar algo.
         }
     }//GEN-LAST:event_jbtnCancelarActionPerformed
-    /**
-     * Manejador de eventos cuando se presiona el boton salir
-     *
-     * @param evt
-     */
-    private void jlbSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbSalirMouseClicked
-        //opciones a elegir
-        String[] opciones = {"Aceptar", "Cancelar"};
-
-        //obtiene la opcion elegida
-        int opcion = JOptionPane.showOptionDialog(this, "¿Quieres regresal al menu principal?", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-                opciones, opciones[0]);
-
-        if (opcion == 0) {
-            //si elige salir
-            //vuelve a la pantalla de inicio
-            inicioFrm inicio = new inicioFrm();
-            this.dispose();
-        } else if (opcion == 1) {
-
-        }
-    }//GEN-LAST:event_jlbSalirMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -439,7 +404,6 @@ public class crearMacrocicloFrm extends javax.swing.JFrame {
     private javax.swing.JButton jbtnCrearMacrociclo;
     private com.toedter.calendar.JDateChooser jdcFechaFin;
     private com.toedter.calendar.JDateChooser jdcFechaInicio;
-    private javax.swing.JLabel jlbSalir;
     private javax.swing.JPanel jpPanel1;
     private javax.swing.JTextField jtxtTotalDias;
     private javax.swing.JTextField jtxtTotalSemanas;

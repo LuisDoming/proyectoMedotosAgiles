@@ -2401,13 +2401,17 @@ public class macrocicloFrm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbtnCrearMacrocicloActionPerformed
 
+    private void cbRamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRamaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbRamaActionPerformed
+
     private void jlbSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbSalirMouseClicked
         //opciones para salir de la pantalla actual
         String[] opciones = {"Aceptar", "Cancelar"};
 
         //se muestra mensaje de confirmacion
         int opcion = JOptionPane.showOptionDialog(this, "¿Quieres regresar al menu principal?", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-                opciones, opciones[0]);
+            opciones, opciones[0]);
 
         if (opcion == 0) {
             //si elige aceptar regresa a la ventana anterior
@@ -2417,10 +2421,6 @@ public class macrocicloFrm extends javax.swing.JFrame {
             //cancela
         }
     }//GEN-LAST:event_jlbSalirMouseClicked
-
-    private void cbRamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRamaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbRamaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
