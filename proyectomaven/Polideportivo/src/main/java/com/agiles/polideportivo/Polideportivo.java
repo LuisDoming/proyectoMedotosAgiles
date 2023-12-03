@@ -5,6 +5,7 @@
 
 package com.agiles.polideportivo;
 
+import com.agiles.presentacion.VolumenFrm;
 import com.agiles.presentacion.inicioFrm;
 
 /**
@@ -17,8 +18,8 @@ public class Polideportivo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        inicioFrm inicioApp = new inicioFrm();
-        //VolumenFrm volumen = new VolumenFrm();
+        //inicioFrm inicioApp = new inicioFrm();
+        VolumenFrm volumen = new VolumenFrm();
     }
     
 }
