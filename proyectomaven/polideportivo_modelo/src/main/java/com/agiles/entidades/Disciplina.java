@@ -12,7 +12,7 @@ public class Disciplina {
     private int id;
     private String nombre;
     private VolumenEtapa preparativa,especial,precom,competitiva;
-    private int total;
+    private float total;
 
     public Disciplina() {
     }
@@ -84,13 +84,15 @@ public class Disciplina {
         this.competitiva = competitiva;
     }
 
-    public int getTotal() {
+    public float getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(float total) {
         this.total = total;
     }
+
+    
 
     @Override
     public String toString() {

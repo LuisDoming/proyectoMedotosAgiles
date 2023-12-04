@@ -4,7 +4,6 @@
  */
 package com.agiles.presentacion;
 
-
 import com.agiles.entidades.Disciplina;
 import com.agiles.entidades.Etapa;
 import com.agiles.entidades.VolumenEtapa;
@@ -13,6 +12,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import com.agiles.polideportivo_negocio.VolumenNegocio;
+import com.agiles.polideportivo_negocio.disciplinasNegocio;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -21,17 +22,24 @@ import com.agiles.polideportivo_negocio.VolumenNegocio;
 public class VolumenFrm extends javax.swing.JFrame {
     
     public ArrayList<String> arregloDisciplinas;
+    public String macrocicloRef;
+    public String semanasPrep,semanasEspeciales,semanasPrecom,semanasCompe;
 
     /**
      * Creates new form VolumenFrm
      */
-    public VolumenFrm() {
+    public VolumenFrm(String semanasPrep,String semanasEspeciales,String semanasPrecom,String semanasCompe) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.deshabilitarTablas();
         this.jbGuardarVolumen.setEnabled(false);
         arregloDisciplinas = new ArrayList<>();
+        macrocicloRef = "656041e761202b28bbad1a31";
+        this.semanasPrep = "20";
+        this.semanasEspeciales = "10";
+        this.semanasPrecom = "0";
+        this.semanasCompe = "5";        
     }
     
     
@@ -66,12 +74,44 @@ public class VolumenFrm extends javax.swing.JFrame {
         DefaultTableModel tableModelVolumen = (DefaultTableModel) this.tablaVolumenGeneral.getModel();
         
         for (int i = 0; i < this.arregloDisciplinas.size(); i++) {
-            tableModelGeneral.insertRow(i, new Object[]{this.arregloDisciplinas.get(i).toString()});
-            tableModelEspecial.insertRow(i, new Object[]{this.arregloDisciplinas.get(i).toString()});
-            tableModelPrecom.insertRow(i, new Object[]{this.arregloDisciplinas.get(i).toString()});
-            tableModelCompetitiva.insertRow(i, new Object[]{this.arregloDisciplinas.get(i).toString()});
+            if(!(Integer.valueOf(this.semanasPrep) <= 0)){
+              tableModelGeneral.insertRow(i, new Object[]{this.arregloDisciplinas.get(i).toString()});
+              tableModelGeneral.setValueAt(this.semanasPrep, i, 5);
+            }
+            
+            if(!(Integer.valueOf(this.semanasEspeciales) <= 0)){
+              tableModelEspecial.insertRow(i, new Object[]{this.arregloDisciplinas.get(i).toString()});
+              tableModelEspecial.setValueAt(this.semanasEspeciales, i, 5);
+            }
+            
+            if(!(Integer.valueOf(this.semanasPrecom) <= 0)){
+              tableModelPrecom.insertRow(i, new Object[]{this.arregloDisciplinas.get(i).toString()});
+              tableModelPrecom.setValueAt(this.semanasPrecom, i, 5);
+            }
+            
+            if(!(Integer.valueOf(this.semanasCompe) <= 0)){
+              tableModelCompetitiva.insertRow(i, new Object[]{this.arregloDisciplinas.get(i).toString()});
+              tableModelCompetitiva.setValueAt(this.semanasCompe, i, 5);
+            } 
+            
             tableModelVolumen.insertRow(i, new Object[]{this.arregloDisciplinas.get(i).toString()});
         }
+
+        if(Integer.valueOf(this.semanasPrep) <= 0){
+            this.tablaEtapaGeneral.setEnabled(true);
+        }
+        
+        if(Integer.valueOf(this.semanasEspeciales) <= 0){
+            this.tablaEtapaEspecial.setEnabled(true);
+        }
+        
+        if(Integer.valueOf(this.semanasPrecom) <= 0){
+            this.tablaEtapaPrecompetitiva.setEnabled(true);
+        }
+        
+        if(Integer.valueOf(this.semanasCompe) <= 0){
+            this.tablaEtapaCompetitiva.setEnabled(true);
+        }        
     }
     
     public void limpiarTablas(){
@@ -88,11 +128,24 @@ public class VolumenFrm extends javax.swing.JFrame {
         System.out.println(this.arregloDisciplinas);
         
         for (int i = 0; i < this.arregloDisciplinas.size(); i++) {
-            tableModelGeneral.removeRow(i);
-            tableModelEspecial.removeRow(i);
-            tableModelPrecom.removeRow(i);
-            tableModelCompetitiva.removeRow(i);
-            tableModelVolumen.removeRow(i);
+       
+            if(!(Integer.valueOf(this.semanasPrep) <= 0)){
+               tableModelGeneral.removeRow(0);
+            }
+         
+            if(!(Integer.valueOf(this.semanasEspeciales) <= 0)){
+               tableModelEspecial.removeRow(0);
+            }
+         
+            if(!(Integer.valueOf(this.semanasPrecom) <= 0)){
+               tableModelPrecom.removeRow(0);
+            }   
+         
+            if(!(Integer.valueOf(this.semanasCompe) <= 0)){
+                tableModelCompetitiva.removeRow(0);
+            }            
+            
+            tableModelVolumen.removeRow(0);
         }
         
         this.arregloDisciplinas.clear();
@@ -107,21 +160,29 @@ public class VolumenFrm extends javax.swing.JFrame {
          DefaultTableModel volumenPrecom = (DefaultTableModel) this.tablaEtapaPrecompetitiva.getModel();
          DefaultTableModel volumenCompetitivo = (DefaultTableModel) this.tablaEtapaCompetitiva.getModel();
          
-         if(!volneg.validarTablaVolumen(volumenGeneral,this,"preparativa")){
+         if(!(Integer.valueOf(this.semanasPrep) <= 0)){
+           if(!volneg.validarTablaVolumen(volumenGeneral,this,"preparativa")){
              return false;
+           }
          }
          
-         if(!volneg.validarTablaVolumen(volumenEspecial,this,"especial")){
-             return false;
+         if(!(Integer.valueOf(this.semanasEspeciales) <= 0)){
+            if(!volneg.validarTablaVolumen(volumenEspecial,this,"especial")){
+               return false;
+            }
          }
          
-         if(!volneg.validarTablaVolumen(volumenPrecom,this,"precompetitiva")){
-             return false;
-         }
+         if(!(Integer.valueOf(this.semanasPrecom) <= 0)){
+           if(!volneg.validarTablaVolumen(volumenPrecom,this,"precompetitiva")){
+              return false;
+           }
+         }   
          
-         if(!volneg.validarTablaVolumen(volumenCompetitivo,this,"competitiva")){
-             return false;
-         }         
+         if(!(Integer.valueOf(this.semanasCompe) <= 0)){
+            if(!volneg.validarTablaVolumen(volumenCompetitivo,this,"competitiva")){
+               return false;
+            }
+         }    
          
          return true;
          
@@ -135,10 +196,22 @@ public class VolumenFrm extends javax.swing.JFrame {
          DefaultTableModel volumenPrecom = (DefaultTableModel) this.tablaEtapaPrecompetitiva.getModel();
          DefaultTableModel volumenCompetitivo = (DefaultTableModel) this.tablaEtapaCompetitiva.getModel();   
          
-         volneg.calcularVolumen(volumenGeneral, 5);
-         volneg.calcularVolumen(volumenEspecial, 5);
-         volneg.calcularVolumen(volumenPrecom, 5); 
-         volneg.calcularVolumen(volumenCompetitivo, 5);         
+         if(!(Integer.valueOf(this.semanasPrep) <= 0)){
+             volneg.calcularVolumen(volumenGeneral, Integer.valueOf(this.semanasPrep));
+         }
+         
+         if(!(Integer.valueOf(this.semanasEspeciales) <= 0)){
+             volneg.calcularVolumen(volumenEspecial, Integer.valueOf(this.semanasEspeciales));
+         }
+
+         if(!(Integer.valueOf(this.semanasPrecom) <= 0)){
+             volneg.calcularVolumen(volumenPrecom, Integer.valueOf(this.semanasPrecom)); 
+         }
+         
+         if(!(Integer.valueOf(this.semanasCompe) <= 0)){
+             volneg.calcularVolumen(volumenCompetitivo, Integer.valueOf(this.semanasCompe)); 
+         }
+                 
     }
     
     public void calcularTotal(){
@@ -151,13 +224,129 @@ public class VolumenFrm extends javax.swing.JFrame {
          DefaultTableModel volumenCompetitivo = (DefaultTableModel) this.tablaEtapaCompetitiva.getModel(); 
          DefaultTableModel volumenTotal = (DefaultTableModel) this.tablaVolumenGeneral.getModel(); 
          
-         lista.add(volumenPrecom);
-         lista.add(volumenGeneral);
-         lista.add(volumenEspecial);
-         lista.add(volumenCompetitivo);
+         if(!(Integer.valueOf(this.semanasPrep) <= 0)){
+             lista.add(volumenGeneral);      
+         }
+         
+         if(!(Integer.valueOf(this.semanasEspeciales) <= 0)){
+             lista.add(volumenEspecial);
+         }
+         
+         if(!(Integer.valueOf(this.semanasPrecom) <= 0)){
+             lista.add(volumenPrecom);
+         }
+         
+         if(!(Integer.valueOf(this.semanasCompe) <= 0)){
+             lista.add(volumenCompetitivo);
+         }
          
          volneg.calcularTablaTotal(lista, volumenTotal);
          
+         this.jbGuardarVolumen.setEnabled(true);
+         
+    }
+    
+    public void guardarVolumen(){
+         disciplinasNegocio disneg = new disciplinasNegocio(); 
+        
+         DefaultTableModel volumenGeneral = (DefaultTableModel) this.tablaEtapaGeneral.getModel();
+         DefaultTableModel volumenEspecial = (DefaultTableModel) this.tablaEtapaEspecial.getModel();
+         DefaultTableModel volumenPrecom = (DefaultTableModel) this.tablaEtapaPrecompetitiva.getModel();
+         DefaultTableModel volumenCompetitivo = (DefaultTableModel) this.tablaEtapaCompetitiva.getModel();
+         DefaultTableModel volumenTotal = (DefaultTableModel) this.tablaVolumenGeneral.getModel();
+
+         
+         for (int i = 0; i < volumenTotal.getRowCount(); i++) {
+            Disciplina disciplina = new Disciplina();
+            
+            disciplina.setNombre(volumenTotal.getValueAt(i, 0).toString());
+            disciplina.setTotal(Float.valueOf(volumenTotal.getValueAt(i, 1).toString()));
+            
+            if(!(Integer.valueOf(this.semanasPrep) <= 0)){
+                VolumenEtapa volPreparativo = new VolumenEtapa();
+                
+                volPreparativo.setTipo(Etapa.PREPARATIVA);
+                
+                volPreparativo.setMinimo(Float.valueOf(volumenGeneral.getValueAt(i, 1).toString()));
+                volPreparativo.setMaximo(Float.valueOf(volumenGeneral.getValueAt(i, 2).toString()));
+                volPreparativo.setPromedio(Float.valueOf(volumenGeneral.getValueAt(i, 3).toString()));
+                volPreparativo.setTotal(Float.valueOf(volumenGeneral.getValueAt(i, 6).toString()));
+                
+                volPreparativo.setInsitaciones(Integer.valueOf(volumenGeneral.getValueAt(i, 4).toString()));
+                volPreparativo.setSemanas(Integer.valueOf(volumenGeneral.getValueAt(i, 5).toString()));
+                
+                disciplina.setPreparativa(volPreparativo);
+            }else{
+                VolumenEtapa volPreparativo = new VolumenEtapa();
+                volPreparativo.setTipo(Etapa.PREPARATIVA);
+                disciplina.setEspecial(volPreparativo);
+            }
+         
+            if(!(Integer.valueOf(this.semanasEspeciales) <= 0)){
+                VolumenEtapa volEspecial = new VolumenEtapa();
+                
+                volEspecial.setTipo(Etapa.ESPECIAL);
+                
+                volEspecial.setMinimo(Float.valueOf(volumenEspecial.getValueAt(i, 1).toString()));
+                volEspecial.setMaximo(Float.valueOf(volumenEspecial.getValueAt(i, 2).toString()));
+                volEspecial.setPromedio(Float.valueOf(volumenEspecial.getValueAt(i, 3).toString()));
+                volEspecial.setTotal(Float.valueOf(volumenEspecial.getValueAt(i, 6).toString()));
+                
+                volEspecial.setInsitaciones(Integer.valueOf(volumenEspecial.getValueAt(i, 4).toString()));
+                volEspecial.setSemanas(Integer.valueOf(volumenEspecial.getValueAt(i, 5).toString()));
+                
+                disciplina.setEspecial(volEspecial);             
+            }else{
+                VolumenEtapa volEspecial = new VolumenEtapa();
+                volEspecial.setTipo(Etapa.ESPECIAL);
+                disciplina.setEspecial(volEspecial);
+            }
+         
+            if(!(Integer.valueOf(this.semanasPrecom) <= 0)){
+                VolumenEtapa volPrecom = new VolumenEtapa();
+                
+                volPrecom.setTipo(Etapa.PRECOM);
+                
+                volPrecom.setMinimo(Float.valueOf(volumenPrecom.getValueAt(i, 1).toString()));
+                volPrecom.setMaximo(Float.valueOf(volumenPrecom.getValueAt(i, 2).toString()));
+                volPrecom.setPromedio(Float.valueOf(volumenPrecom.getValueAt(i, 3).toString()));
+                volPrecom.setTotal(Float.valueOf(volumenPrecom.getValueAt(i, 6).toString()));
+                
+                volPrecom.setInsitaciones(Integer.valueOf(volumenPrecom.getValueAt(i, 4).toString()));
+                volPrecom.setSemanas(Integer.valueOf(volumenPrecom.getValueAt(i, 5).toString()));
+                
+                disciplina.setPrecom(volPrecom);              
+            }else{
+                VolumenEtapa volPrecom = new VolumenEtapa();
+                volPrecom.setTipo(Etapa.PRECOM);
+                disciplina.setPrecom(volPrecom);  
+            }
+         
+            if(!(Integer.valueOf(this.semanasCompe) <= 0)){
+                VolumenEtapa volCom = new VolumenEtapa();
+                
+                volCom.setTipo(Etapa.COMPETITIVA);
+                
+                volCom.setMinimo(Float.valueOf(volumenCompetitivo.getValueAt(i, 1).toString()));
+                volCom.setMaximo(Float.valueOf(volumenCompetitivo.getValueAt(i, 2).toString()));
+                volCom.setPromedio(Float.valueOf(volumenCompetitivo.getValueAt(i, 3).toString()));
+                volCom.setTotal(Float.valueOf(volumenCompetitivo.getValueAt(i, 6).toString()));
+                
+                volCom.setInsitaciones(Integer.valueOf(volumenCompetitivo.getValueAt(i, 4).toString()));
+                volCom.setSemanas(Integer.valueOf(volumenCompetitivo.getValueAt(i, 5).toString()));
+                
+                disciplina.setCompetitiva(volCom);              
+            }else{
+                VolumenEtapa volCom = new VolumenEtapa();
+                volCom.setTipo(Etapa.COMPETITIVA);
+                disciplina.setCompetitiva(volCom);  
+            }
+
+            disneg.agregarDisciplina(disciplina, this.macrocicloRef);
+         }
+         
+         
+
     }
 
     
@@ -198,6 +387,7 @@ public class VolumenFrm extends javax.swing.JFrame {
         jlbVolumenTotal = new javax.swing.JLabel();
         jbGuardarVolumen = new javax.swing.JButton();
         jbCalcularVolumen = new javax.swing.JButton();
+        jbEditar = new javax.swing.JButton();
 
         tablaEtapaGeneral1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -425,12 +615,25 @@ public class VolumenFrm extends javax.swing.JFrame {
 
         jbGuardarVolumen.setBackground(new java.awt.Color(102, 255, 102));
         jbGuardarVolumen.setText("Guardar volumen ");
+        jbGuardarVolumen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbGuardarVolumenActionPerformed(evt);
+            }
+        });
 
         jbCalcularVolumen.setBackground(new java.awt.Color(51, 153, 255));
         jbCalcularVolumen.setText("Calcular");
         jbCalcularVolumen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbCalcularVolumenActionPerformed(evt);
+            }
+        });
+
+        jbEditar.setText("Editar");
+        jbEditar.setEnabled(false);
+        jbEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEditarActionPerformed(evt);
             }
         });
 
@@ -473,17 +676,18 @@ public class VolumenFrm extends javax.swing.JFrame {
                                         .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpVolumenLayout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jbCalcularVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbGuardarVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jpVolumenLayout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jlbSalir)
                             .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jlbVolumenTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jspVolumenGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jspVolumenGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jpVolumenLayout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jbCalcularVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbGuardarVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         jpVolumenLayout.setVerticalGroup(
@@ -529,7 +733,9 @@ public class VolumenFrm extends javax.swing.JFrame {
                         .addComponent(jlbVolumenTotal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jspVolumenGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(113, 113, 113)
+                        .addGap(62, 62, 62)
+                        .addComponent(jbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jbCalcularVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbGuardarVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -559,20 +765,28 @@ public class VolumenFrm extends javax.swing.JFrame {
      * @param evt
      */
     private void bntSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntSeleccionarActionPerformed
+        if (this.jcbDisciplinas.getItemCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Error. Seleccione disciplinas");
+        } else{
         String[] opciones = {"Aceptar", "Cancelar"};
         //obtiene la opcion seleccionada por el usuario
         int opcion = JOptionPane.showOptionDialog(this, "¿Quieres agregar esa disciplina?:", "Opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 opciones, opciones[0]);
 
         if (opcion == 0) {
+            
             String datoSeleccionado = (String) this.jcbDisciplinas.getSelectedItem();
-            this.jcbDisciplinasSeleccionadas.addItem(datoSeleccionado);
+            if(!datoSeleccionado.equalsIgnoreCase("")){
+                 this.jcbDisciplinasSeleccionadas.addItem(datoSeleccionado);
 
-            // Oculta el dato seleccionado en el comboBoxOrigen
-            int index = this.jcbDisciplinas.getSelectedIndex();
-            if (index != -1) {
-                this.jcbDisciplinas.removeItemAt(index);
+                 // Oculta el dato seleccionado en el comboBoxOrigen
+                 int index = this.jcbDisciplinas.getSelectedIndex();
+                 if (index != -1) {
+                     this.jcbDisciplinas.removeItemAt(index);
+                 }                
             }
+
+        }
         }
     }//GEN-LAST:event_bntSeleccionarActionPerformed
 
@@ -592,13 +806,17 @@ public class VolumenFrm extends javax.swing.JFrame {
 
             if (opcion == 0) {
                 String datoSeleccionado = (String) this.jcbDisciplinasSeleccionadas.getSelectedItem();
-                this.jcbDisciplinas.addItem(datoSeleccionado);
+                
+                if(!datoSeleccionado.equalsIgnoreCase("")){
+                     this.jcbDisciplinas.addItem(datoSeleccionado);
 
-                // Elimina el dato seleccionado en el comboBoxDestino
-                int index = this.jcbDisciplinasSeleccionadas.getSelectedIndex();
-                if (index != -1) {
-                    this.jcbDisciplinasSeleccionadas.removeItemAt(index);
+                     // Elimina el dato seleccionado en el comboBoxDestino
+                     int index = this.jcbDisciplinasSeleccionadas.getSelectedIndex();
+                     if (index != -1) {
+                         this.jcbDisciplinasSeleccionadas.removeItemAt(index);
+                     }                    
                 }
+
             }
         }
     }//GEN-LAST:event_bntEliminarActionPerformed
@@ -630,6 +848,7 @@ public class VolumenFrm extends javax.swing.JFrame {
                 }
             
                 System.out.println(this.arregloDisciplinas);
+                this.jbEditar.setEnabled(false);
                 this.cargarDisciplinas();
                 
             }
@@ -646,18 +865,35 @@ public class VolumenFrm extends javax.swing.JFrame {
         if(this.validarTablas()){
             this.calcularVolumenEtapa();
             this.calcularTotal();
+            this.deshabilitarTablas();
+            this.jbGuardarVolumen.setEnabled(true);
+            this.jbEditar.setEnabled(true);
             System.out.println("calculo exitoso");
         }else{
-            System.out.println("no jalo we");
+            System.out.println("calculo erroneo");
         }
         
     }//GEN-LAST:event_jbCalcularVolumenActionPerformed
+
+    private void jbGuardarVolumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarVolumenActionPerformed
+        // TODO add your handling code here:
+         this.guardarVolumen();
+    }//GEN-LAST:event_jbGuardarVolumenActionPerformed
+
+    private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
+        // TODO add your handling code here:
+        this.habilitarTablas();
+        this.jbEditar.setEnabled(false);
+        this.jbGuardarVolumen.setEnabled(false);
+        
+    }//GEN-LAST:event_jbEditarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntEliminar;
     private javax.swing.JButton bntSeleccionar;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton jbCalcularVolumen;
+    private javax.swing.JButton jbEditar;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbGuardarVolumen;
     private javax.swing.JComboBox<String> jcbDisciplinas;

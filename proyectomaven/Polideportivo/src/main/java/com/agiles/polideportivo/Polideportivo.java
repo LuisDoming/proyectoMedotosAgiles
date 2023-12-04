@@ -19,7 +19,7 @@ public class Polideportivo {
      */
     public static void main(String[] args) {
         //inicioFrm inicioApp = new inicioFrm();
-        VolumenFrm volumen = new VolumenFrm();
+        VolumenFrm volumen = new VolumenFrm("20","20","20","20");
     }
     
 }

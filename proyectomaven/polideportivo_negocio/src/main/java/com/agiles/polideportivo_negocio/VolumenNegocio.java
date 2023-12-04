@@ -75,6 +75,8 @@ public class VolumenNegocio {
             }
   
         }
+          
+          
         
         }else{
         
@@ -134,10 +136,12 @@ public class VolumenNegocio {
             
         }
 
+        JOptionPane.showMessageDialog(frame, "Calculo realizado con exito, puede guardar los datos");
+        
         return true;
     }
 
-    public float calcularVolumen(DefaultTableModel tabla, int semana) {
+    public boolean calcularVolumen(DefaultTableModel tabla, int semana) {
         
         for (int i = 0; i < tabla.getRowCount(); i++) {
             float minimo = 0, maximo = 0;
@@ -159,10 +163,9 @@ public class VolumenNegocio {
             float totalVolEtapa = promedio * insitaciones * semanas;
             System.out.println(totalVolEtapa);
             tabla.setValueAt(totalVolEtapa, i, 6);
-            return totalVolEtapa;
-
         }
-        return 0f;
+        
+        return true;
     }
 
     public boolean calcularTablaTotal(ArrayList<DefaultTableModel> tablas, DefaultTableModel tabla) {

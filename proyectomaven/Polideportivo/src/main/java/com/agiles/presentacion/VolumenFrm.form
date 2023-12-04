@@ -116,13 +116,6 @@
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jbCalcularVolumen" min="-2" pref="169" max="-2" attributes="0"/>
-                              <Component id="jbGuardarVolumen" min="-2" pref="169" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jlbSalir" min="-2" max="-2" attributes="0"/>
@@ -130,6 +123,14 @@
                                   <Component id="jlbVolumenTotal" min="-2" pref="143" max="-2" attributes="0"/>
                                   <Component id="jspVolumenGeneral" min="-2" pref="231" max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jbCalcularVolumen" min="-2" pref="169" max="-2" attributes="0"/>
+                              <Component id="jbGuardarVolumen" min="-2" pref="169" max="-2" attributes="0"/>
+                              <Component id="jbEditar" alignment="1" min="-2" pref="169" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -191,7 +192,9 @@
                           <Component id="jlbVolumenTotal" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jspVolumenGeneral" min="-2" pref="263" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                          <Component id="jbEditar" min="-2" pref="33" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jbCalcularVolumen" min="-2" pref="32" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jbGuardarVolumen" min="-2" pref="32" max="-2" attributes="0"/>
@@ -576,6 +579,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Guardar volumen "/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbGuardarVolumenActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbCalcularVolumen">
           <Properties>
@@ -586,6 +592,15 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbCalcularVolumenActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbEditar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Editar"/>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbEditarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

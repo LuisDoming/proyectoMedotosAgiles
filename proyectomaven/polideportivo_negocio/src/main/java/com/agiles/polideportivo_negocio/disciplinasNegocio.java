@@ -34,8 +34,12 @@ public class disciplinasNegocio {
     }
 
     //no usar hasta hu5
-    public void agregarDisciplina(){
-        
+    public void agregarDisciplina(Disciplina disciplina,String idMacro){
+        if(!disciplina.equals(null)){
+            disdao.agregarDisciplina(disciplina, idMacro);
+        }else{
+            System.out.println("disciplina nula");
+        }
     }
     
 }
