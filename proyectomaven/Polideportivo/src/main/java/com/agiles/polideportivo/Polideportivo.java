@@ -18,8 +18,10 @@ public class Polideportivo {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //inicioFrm inicioApp = new inicioFrm();
-        VolumenFrm volumen = new VolumenFrm("20","20","20","20");
+
+        //VolumenFrm volumen = new VolumenFrm("20","20","20","20");
+        inicioFrm inicioApp = new inicioFrm();
+
     }
     
 }
