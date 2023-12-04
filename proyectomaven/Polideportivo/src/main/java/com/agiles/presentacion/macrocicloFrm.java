@@ -1333,8 +1333,14 @@ public class macrocicloFrm extends javax.swing.JFrame {
         }
 
         macrocicloNegocio negocio = new macrocicloNegocio();
-        if (negocio.guardarMacrociclo(macrociclo)) {
+        Object id = negocio.guardarMacrociclo(macrociclo);
+        if (!id.equals(null)) {
+            
             JOptionPane.showMessageDialog(this, "Macrociclo se ha guardado con exito");
+            VolumenFrm volumen = 
+                    new VolumenFrm(this.jtxtSemanasPreparacion.toString(),this.jtxtSemanasEspecial.toString(),this.jtxtSemanasPrecompetitivo.toString(),this.jtxtSemanasEtapaCompetitivo.toString(),id.toString());
+            this.dispose();
+            
         } else {
             JOptionPane.showMessageDialog(this, "Error: Hubo un error al guardar el Macrociclo ");
         }
@@ -2516,6 +2522,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
             //crea la pantalla para la creacion y se envia esta al constructor
             //this.dispose();
             this.crearMacrociclo();
+            
         }
     }//GEN-LAST:event_jbtnCrearMacrocicloActionPerformed
 

@@ -32,7 +32,7 @@ public class macrocicloDAO {
      * @param macrociclo
      * @return 
      */
-    public boolean guardarMacrociclo(Macrociclo macrociclo){
+    public Object guardarMacrociclo(Macrociclo macrociclo){
         
         
         try{
@@ -66,17 +66,23 @@ public class macrocicloDAO {
                 .append("ciclicidadPrecom", macrociclo.getCiclicidadPrecom())
                 .append("ciclicidadCompetitiva", macrociclo.getCiclicidadCompetitiva());
 
+            
+            Object insertedId = document.get("_id");
+            
             collection.insertOne(document);
+            
+            insertedId = document.get("_id");
             
             mongoClient.close();
 
+            return insertedId;
         }catch(Exception e){
             e.printStackTrace();
-            return false;
+            return null;
         }
 
         
-        return true;
+
     }
     
         public boolean guardarMacrocicloD(Macrociclo macrociclo){

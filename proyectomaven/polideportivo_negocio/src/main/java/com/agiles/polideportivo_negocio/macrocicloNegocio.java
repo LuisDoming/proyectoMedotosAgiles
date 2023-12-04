@@ -25,12 +25,13 @@ public class macrocicloNegocio {
      * @param macrociclo
      * @return 
      */
-    public boolean guardarMacrociclo(Macrociclo macrociclo){
+    public Object guardarMacrociclo(Macrociclo macrociclo){
         if(!macrociclo.equals(null)){
-            if(macrodao.guardarMacrociclo(macrociclo)){
-                return true;
+            Object id = macrodao.guardarMacrociclo(macrociclo);
+            if(!id.equals(null)){
+                return id ;
             }else{
-                return false;
+                return null;
             }
         }
         

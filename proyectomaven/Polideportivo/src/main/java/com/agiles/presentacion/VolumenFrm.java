@@ -28,18 +28,20 @@ public class VolumenFrm extends javax.swing.JFrame {
     /**
      * Creates new form VolumenFrm
      */
-    public VolumenFrm(String semanasPrep,String semanasEspeciales,String semanasPrecom,String semanasCompe) {
+    public VolumenFrm(String semanasPrep,String semanasEspeciales,String semanasPrecom,String semanasCompe,String idMacro) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.deshabilitarTablas();
         this.jbGuardarVolumen.setEnabled(false);
         arregloDisciplinas = new ArrayList<>();
-        macrocicloRef = "656041e761202b28bbad1a31";
-        this.semanasPrep = "20";
-        this.semanasEspeciales = "10";
-        this.semanasPrecom = "0";
-        this.semanasCompe = "5";        
+        this.semanasPrep = semanasPrep;
+        this.semanasEspeciales = semanasEspeciales;
+        this.semanasPrecom = semanasPrecom;
+        this.semanasCompe = semanasCompe;
+        this.macrocicloRef = idMacro;
+        
+        System.out.println(this.macrocicloRef);
     }
     
     
