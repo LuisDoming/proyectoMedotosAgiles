@@ -42,14 +42,6 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
 
-    - name: Install xvfb
-      run: sudo apt-get install xvfb
-
-    - name: Start xvfb
-      run: Xvfb :99 -ac &
-
-    - name: Set DISPLAY variable
-      run: export DISPLAY=:99
 
     - name: Build Polideportivo_modelo
       run: mvn -f proyectomaven/polideportivo_modelo/pom.xml clean install
