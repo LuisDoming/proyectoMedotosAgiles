@@ -84,7 +84,11 @@ public class macrocicloDAO {
         
 
     }
-    
+    /**
+     * Método que guarda en BD al macrociclo enviado por parámetro
+     * @param macrociclo
+     * @return 
+     */
         public boolean guardarMacrocicloD(Macrociclo macrociclo){
         
         

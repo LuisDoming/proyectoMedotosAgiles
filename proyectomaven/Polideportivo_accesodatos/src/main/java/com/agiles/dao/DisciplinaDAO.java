@@ -64,6 +64,12 @@ public class DisciplinaDAO {
         return true;
     }
 
+    /**
+     * Método que permite agregar una disciplina al macrociclo que contiene el ID enviado por parámetro
+     * @param disciplina
+     * @param idMacro
+     * @return 
+     */
     public boolean agregarDisciplinaD(Disciplina disciplina, String idMacro) {
 
         try {
