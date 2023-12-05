@@ -17,22 +17,22 @@ import static org.junit.Assert.*;
  * @author spide
  */
 public class macrocicloNegocioTest {
-    
+
     public macrocicloNegocioTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -42,10 +42,8 @@ public class macrocicloNegocioTest {
      */
     @Test
     public void testGuardarMacrociclo() {
-        /*
-        System.out.println("guardarMacrociclo");
 
-                System.out.println("guardarMacrocicloD");
+        System.out.println("guardarMacrociclo");
         Macrociclo macrociclo = new Macrociclo();
 
         macrociclo.setFechaInicio("12/12/2023");
@@ -64,17 +62,43 @@ public class macrocicloNegocioTest {
         macrociclo.setEtapaCompetitiva(1);
 
         macrocicloNegocio instance = new macrocicloNegocio();
-        boolean expResult = true;
-        boolean result = instance.guardarMacrociclo(macrociclo);
-        if (result != true) {
+        Object result = instance.guardarMacrociclo(macrociclo);
+        if (result == null) {
             fail("No se pudo guardar el macrociclo.");
 
         }
-*/
-        boolean expResult = true;
-        assertEquals(expResult, true);
-        
+
+        assertNotNull(result);
     }
 
-    
+    @Test
+    public void testConvertirJSON() {
+        System.out.println("guardarMacrociclo");
+        Macrociclo macrociclo = new Macrociclo();
+
+        macrociclo.setFechaInicio("12/12/2023");
+        macrociclo.setFechaFin("12/04/2024");
+        macrociclo.setTotalSemanas(13);
+        macrociclo.setDeporte("judo");
+        macrociclo.setRama("varonil");
+        macrociclo.setJefeRama("Jorge Miguel Utra Reyna");
+        macrociclo.setPreparadorFis("prueba");
+        macrociclo.setMetodologo("prueba");
+        macrociclo.setPeriodoPreparativo(10);
+        macrociclo.setPeriodoCompetitivo(3);
+        macrociclo.setEtapaPreparativa(6);
+        macrociclo.setEtapaEspecial(4);
+        macrociclo.setEtapaPrecompetitiva(2);
+        macrociclo.setEtapaCompetitiva(1);
+
+        macrocicloNegocio instance = new macrocicloNegocio();
+        Object result = instance.convertirJSON(macrociclo);
+                if (result == null) {
+            fail("No se pudo convertir a JSON");
+
+        }
+
+        assertNotNull(result);
+    }
+
 }

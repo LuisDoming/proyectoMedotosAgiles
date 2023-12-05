@@ -86,49 +86,49 @@ public class VolumenNegocioTest {
     /**
      * Test of calcularVolumen method, of class VolumenNegocio.
      */
-    //@Test
-//    public void testCalcularVolumen() {
-//        System.out.println("calcularVolumen");
-//
-//        DefaultTableModel tablaPrueba = new DefaultTableModel();
-//
-//        tablaPrueba.addColumn("1");
-//        tablaPrueba.addColumn("2");
-//        tablaPrueba.addColumn("3");
-//        tablaPrueba.addColumn("4");
-//        tablaPrueba.addColumn("5");
-//        tablaPrueba.addColumn("6");
-//        tablaPrueba.addColumn("7");
-//
-//        String[] datofilas;
-//        datofilas = new String[7];
-//
-//        datofilas[0] = "1";
-//        datofilas[1] = "2";
-//        datofilas[2] = "3";
-//        datofilas[3] = "1";
-//        datofilas[4] = "1";
-//        datofilas[5] = "1";
-//        datofilas[6] = "1";
-//
-//        tablaPrueba.addRow(datofilas);
-//        tablaPrueba.addRow(datofilas);
-//
-//        int semana = 2;
-//
-//        System.out.println(tablaPrueba.getColumnCount());
-//        System.out.println(tablaPrueba.getRowCount());
-//
-//        VolumenNegocio instance = new VolumenNegocio();
-//        float totalVolEtapa = instance.calcularVolumen(tablaPrueba, semana);
-//        System.out.println(totalVolEtapa);
-//        if (totalVolEtapa == 0) {
-//            fail("no hay valores para calcular en la tabla");
-//        }
-//
-//        assertEquals(5, totalVolEtapa, 4.5);
-//
-//    }
+    @Test
+    public void testCalcularVolumen() {
+        System.out.println("calcularVolumen");
+
+        DefaultTableModel tablaPrueba = new DefaultTableModel();
+
+        tablaPrueba.addColumn("1");
+        tablaPrueba.addColumn("2");
+        tablaPrueba.addColumn("3");
+        tablaPrueba.addColumn("4");
+        tablaPrueba.addColumn("5");
+        tablaPrueba.addColumn("6");
+        tablaPrueba.addColumn("7");
+
+        String[] datofilas;
+        datofilas = new String[7];
+
+        datofilas[0] = "1";
+        datofilas[1] = "2";
+        datofilas[2] = "3";
+        datofilas[3] = "1";
+        datofilas[4] = "1";
+        datofilas[5] = "1";
+        datofilas[6] = "1";
+
+        tablaPrueba.addRow(datofilas);
+        tablaPrueba.addRow(datofilas);
+
+        int semana = 2;
+
+        System.out.println(tablaPrueba.getColumnCount());
+        System.out.println(tablaPrueba.getRowCount());
+
+        VolumenNegocio instance = new VolumenNegocio();
+        boolean expResult = true;
+        boolean result = instance.calcularVolumen(tablaPrueba, semana);
+        if (result == false) {
+            fail("no se pudo calcular en la tabla");
+        }
+
+        assertEquals(expResult,result);
+
+    }
     
 
     /**

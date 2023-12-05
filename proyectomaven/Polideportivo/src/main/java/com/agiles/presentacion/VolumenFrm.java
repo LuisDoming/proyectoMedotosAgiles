@@ -41,7 +41,9 @@ public class VolumenFrm extends javax.swing.JFrame {
         this.semanasCompe = semanasCompe;
         this.macrocicloRef = idMacro;
         
+        
         System.out.println(this.macrocicloRef);
+        System.out.println(this.semanasPrep + "  " + this.semanasEspeciales + "  " + this.semanasPrecom + "  " + this.semanasCompe + "  " );
     }
     
     
@@ -415,7 +417,7 @@ public class VolumenFrm extends javax.swing.JFrame {
 
         jpVolumen.setBackground(new java.awt.Color(255, 255, 255));
 
-        jcbDisciplinas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbDisciplinas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RAG (KM)", "RAE (MIN)", "VEL. GENERAL (MTROS)", "VEL. ESPECIAL (SEG)", "RES. VEL. GEN (MTROS)", "RES. VEL. ESP (MIN)", "FUERZA. GEN (REP)", "FUERZA. ESP (REP)", "COORDINACIÓN TÉCNICA (REP)", "FLEXIBILIDAD (MIN)", " " }));
 
         bntSeleccionar.setText("Seleccionar");
         bntSeleccionar.addActionListener(new java.awt.event.ActionListener() {
@@ -711,7 +713,7 @@ public class VolumenFrm extends javax.swing.JFrame {
                     .addGroup(jpVolumenLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(jlbSalir)))
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jpVolumenLayout.createSequentialGroup()
                         .addGroup(jpVolumenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -741,7 +743,7 @@ public class VolumenFrm extends javax.swing.JFrame {
                         .addComponent(jbCalcularVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbGuardarVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

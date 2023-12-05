@@ -15,6 +15,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import com.agiles.polideportivo_negocio.macrocicloNegocio;
+import java.awt.event.KeyEvent;
 
 /**
  * Pantalla que contiene la distribucion de los mesociclos y la distribucion de
@@ -522,27 +523,31 @@ public class macrocicloFrm extends javax.swing.JFrame {
      * tabla
      */
     public void cargarSemanasPreparacion(int numSemanas) {
+        this.jbtnAgregarPreparacion.setEnabled(false);
+
+        this.jlbSemanasPrep.setText(numSemanas + " semanas");
+        DefaultTableModel modeloTablaPreparacion = (DefaultTableModel) this.tblEtapaPreparacion.getModel();
+        Vector<Object> columnaNueva = new Vector<>();
+
+        columnaNueva.add("1");
+        modeloTablaPreparacion.setColumnIdentifiers(columnaNueva);
+
+        //Inicializa la fila de microciclos
+        Vector<Object> filaMacrociclo = new Vector<>();
+
+        filaMacrociclo.add("0");
+
+        modeloTablaPreparacion.setRowCount(1);
+        modeloTablaPreparacion.addRow(filaMacrociclo);
+        modeloTablaPreparacion.setValueAt("0", 0, 0);
+
+        int totalColumnas = modeloTablaPreparacion.getColumnCount();
+
+        modeloTablaPreparacion.setColumnCount(totalColumnas - 1);
 
         if (numSemanas > 0) {
-            this.jlbSemanasPrep.setText(numSemanas + " semanas");
             this.jbtnAgregarPreparacion.setEnabled(true);
-            DefaultTableModel modeloTablaPreparacion = (DefaultTableModel) this.tblEtapaPreparacion.getModel();
-            Vector<Object> columnaNueva = new Vector<>();
 
-            columnaNueva.add("1");
-            modeloTablaPreparacion.setColumnIdentifiers(columnaNueva);
-
-            //Inicializa la fila de microciclos
-            Vector<Object> filaMacrociclo = new Vector<>();
-
-            filaMacrociclo.add("0");
-
-            modeloTablaPreparacion.setRowCount(1);
-            modeloTablaPreparacion.addRow(filaMacrociclo);
-            modeloTablaPreparacion.setValueAt("0", 0, 0);
-
-        } else {
-            ///Si se mandó un 0 o negativo pues no se cambia la tabla
         }
 
     }
@@ -555,27 +560,30 @@ public class macrocicloFrm extends javax.swing.JFrame {
      * tabla
      */
     public void cargarSemanasEspecial(int numSemanas) {
+        this.jbtnAgregarEspecial.setEnabled(false);
+
+        this.jlbSemanasEsp.setText(numSemanas + " semanas");
+        DefaultTableModel modeloTablaEspecial = (DefaultTableModel) this.tblEtapaEspecial.getModel();
+        Vector<Object> columnaNueva = new Vector<>();
+
+        columnaNueva.add("1");
+        modeloTablaEspecial.setColumnIdentifiers(columnaNueva);
+
+        //Inicializa la fila de microciclos
+        Vector<Object> filaMacrociclo = new Vector<>();
+
+        filaMacrociclo.add("0");
+
+        modeloTablaEspecial.setRowCount(1);
+        modeloTablaEspecial.addRow(filaMacrociclo);
+        modeloTablaEspecial.setValueAt("0", 0, 0);
+
+        int totalColumnas = modeloTablaEspecial.getColumnCount();
+
+        modeloTablaEspecial.setColumnCount(totalColumnas - 1);
 
         if (numSemanas > 0) {
-            this.jlbSemanasEsp.setText(numSemanas + " semanas");
             this.jbtnAgregarEspecial.setEnabled(true);
-            DefaultTableModel modeloTablaEspecial = (DefaultTableModel) this.tblEtapaEspecial.getModel();
-            Vector<Object> columnaNueva = new Vector<>();
-
-            columnaNueva.add("1");
-            modeloTablaEspecial.setColumnIdentifiers(columnaNueva);
-
-            //Inicializa la fila de microciclos
-            Vector<Object> filaMacrociclo = new Vector<>();
-
-            filaMacrociclo.add("0");
-
-            modeloTablaEspecial.setRowCount(1);
-            modeloTablaEspecial.addRow(filaMacrociclo);
-            modeloTablaEspecial.setValueAt("0", 0, 0);
-
-        } else {
-            ///Si se mandó un 0 o negativo pues no se cambia la tabla
 
         }
 
@@ -589,27 +597,31 @@ public class macrocicloFrm extends javax.swing.JFrame {
      * tabla
      */
     public void cargarSemanasPrecompetitiva(int numSemanas) {
+        this.jbtnAgregarPrecompetitiva.setEnabled(false);
+
+        this.jlbSemanasPrecom.setText(numSemanas + " semanas");
+        DefaultTableModel modeloTablaPrecompetitivo = (DefaultTableModel) this.tblEtapaPrecompetitivo.getModel();
+        Vector<Object> columnaNueva = new Vector<>();
+
+        columnaNueva.add("1");
+        modeloTablaPrecompetitivo.setColumnIdentifiers(columnaNueva);
+
+        //Inicializa la fila de microciclos
+        Vector<Object> filaMacrociclo = new Vector<>();
+
+        filaMacrociclo.add("0");
+
+        modeloTablaPrecompetitivo.setRowCount(1);
+        modeloTablaPrecompetitivo.addRow(filaMacrociclo);
+        modeloTablaPrecompetitivo.setValueAt("0", 0, 0);
+
+        int totalColumnas = modeloTablaPrecompetitivo.getColumnCount();
+
+        modeloTablaPrecompetitivo.setColumnCount(totalColumnas - 1);
 
         if (numSemanas > 0) {
-            this.jlbSemanasPrecom.setText(numSemanas + " semanas");
             this.jbtnAgregarPrecompetitiva.setEnabled(true);
-            DefaultTableModel modeloTablaPrecompetitivo = (DefaultTableModel) this.tblEtapaPrecompetitivo.getModel();
-            Vector<Object> columnaNueva = new Vector<>();
 
-            columnaNueva.add("1");
-            modeloTablaPrecompetitivo.setColumnIdentifiers(columnaNueva);
-
-            //Inicializa la fila de microciclos
-            Vector<Object> filaMacrociclo = new Vector<>();
-
-            filaMacrociclo.add("0");
-
-            modeloTablaPrecompetitivo.setRowCount(1);
-            modeloTablaPrecompetitivo.addRow(filaMacrociclo);
-            modeloTablaPrecompetitivo.setValueAt("0", 0, 0);
-
-        } else {
-            ///Si se mandó un 0 o negativo pues no se cambia la tabla
         }
 
     }
@@ -622,27 +634,31 @@ public class macrocicloFrm extends javax.swing.JFrame {
      * tabla
      */
     public void cargarSemanasCompetitiva(int numSemanas) {
+        this.jbtnAgregarCompetitiva.setEnabled(false);
+
+        this.jlbSemanasComp.setText(numSemanas + " semanas");
+        DefaultTableModel modeloTablaCompetitivo = (DefaultTableModel) this.tblEtapaCompetitivo.getModel();
+        Vector<Object> columnaNueva = new Vector<>();
+
+        columnaNueva.add("1");
+        modeloTablaCompetitivo.setColumnIdentifiers(columnaNueva);
+
+        //Inicializa la fila de microciclos
+        Vector<Object> filaMacrociclo = new Vector<>();
+
+        filaMacrociclo.add("0");
+
+        modeloTablaCompetitivo.setRowCount(1);
+        modeloTablaCompetitivo.addRow(filaMacrociclo);
+        modeloTablaCompetitivo.setValueAt("0", 0, 0);
+
+        int totalColumnas = modeloTablaCompetitivo.getColumnCount();
+
+        modeloTablaCompetitivo.setColumnCount(totalColumnas - 1);
 
         if (numSemanas > 0) {
-            this.jlbSemanasComp.setText(numSemanas + " semanas");
             this.jbtnAgregarCompetitiva.setEnabled(true);
-            DefaultTableModel modeloTablaCompetitivo = (DefaultTableModel) this.tblEtapaCompetitivo.getModel();
-            Vector<Object> columnaNueva = new Vector<>();
 
-            columnaNueva.add("1");
-            modeloTablaCompetitivo.setColumnIdentifiers(columnaNueva);
-
-            //Inicializa la fila de microciclos
-            Vector<Object> filaMacrociclo = new Vector<>();
-
-            filaMacrociclo.add("0");
-
-            modeloTablaCompetitivo.setRowCount(1);
-            modeloTablaCompetitivo.addRow(filaMacrociclo);
-            modeloTablaCompetitivo.setValueAt("0", 0, 0);
-
-        } else {
-            ///Si se mandó un 0 o negativo pues no se cambia la tabla
         }
 
     }
@@ -739,45 +755,26 @@ public class macrocicloFrm extends javax.swing.JFrame {
         //Si nomas hay una columna, que edite los que hay
         if (!(microciclo == null && ciclicidad == null)) {
 
-            if (totalColumnas == 1) {
+            if (primerMicro.equals("0") || primerCiclicidad.equals("0")) {
 
-                if (primerMicro.equals("0") || primerCiclicidad.equals("0")) {
+                modeloTabla.setValueAt(microciclo, 0, 0);
+                modeloTabla.setValueAt(ciclicidad, 1, 0);
 
-                    modeloTabla.setValueAt(microciclo, 0, 0);
-                    modeloTabla.setValueAt(ciclicidad, 1, 0);
-
-                    switch (numTabla) {
-                        case 1:
-                            this.jbtnEliminarPreparacion.setEnabled(false);
-                            break;
-                        case 2:
-                            this.jbtnEliminarEspecial.setEnabled(false);
-                            break;
-                        case 3:
-                            this.jbtnEliminarPrecompetitivo.setEnabled(false);
-                            break;
-                        case 4:
-                            this.jbtnEliminarCompetitivo.setEnabled(false);
-                            break;
-                        default:
-                            break;
-                    }
-
-                } else {
-                    //Si hay una columna, la siguiente sera la 2.
-                    //Si hay 4 columnas, la siguiente sera la 5
-                    int numInicial = modeloTabla.getColumnCount();
-                    int nuevoNum = numInicial + 1;
-
-                    //Agrego la columna
-                    modeloTabla.addColumn(nuevoNum);
-
-                    // Obtener el índice de la nueva columna
-                    int nuevaColumnaIndex = modeloTabla.getColumnCount() - 1;
-
-                    // Establecer el valor 0 en la nueva columna 
-                    modeloTabla.setValueAt(microciclo, 0, nuevaColumnaIndex);
-                    modeloTabla.setValueAt(ciclicidad, 1, nuevaColumnaIndex);
+                switch (numTabla) {
+                    case 1:
+                        this.jbtnEliminarPreparacion.setEnabled(false);
+                        break;
+                    case 2:
+                        this.jbtnEliminarEspecial.setEnabled(false);
+                        break;
+                    case 3:
+                        this.jbtnEliminarPrecompetitivo.setEnabled(false);
+                        break;
+                    case 4:
+                        this.jbtnEliminarCompetitivo.setEnabled(false);
+                        break;
+                    default:
+                        break;
                 }
 
             } else {
@@ -797,7 +794,23 @@ public class macrocicloFrm extends javax.swing.JFrame {
                 modeloTabla.setValueAt(ciclicidad, 1, nuevaColumnaIndex);
             }
 
+        } else {
+            //Si hay una columna, la siguiente sera la 2.
+            //Si hay 4 columnas, la siguiente sera la 5
+            int numInicial = modeloTabla.getColumnCount();
+            int nuevoNum = numInicial + 1;
+
+            //Agrego la columna
+            modeloTabla.addColumn(nuevoNum);
+
+            // Obtener el índice de la nueva columna
+            int nuevaColumnaIndex = modeloTabla.getColumnCount() - 1;
+
+            // Establecer el valor 0 en la nueva columna 
+            modeloTabla.setValueAt(microciclo, 0, nuevaColumnaIndex);
+            modeloTabla.setValueAt(ciclicidad, 1, nuevaColumnaIndex);
         }
+
     }
 
     /**
@@ -1335,12 +1348,12 @@ public class macrocicloFrm extends javax.swing.JFrame {
         macrocicloNegocio negocio = new macrocicloNegocio();
         Object id = negocio.guardarMacrociclo(macrociclo);
         if (!id.equals(null)) {
-            
+
             JOptionPane.showMessageDialog(this, "Macrociclo se ha guardado con exito");
-            VolumenFrm volumen = 
-                    new VolumenFrm(this.jtxtSemanasPreparacion.toString(),this.jtxtSemanasEspecial.toString(),this.jtxtSemanasPrecompetitivo.toString(),this.jtxtSemanasEtapaCompetitivo.toString(),id.toString());
+            VolumenFrm volumen
+                    = new VolumenFrm(this.jtxtSemanasPreparacion.getText(), this.jtxtSemanasEspecial.getText(), this.jtxtSemanasPrecompetitivo.getText(), this.jtxtSemanasEtapaCompetitivo.getText(), id.toString());
             this.dispose();
-            
+
         } else {
             JOptionPane.showMessageDialog(this, "Error: Hubo un error al guardar el Macrociclo ");
         }
@@ -1981,6 +1994,11 @@ public class macrocicloFrm extends javax.swing.JFrame {
         txtAgregarMicrocicloPreparacion.setText("0");
 
         txtAgregarCiclicidadPreparacion.setText("0,0");
+        txtAgregarCiclicidadPreparacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAgregarCiclicidadPreparacionKeyTyped(evt);
+            }
+        });
 
         txtAgregarMicrocicloEspecial.setText("0");
 
@@ -2327,12 +2345,12 @@ public class macrocicloFrm extends javax.swing.JFrame {
 
         if (distribucionValida && ciclicidadValida) {
             this.jbtnCrearMacrociclo.setEnabled(true);
-            
+
             this.txtAgregarCiclicidadCompetitiva.setEnabled(false);
             this.txtAgregarCiclicidadPrecompetitiva.setEnabled(false);
             this.txtAgregarCiclicidadEspecial.setEnabled(false);
             this.txtAgregarCiclicidadPreparacion.setEnabled(false);
-            
+
             this.txtAgregarMicrocicloCompetitiva.setEnabled(false);
             this.txtAgregarMicrocicloEspecial.setEnabled(false);
             this.txtAgregarMicrocicloPrecompetitiva.setEnabled(false);
@@ -2438,14 +2456,19 @@ public class macrocicloFrm extends javax.swing.JFrame {
 
     private void jbtnEditarMacrocicloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEditarMacrocicloActionPerformed
         //activa los todos los campos
-        this.activarCamposEdicion();
-        this.jtxtSemanasPreparativo.setEnabled(false);
-        this.jtxtSemanasCompetitivo.setEnabled(false);
-        this.cargarSemanasCompetitiva(0);
-        this.cargarSemanasEspecial(0);
-        this.cargarSemanasPrecompetitiva(0);
-        this.cargarSemanasPreparacion(0);
-        this.ocultarTablaMeso();
+
+        int opcion = JOptionPane.showConfirmDialog(this, "Se perderán los valores ingresados en las tablas de distribución, ¿Seguro que desea continuar?", "Aviso", JOptionPane.YES_NO_OPTION);
+        if (opcion == 0) {
+            this.activarCamposEdicion();
+            this.jtxtSemanasPreparativo.setEnabled(false);
+            this.jtxtSemanasCompetitivo.setEnabled(false);
+            this.cargarSemanasCompetitiva(0);
+            this.cargarSemanasEspecial(0);
+            this.cargarSemanasPrecompetitiva(0);
+            this.cargarSemanasPreparacion(0);
+            this.ocultarTablaMeso();
+        }
+
     }//GEN-LAST:event_jbtnEditarMacrocicloActionPerformed
 
     private void btnValidarSemanasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarSemanasActionPerformed
@@ -2522,7 +2545,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
             //crea la pantalla para la creacion y se envia esta al constructor
             //this.dispose();
             this.crearMacrociclo();
-            
+
         }
     }//GEN-LAST:event_jbtnCrearMacrocicloActionPerformed
 
@@ -2550,6 +2573,13 @@ public class macrocicloFrm extends javax.swing.JFrame {
     private void jtxtSemanasPreparativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtSemanasPreparativoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxtSemanasPreparativoActionPerformed
+
+    private void txtAgregarCiclicidadPreparacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAgregarCiclicidadPreparacionKeyTyped
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || c == ',' || c == KeyEvent.VK_DELETE)) {
+            evt.consume(); // Si no es un dígito, coma, backspace o delete, ignora el evento
+        }
+    }//GEN-LAST:event_txtAgregarCiclicidadPreparacionKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -46,7 +46,7 @@ public class macrocicloDAOTest {
     /**
      * Test of guardarMacrociclo method, of class macrocicloDAO.
      */
-    /*
+    
     @Test
     public void testGuardarMacrociclo() {
         
@@ -69,15 +69,14 @@ public class macrocicloDAOTest {
         macrociclo.setEtapaCompetitiva(1);
 
         macrocicloDAO instance = new macrocicloDAO();
-        boolean expResult = true;
-        boolean result = instance.guardarMacrociclo(macrociclo);
-        if (result != true) {
+        Object result = instance.guardarMacrociclo(macrociclo);
+        if (result == null) {
             fail("No se pudo guardar el macrociclo.");
 
         }
-        assertEquals(expResult, result);
+        assertNotNull(result);
     }
-    */
+    
 
     
 
@@ -86,7 +85,7 @@ public class macrocicloDAOTest {
      */
     @Test
     public void testGuardarMacrocicloD() {
-        /*
+        
         System.out.println("guardarMacrocicloD");
         Macrociclo macrociclo = new Macrociclo();
 
@@ -112,8 +111,7 @@ public class macrocicloDAOTest {
             fail("No se pudo guardar el macrociclo.");
 
         }
-         */
-        boolean expResult = true;
+         
         assertEquals(expResult, true);
     }
 
