@@ -46,7 +46,9 @@ public class VolumenFrm extends javax.swing.JFrame {
         System.out.println(this.semanasPrep + "  " + this.semanasEspeciales + "  " + this.semanasPrecom + "  " + this.semanasCompe + "  " );
     }
     
-    
+    /**
+     * Método que hace visible las tablas de las etapas
+     */
     public void habilitarTablas(){
         this.tablaVolumenGeneral.setEnabled(true);
         this.tablaEtapaCompetitiva.setEnabled(true);
@@ -56,6 +58,9 @@ public class VolumenFrm extends javax.swing.JFrame {
         this.jbCalcularVolumen.setEnabled(true);
     }
     
+    /**
+     * Método que oculta las tablas de los periodos
+     */
     public void deshabilitarTablas(){
         this.tablaVolumenGeneral.setEnabled(false);
         this.tablaEtapaCompetitiva.setEnabled(false);
@@ -65,6 +70,9 @@ public class VolumenFrm extends javax.swing.JFrame {
         this.jbCalcularVolumen.setEnabled(false);
     }
     
+    /**
+     * Método que carga las diciplinas elegidas en las tablas de las etapas
+     */
     public void cargarDisciplinas(){
         
         DefaultTableModel tableModelGeneral = (DefaultTableModel) this.tablaEtapaGeneral.getModel();
@@ -118,6 +126,9 @@ public class VolumenFrm extends javax.swing.JFrame {
         }        
     }
     
+    /**
+     * Método que borra toto el contenido de las tablas de las etapas
+     */
     public void limpiarTablas(){
         DefaultTableModel tableModelGeneral = (DefaultTableModel) this.tablaEtapaGeneral.getModel();
         
@@ -156,6 +167,10 @@ public class VolumenFrm extends javax.swing.JFrame {
         
     }
     
+    /**
+     * Metodo que valida el contenido de las tablas
+     * @return 
+     */
     public boolean validarTablas(){
          VolumenNegocio volneg = new VolumenNegocio();
          
@@ -192,6 +207,9 @@ public class VolumenFrm extends javax.swing.JFrame {
          
     }
     
+    /**
+     * Método que calcula el volumen total de una etapa
+     */
     public void calcularVolumenEtapa(){
          VolumenNegocio volneg = new VolumenNegocio();
          
@@ -218,6 +236,9 @@ public class VolumenFrm extends javax.swing.JFrame {
                  
     }
     
+    /**
+     * Método que calcula el volumen total de las etapas
+     */
     public void calcularTotal(){
          VolumenNegocio volneg = new VolumenNegocio();
          
@@ -250,6 +271,9 @@ public class VolumenFrm extends javax.swing.JFrame {
          
     }
     
+    /**
+     * Método que guarda el volumen total en la BD
+     */
     public void guardarVolumen(){
          disciplinasNegocio disneg = new disciplinasNegocio(); 
         

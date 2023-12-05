@@ -20,6 +20,13 @@ public class VolumenNegocio {
     public VolumenNegocio() {
     }
 
+    /**
+     * Método que valida el contenido de la tabla de volumen total
+     * @param tabla
+     * @param frame
+     * @param etapa
+     * @return 
+     */
     public boolean validarTablaVolumen(DefaultTableModel tabla, JFrame frame, String etapa) {
         if (frame != null) {
             for (int i = 0; i < tabla.getRowCount(); i++) {
@@ -138,7 +145,12 @@ public class VolumenNegocio {
 
         return true;
     }
-
+    /**
+     * Metodo que calcula el volumen total de una etapa
+     * @param tabla
+     * @param semana
+     * @return 
+     */
     public boolean calcularVolumen(DefaultTableModel tabla, int semana) {
 
         for (int i = 0; i < tabla.getRowCount(); i++) {
@@ -165,7 +177,13 @@ public class VolumenNegocio {
 
         return true;
     }
-
+    
+    /**
+     * Método que calcula el voumen todal de las etapas
+     * @param tablas
+     * @param tabla
+     * @return 
+     */
     public boolean calcularTablaTotal(ArrayList<DefaultTableModel> tablas, DefaultTableModel tabla) {
 
         float[] total = new float[tablas.get(0).getRowCount()];
@@ -184,6 +202,11 @@ public class VolumenNegocio {
         return true;
     }
 
+    /**
+     * Método que valida el valor ingresado por parámetro
+     * @param valor
+     * @return 
+     */
     public boolean validarEntero(String valor) {
         String regex = "\\d+";
         Pattern pattern = Pattern.compile(regex);
@@ -195,7 +218,11 @@ public class VolumenNegocio {
             return false;
         }
     }
-
+    /**
+     * Método que valida el valor ingresado por parámetro
+     * @param valor
+     * @return 
+     */
     public boolean validarFlotante(String valor) {
         String regex = "\\d+(\\.\\d+)?";
         Pattern pattern = Pattern.compile(regex);

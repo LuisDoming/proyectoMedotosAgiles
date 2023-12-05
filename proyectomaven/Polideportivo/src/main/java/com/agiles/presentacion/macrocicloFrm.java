@@ -1892,7 +1892,7 @@ public class macrocicloFrm extends javax.swing.JFrame {
 
         jbtnEditarMacrociclo.setBackground(new java.awt.Color(153, 204, 255));
         jbtnEditarMacrociclo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jbtnEditarMacrociclo.setText("Editar macrociclo");
+        jbtnEditarMacrociclo.setText("Editar periodos");
         jbtnEditarMacrociclo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnEditarMacrocicloActionPerformed(evt);
