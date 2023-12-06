@@ -1535,11 +1535,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="0,0"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAgregarCiclicidadEspecialKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtAgregarCiclicidadPrecompetitiva">
           <Properties>
             <Property name="text" type="java.lang.String" value="0,0"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAgregarCiclicidadPrecompetitivaKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtAgregarMicrocicloPrecompetitiva">
           <Properties>
@@ -1550,6 +1556,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="0,0"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAgregarCiclicidadCompetitivaKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtAgregarMicrocicloCompetitiva">
           <Properties>

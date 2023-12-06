@@ -2003,12 +2003,27 @@ public class macrocicloFrm extends javax.swing.JFrame {
         txtAgregarMicrocicloEspecial.setText("0");
 
         txtAgregarCiclicidadEspecial.setText("0,0");
+        txtAgregarCiclicidadEspecial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAgregarCiclicidadEspecialKeyTyped(evt);
+            }
+        });
 
         txtAgregarCiclicidadPrecompetitiva.setText("0,0");
+        txtAgregarCiclicidadPrecompetitiva.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAgregarCiclicidadPrecompetitivaKeyTyped(evt);
+            }
+        });
 
         txtAgregarMicrocicloPrecompetitiva.setText("0");
 
         txtAgregarCiclicidadCompetitiva.setText("0,0");
+        txtAgregarCiclicidadCompetitiva.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAgregarCiclicidadCompetitivaKeyTyped(evt);
+            }
+        });
 
         txtAgregarMicrocicloCompetitiva.setText("0");
 
@@ -2580,6 +2595,27 @@ public class macrocicloFrm extends javax.swing.JFrame {
             evt.consume(); // Si no es un dígito, coma, backspace o delete, ignora el evento
         }
     }//GEN-LAST:event_txtAgregarCiclicidadPreparacionKeyTyped
+
+    private void txtAgregarCiclicidadPrecompetitivaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAgregarCiclicidadPrecompetitivaKeyTyped
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || c == ',' || c == KeyEvent.VK_DELETE)) {
+            evt.consume(); // Si no es un dígito, coma, backspace o delete, ignora el evento
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAgregarCiclicidadPrecompetitivaKeyTyped
+
+    private void txtAgregarCiclicidadEspecialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAgregarCiclicidadEspecialKeyTyped
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || c == ',' || c == KeyEvent.VK_DELETE)) {
+            evt.consume(); // Si no es un dígito, coma, backspace o delete, ignora el evento
+        }
+    }//GEN-LAST:event_txtAgregarCiclicidadEspecialKeyTyped
+
+    private void txtAgregarCiclicidadCompetitivaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAgregarCiclicidadCompetitivaKeyTyped
+        char c = evt.getKeyChar();
+        if (!(Character.isDigit(c) || c == ',' || c == KeyEvent.VK_DELETE)) {
+            evt.consume(); // Si no es un dígito, coma, backspace o delete, ignora el evento
+        }
+    }//GEN-LAST:event_txtAgregarCiclicidadCompetitivaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
