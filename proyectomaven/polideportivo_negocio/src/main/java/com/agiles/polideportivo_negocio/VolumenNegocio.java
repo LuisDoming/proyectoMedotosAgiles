@@ -83,7 +83,6 @@ public class VolumenNegocio {
 
             }
 
-            JOptionPane.showMessageDialog(frame, "Calculo realizado con exito, puede guardar los datos");
 
         } else {
 
